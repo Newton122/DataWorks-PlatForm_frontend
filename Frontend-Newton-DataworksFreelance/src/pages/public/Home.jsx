@@ -8,6 +8,11 @@ const Home = () => {
   const { user } = useAuth();
   const [currentSlide, setCurrentSlide] = useState(0);
   const [selectedTechIndex, setSelectedTechIndex] = useState(null);
+  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+
+  const fadeUp = isMobile ? false : { opacity: 0, y: 100 };
+  const fadeLeft = isMobile ? false : { opacity: 0, x: -100 };
+  const scaleIn = isMobile ? false : { opacity: 0, scale: 0.8 };
 
   // Technology items for carousel
   const techRow1 = [
@@ -209,7 +214,7 @@ const Home = () => {
 
       {/* Hero Section */}
       <motion.section
-        initial={{ opacity: 0, y: 100 }}
+        initial={fadeUp}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, ease: "easeOut" }}
         className="relative py-12 md:py-20 lg:py-24 px-3 sm:px-4 overflow-hidden"
@@ -320,7 +325,7 @@ transformed.write \\
 
       {/* Services Section */}
       <motion.section
-        initial={{ opacity: 0, x: -100 }}
+        initial={fadeLeft}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 1, ease: "easeOut", delay: 0.2 }}
         className="py-16 md:py-20 lg:py-24 px-3 sm:px-4 bg-[var(--bg-secondary)]"
@@ -379,7 +384,7 @@ transformed.write \\
 
       {/* Horizontal Motion Images Section */}
       <motion.section
-        initial={{ opacity: 0, scale: 0.8 }}
+        initial={scaleIn}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 1.2, ease: "easeOut", delay: 0.3 }}
         className="py-12 md:py-16 px-4 bg-[var(--bg-primary)] overflow-hidden"
@@ -728,7 +733,7 @@ transformed.write \\
 
       {/* Global Presence Section */}
       <motion.section
-        initial={{ opacity: 0, x: -100 }}
+        initial={fadeLeft}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 1, ease: "easeOut", delay: 0.8 }}
         className="py-12 md:py-16 px-4 bg-[var(--bg-primary)]"
