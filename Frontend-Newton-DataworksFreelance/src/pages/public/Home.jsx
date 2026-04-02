@@ -8,11 +8,19 @@ const Home = () => {
   const { user } = useAuth();
   const [currentSlide, setCurrentSlide] = useState(0);
   const [selectedTechIndex, setSelectedTechIndex] = useState(null);
-  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+  const [isMobile, setIsMobile] = useState(false);
 
-  const fadeUp = isMobile ? false : { opacity: 0, y: 100 };
-  const fadeLeft = isMobile ? false : { opacity: 0, x: -100 };
-  const scaleIn = isMobile ? false : { opacity: 0, scale: 0.8 };
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  const mobileInitial = { opacity: 1, x: 0, y: 0, scale: 1 };
+  const fadeUp = isMobile ? mobileInitial : { opacity: 0, y: 100 };
+  const fadeLeft = isMobile ? mobileInitial : { opacity: 0, x: -100 };
+  const scaleIn = isMobile ? mobileInitial : { opacity: 0, scale: 0.8 };
 
   // Technology items for carousel
   const techRow1 = [
