@@ -11,7 +11,7 @@ const NotificationBell = ({ userId }) => {
 
   useEffect(() => {
     // Socket connection
-    const newSocket = io('http://localhost:5000');
+    const newSocket = io(import.meta.env.VITE_API_BASE_URL);
     setSocket(newSocket);
 
     newSocket.emit("joinRoom", userId);
@@ -31,7 +31,7 @@ const NotificationBell = ({ userId }) => {
 
   const fetchNotifications = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/notifications', {
+      const res = await axios.get('/api/notifications', {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
       });
       setNotifications(res.data.notifications);
@@ -43,7 +43,7 @@ const NotificationBell = ({ userId }) => {
 
   const markAllRead = async () => {
     try {
-      await axios.patch('http://localhost:5000/api/notifications/read', {}, {
+      await axios.patch('/api/notifications/read', {}, {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
       });
       setUnreadCount(0);
