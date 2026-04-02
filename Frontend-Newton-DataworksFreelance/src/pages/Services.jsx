@@ -187,7 +187,7 @@ const Services = () => {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.3 }}
         transition={{ duration: 1, ease: "easeOut" }}
-        className="relative py-8 md:py-12 lg:py-16 px-3 sm:px-4 overflow-hidden"
+        className="relative py-12 md:py-20 lg:py-24 px-3 sm:px-4 overflow-hidden"
       >
         <div className="absolute inset-0 bg-gradient-to-br from-var(--bg-primary) via-var(--bg-secondary) to-var(--bg-primary)"></div>
 
@@ -206,13 +206,13 @@ const Services = () => {
           <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center">
             <button
               onClick={handleGetStarted}
-              className="px-6 md:px-8 py-2.5 md:py-3 polidhed-dark-green-btn font-semibold text-sm md:text-base"
+              className="px-4 md:px-6 py-2 md:py-2.5 polidhed-dark-green-btn font-semibold text-sm md:text-base backdrop-blur-sm bg-opacity-90"
             >
               Get Started Free
             </button>
             <button
               onClick={handleViewPricing}
-              className="px-6 md:px-8 py-2.5 md:py-3 border border-[var(--border-color)] text-[var(--text-primary)] font-semibold hover:border-[var(--accent-primary)] hover:text-[var(--accent-primary)] transition-colors text-sm md:text-base"
+              className="px-4 md:px-6 py-2 md:py-2.5 backdrop-blur-md bg-white/10 border border-white/20 text-white font-semibold hover:bg-white/20 transition-all text-sm md:text-base"
             >
               View Pricing
             </button>

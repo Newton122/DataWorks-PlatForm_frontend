@@ -213,7 +213,7 @@ const Home = () => {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.3 }}
         transition={{ duration: 1, ease: "easeOut" }}
-        className="relative py-8 md:py-12 lg:py-16 px-3 sm:px-4 overflow-hidden bg-gradient-to-br from-var(--bg-primary) via-var(--bg-secondary) to-var(--bg-primary)"
+        className="relative py-12 md:py-20 lg:py-24 px-3 sm:px-4 overflow-hidden"
       >
 
         <div className="relative max-w-6xl mx-auto">
@@ -239,7 +239,7 @@ const Home = () => {
                   whileHover={{ y: -2, scale: 1.03 }}
                   whileTap={{ scale: 0.97 }}
                   transition={{ type: 'spring', stiffness: 300 }}
-                  className="transition-deluxe polidhed-dark-green-btn text-sm sm:text-base py-2 sm:py-3"
+                  className="px-4 md:px-6 py-2 md:py-2.5 polidhed-dark-green-btn font-semibold text-sm md:text-base backdrop-blur-sm bg-opacity-90"
                 >
                   {heroSlides[currentSlide].cta}
                   <span className="absolute inset-x-3 bottom-2 h-1.5 bg-[rgba(15, 78, 43, 0.45)] rounded-full blur-sm" />
@@ -249,10 +249,10 @@ const Home = () => {
                   whileHover={{ y: -2, scale: 1.03 }}
                   whileTap={{ scale: 0.97 }}
                   transition={{ type: 'spring', stiffness: 300 }}
-                  className="transition-deluxe btn-sharp polidhed-dark-green-btn"
+                  className="px-4 md:px-6 py-2 md:py-2.5 backdrop-blur-md bg-white/10 border border-white/20 text-white font-semibold hover:bg-white/20 transition-all text-sm md:text-base"
                 >
                   {heroSlides[currentSlide].secondaryCta}
-                  <span className="absolute inset-x-3 bottom-2 h-1.5 bg-[rgba(15, 78, 43, 0.3)] rounded-full blur-sm" />
+                  <span className="absolute inset-x-3 bottom-2 h-1.5 bg-[rgba(255, 255, 255, 0.2)] rounded-full blur-sm" />
                 </motion.button>
               </div>
               <div className="flex items-center gap-3 md:gap-4 pt-2">
@@ -325,7 +325,7 @@ transformed.write \\
         whileInView={{ opacity: 1, x: 0 }}
         viewport={{ once: true, amount: 0.3 }}
         transition={{ duration: 1, ease: "easeOut", delay: 0.2 }}
-        className="py-8 md:py-12 lg:py-16 px-3 sm:px-4 bg-[var(--bg-secondary)]"
+        className="py-16 md:py-20 lg:py-24 px-3 sm:px-4 bg-[var(--bg-secondary)]"
       >
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-8 md:mb-12">

@@ -88,7 +88,7 @@ const Overview = () => {
     <div className="min-h-screen bg-[var(--bg-primary)]">
 
       {/* Hero Section */}
-      <section className="relative py-8 md:py-12 lg:py-16 px-3 sm:px-4 overflow-hidden">
+      <section className="relative py-12 md:py-20 lg:py-24 px-3 sm:px-4 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-[var(--bg-primary)] via-[var(--bg-secondary)] to-[var(--bg-primary)]"></div>
 
         <div className="relative max-w-6xl mx-auto text-center">
@@ -236,10 +236,10 @@ const Overview = () => {
             Join thousands of developers and companies already using DataWorks to build amazing things.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="px-8 py-3 polidhed-dark-green-btn font-semibold">
+            <button className="px-6 py-2 polidhed-dark-green-btn font-semibold text-sm">
               Get Started Today
             </button>
-            <button className="px-8 py-3 bg-[var(--bg-secondary)] border border-[var(--border-color)] text-[var(--text-primary)] font-semibold hover:border-[var(--accent-primary)] transition-colors">
+            <button className="px-6 py-2 bg-white/10 backdrop-blur-md border border-white/20 text-white font-semibold hover:bg-white/20 transition-colors text-sm">
               Learn More
             </button>
           </div>
