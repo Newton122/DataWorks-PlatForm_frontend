@@ -1,0 +1,7 @@
+{
+  "buildCommand": "cd Frontend-Newton-DataworksFreelance && npm run build",
+  "outputDirectory": "Frontend-Newton-DataworksFreelance/dist",
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/index.html" }
+  ]
+}
