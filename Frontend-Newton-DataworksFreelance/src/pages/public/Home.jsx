@@ -9,8 +9,6 @@ const Home = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [selectedTechIndex, setSelectedTechIndex] = useState(null);
 
-  console.log('Home component is rendering'); // Debug log
-
   // Technology items for carousel
   const techRow1 = [
     { name: "Apache Spark", logo: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" },
