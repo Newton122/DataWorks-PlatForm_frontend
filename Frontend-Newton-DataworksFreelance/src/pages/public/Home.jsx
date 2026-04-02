@@ -213,33 +213,33 @@ const Home = () => {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.3 }}
         transition={{ duration: 1, ease: "easeOut" }}
-        className="relative py-12 md:py-16 px-4 overflow-hidden bg-gradient-to-br from-var(--bg-primary) via-var(--bg-secondary) to-var(--bg-primary)"
+        className="relative py-8 md:py-12 lg:py-16 px-3 sm:px-4 overflow-hidden bg-gradient-to-br from-var(--bg-primary) via-var(--bg-secondary) to-var(--bg-primary)"
       >
 
         <div className="relative max-w-6xl mx-auto">
-          <div className="grid lg:grid-cols-2 gap-8 items-center">
-            <div className="space-y-6">
+          <div className="grid lg:grid-cols-2 gap-6 md:gap-8 items-center">
+            <div className="space-y-4 md:space-y-6">
                 <div className="inline-flex items-center px-3 py-1.5 bg-[var(--bg-tertiary)] border border-[var(--border-color)] text-[var(--accent-primary)] text-xs font-medium">
 
                 <span className="w-2 h-2 bg-[var(--accent-primary)] mr-2 animate-pulse"></span>
                 DataWorks Agency
               </div>
-              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[var(--text-primary)] leading-tight">
+              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-[var(--text-primary)] leading-tight">
                 {heroSlides[currentSlide].title}
               </h1>
-              <p className="text-lg md:text-xl text-[var(--accent-primary)] font-semibold">
+              <p className="text-base sm:text-lg md:text-xl text-[var(--accent-primary)] font-semibold">
                 {heroSlides[currentSlide].subtitle}
               </p>
-              <p className="text-sm md:text-base text-[var(--text-muted)] max-w-lg">
+              <p className="text-xs sm:text-sm md:text-base text-[var(--text-muted)] max-w-lg">
                 {heroSlides[currentSlide].description}
               </p>
-              <div className="flex flex-col sm:flex-row gap-3">
+              <div className="flex flex-col sm:flex-row gap-2 sm:gap-3">
                 <motion.button
                   onClick={handleGetStarted}
                   whileHover={{ y: -2, scale: 1.03 }}
                   whileTap={{ scale: 0.97 }}
                   transition={{ type: 'spring', stiffness: 300 }}
-                  className="transition-deluxe polidhed-dark-green-btn"
+                  className="transition-deluxe polidhed-dark-green-btn text-sm sm:text-base py-2 sm:py-3"
                 >
                   {heroSlides[currentSlide].cta}
                   <span className="absolute inset-x-3 bottom-2 h-1.5 bg-[rgba(15, 78, 43, 0.45)] rounded-full blur-sm" />

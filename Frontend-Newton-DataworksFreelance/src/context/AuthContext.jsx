@@ -67,11 +67,23 @@ export const AuthProvider = ({ children }) => {
     setUser(null)
   }
 
+  const updateProfile = async (profileData) => {
+    try {
+      const response = await axios.put('/api/users/profile', profileData)
+      setUser(response.data)
+      return response.data
+    } catch (error) {
+      console.error('Error updating profile:', error.response?.data || error.message)
+      throw error
+    }
+  }
+
   const value = {
     user,
     login,
     signup,
     logout,
+    updateProfile,
     loading
   }
 

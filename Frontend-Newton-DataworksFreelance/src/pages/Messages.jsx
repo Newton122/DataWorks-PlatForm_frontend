@@ -567,23 +567,23 @@ const Messages = () => {
     <div className="bg-[var(--bg-primary)]">
       <div className="max-w-7xl mx-auto px-4">
         <div className="bg-[var(--bg-secondary)] border border-[var(--border-color)] min-h-[80vh] overflow-hidden">
-          <div className="grid md:grid-cols-3 h-full">
+        <div className="grid md:grid-cols-3 gap-2 md:gap-0 h-full">
             {/* Conversations Sidebar */}
-            <div className="border-r border-[var(--border-color)] flex flex-col">
+            <div className="md:col-span-1 border-r border-[var(--border-color)] flex flex-col min-h-[60vh] md:min-h-auto">
               {/* Header */}
-              <div className="p-4 border-b border-[var(--border-color)]">
-                <div className="flex items-center justify-between mb-3">
-                  <h2 className="text-lg font-semibold text-[var(--text-primary)]">Messages</h2>
-                  <div className="flex gap-2">
+              <div className="p-3 md:p-4 border-b border-[var(--border-color)] flex-shrink-0">
+                <div className="flex items-center justify-between gap-2 mb-3">
+                  <h2 className="text-base md:text-lg font-semibold text-[var(--text-primary)]">Messages</h2>
+                  <div className="flex gap-1 md:gap-2">
                     <button
                       onClick={() => selectedConversation && fetchMessages(selectedConversation.userId)}
-                      className="px-3 py-1.5 bg-[var(--bg-tertiary)] text-[var(--text-primary)] text-sm font-medium rounded-lg hover:bg-[var(--bg-hover)] transition-colors"
+                      className="px-2 md:px-3 py-1 md:py-1.5 bg-[var(--bg-tertiary)] text-[var(--text-primary)] text-xs md:text-sm font-medium rounded-lg hover:bg-[var(--bg-hover)] transition-colors"
                     >
                       Refresh
                     </button>
                     <button
                       onClick={openNewMessageModal}
-                      className="px-3 py-1.5 polidhed-dark-green-btn text-sm font-medium rounded-lg"
+                      className="px-2 md:px-3 py-1 md:py-1.5 polidhed-dark-green-btn text-xs md:text-sm font-medium rounded-lg whitespace-nowrap"
                     >
                       New Message
                     </button>
@@ -595,7 +595,7 @@ const Messages = () => {
                     placeholder="Search conversations..."
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
-                    className="w-full px-3 py-2 bg-[var(--bg-primary)] border border-[var(--border-color)] text-[var(--text-primary)] placeholder-[var(--text-muted)] text-sm focus:outline-none focus:border-[var(--accent-primary)]"
+                    className="w-full px-3 py-2 bg-[var(--bg-primary)] border border-[var(--border-color)] text-[var(--text-primary)] placeholder-[var(--text-muted)] text-xs md:text-sm focus:outline-none focus:border-[var(--accent-primary)]"
                   />
                   <svg className="absolute right-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-[#64748B]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
@@ -652,7 +652,7 @@ const Messages = () => {
             </div>
 
             {/* Chat Area */}
-            <div className="md:col-span-2 flex flex-col">
+            <div className="md:col-span-2 flex flex-col min-h-[60vh] md:min-h-auto">
               {selectedConversation ? (
                 <>
                   {/* Chat Header */}
@@ -818,11 +818,11 @@ const Messages = () => {
 
       {/* New Message Modal */}
       {showNewMessageModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-[var(--bg-secondary)] border border-[var(--border-color)] rounded-lg w-full max-w-md mx-4">
-            <div className="p-4 border-b border-[var(--border-color)]">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <div className="bg-[var(--bg-secondary)] border border-[var(--border-color)] rounded-lg w-full max-w-md max-h-[85vh] flex flex-col">
+            <div className="p-3 md:p-4 border-b border-[var(--border-color)] flex-shrink-0">
               <div className="flex items-center justify-between">
-                <h3 className="text-lg font-semibold text-[var(--text-primary)]">New Message</h3>
+                <h3 className="text-base md:text-lg font-semibold text-[var(--text-primary)]">New Message</h3>
                 <button
                   onClick={() => {
                     setShowNewMessageModal(false);
@@ -848,14 +848,14 @@ const Messages = () => {
                 </svg>
               </div>
             </div>
-            <div className="max-h-80 overflow-y-auto">
+            <div className="max-h-96 overflow-y-auto flex-1">
               {loadingUsers ? (
                 <div className="p-8 text-center">
                   <div className="w-8 h-8 border-2 border-[var(--accent-primary)] border-t-transparent animate-spin mx-auto mb-2"></div>
                   <p className="text-[var(--text-muted)] text-sm">Loading users...</p>
                 </div>
               ) : filteredUsers.length === 0 ? (
-                <div className="p-8 text-center text-[var(--text-muted)]">
+                <div className="p-4 md:p-8 text-center text-[var(--text-muted)] text-sm">
                   {user?.role === 'freelancer' ? 
                     'No available contacts. Apply to jobs to connect with clients, or contact admin for support.' : 
                     'No users found'
@@ -866,16 +866,16 @@ const Messages = () => {
                   <div
                     key={u._id}
                     onClick={() => startNewConversation(u)}
-                    className="p-4 border-b border-[var(--border-color)] cursor-pointer hover:bg-[var(--bg-secondary)] transition-colors"
+                    className="p-3 md:p-4 border-b border-[var(--border-color)] cursor-pointer hover:bg-[var(--bg-secondary)] transition-colors"
                   >
                     <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 bg-[var(--bg-primary)] border border-[var(--border-color)] flex items-center justify-center text-sm font-semibold text-[var(--accent-primary)]">
+                      <div className="w-10 h-10 bg-[var(--bg-primary)] border border-[var(--border-color)] flex items-center justify-center text-sm font-semibold text-[var(--accent-primary)] flex-shrink-0">
                         {u.name?.charAt(0)?.toUpperCase() || 'U'}
                       </div>
-                      <div className="flex-1">
-                        <h4 className="text-sm font-medium text-[var(--text-primary)]">{u.name}</h4>
-                        <p className="text-xs text-[var(--text-muted)]">{u.email}</p>
-                        <span className={`text-xs px-2 py-0.5 rounded-full ${
+                      <div className="flex-1 min-w-0">
+                        <h4 className="text-sm font-medium text-[var(--text-primary)] truncate">{u.name}</h4>
+                        <p className="text-xs text-[var(--text-muted)] truncate">{u.email}</p>
+                        <span className={`inline-block text-xs px-2 py-0.5 rounded-full mt-1 ${
                           u.role === 'admin' ? 'bg-red-500/20 text-red-400' :
                           u.role === 'freelancer' ? 'bg-blue-500/20 text-blue-400' :
                           'bg-green-500/20 text-green-400'
