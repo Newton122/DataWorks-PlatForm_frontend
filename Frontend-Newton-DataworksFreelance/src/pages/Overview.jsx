@@ -88,36 +88,36 @@ const Overview = () => {
     <div className="min-h-screen bg-[var(--bg-primary)]">
 
       {/* Hero Section */}
-      <section className="relative py-16 px-4 overflow-hidden">
+      <section className="relative py-8 md:py-12 lg:py-16 px-3 sm:px-4 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-[var(--bg-primary)] via-[var(--bg-secondary)] to-[var(--bg-primary)]"></div>
 
         <div className="relative max-w-6xl mx-auto text-center">
-          <div className="inline-flex items-center px-4 py-2 bg-[var(--bg-tertiary)] border border-[var(--border-color)] text-[var(--accent-primary)] text-sm font-medium mb-6">
+          <div className="inline-flex items-center px-3 md:px-4 py-1.5 md:py-2 bg-[var(--bg-tertiary)] border border-[var(--border-color)] text-[var(--accent-primary)] text-xs md:text-sm font-medium mb-4 md:mb-6">
             <span className="w-2 h-2 bg-[var(--accent-primary)] mr-2 animate-pulse"></span>
             Platform Overview
           </div>
-          <h1 className="text-3xl lg:text-4xl xl:text-5xl font-bold text-highlight mb-4">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-highlight mb-3 md:mb-4">
             Built by Brighton & IO
           </h1>
-          <p className="text-lg text-[var(--text-muted)] max-w-3xl mx-auto mb-8">
+          <p className="text-sm sm:text-base md:text-lg text-[var(--text-muted)] max-w-3xl mx-auto mb-6 md:mb-8 px-2">
             A full-stack development collaboration bringing together expertise in modern web technologies,
             AI integration, and user experience design to create the future of data-driven platforms.
           </p>
 
-          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            <div className="bg-[var(--bg-secondary)] border border-[var(--border-color)] p-6 rounded-lg">
-              <div className="w-12 h-12 bg-[var(--accent-primary)] rounded-full flex items-center justify-center mb-4 mx-auto">
-                <span className="text-white font-bold text-lg">B</span>
+          <div className="grid md:grid-cols-2 gap-4 md:gap-8 max-w-4xl mx-auto px-2">
+            <div className="bg-[var(--bg-secondary)] border border-[var(--border-color)] p-4 md:p-6 rounded-lg">
+              <div className="w-10 md:w-12 h-10 md:h-12 bg-[var(--accent-primary)] rounded-full flex items-center justify-center mb-3 md:mb-4 mx-auto">
+                <span className="text-white font-bold text-base md:text-lg">B</span>
               </div>
-              <h3 className="text-lg font-semibold text-[var(--text-primary)] mb-2">Brighton</h3>
-              <p className="text-[var(--text-secondary)] mb-3">Full Stack Developer</p>
-              <p className="text-sm text-[var(--text-muted)]">
+              <h3 className="text-base md:text-lg font-semibold text-[var(--text-primary)] mb-2">Brighton</h3>
+              <p className="text-xs md:text-sm text-[var(--text-secondary)] mb-3">Full Stack Developer</p>
+              <p className="text-xs md:text-sm text-[var(--text-muted)]">
                 Expert in React, Node.js, and modern web architectures. Passionate about creating
                 scalable solutions and exceptional user experiences.
               </p>
             </div>
 
-            <div className="bg-[var(--bg-secondary)] border border-[var(--border-color)] p-6 rounded-lg">
+            <div className="bg-[var(--bg-secondary)] border border-[var(--border-color)] p-4 md:p-6 rounded-lg">
               <div className="w-12 h-12 bg-[var(--accent-secondary)] rounded-full flex items-center justify-center mb-4 mx-auto">
                 <span className="text-white font-bold text-lg">IO</span>
               </div>

@@ -187,7 +187,7 @@ const Services = () => {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.3 }}
         transition={{ duration: 1, ease: "easeOut" }}
-        className="relative py-12 md:py-16 px-4 overflow-hidden"
+        className="relative py-8 md:py-12 lg:py-16 px-3 sm:px-4 overflow-hidden"
       >
         <div className="absolute inset-0 bg-gradient-to-br from-var(--bg-primary) via-var(--bg-secondary) to-var(--bg-primary)"></div>
 
@@ -196,23 +196,23 @@ const Services = () => {
             <span className="w-2 h-2 bg-[var(--accent-primary)] mr-2 animate-pulse"></span>
             DataWorks Agency Services
           </div>
-          <h1 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-highlight mb-4">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-highlight mb-4">
             Enterprise Data Solutions
           </h1>
-          <p className="text-sm sm:text-base text-[var(--text-muted)] max-w-2xl mx-auto mb-8">
+          <p className="text-sm sm:text-base md:text-lg text-[var(--text-muted)] max-w-2xl mx-auto mb-6 md:mb-8">
             End-to-end data engineering, analytics, and machine learning services 
             that transform your business intelligence and drive growth.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center">
             <button
               onClick={handleGetStarted}
-              className="px-8 py-3 polidhed-dark-green-btn font-semibold"
+              className="px-6 md:px-8 py-2.5 md:py-3 polidhed-dark-green-btn font-semibold text-sm md:text-base"
             >
               Get Started Free
             </button>
             <button
               onClick={handleViewPricing}
-              className="px-8 py-3 border border-[var(--border-color)] text-[var(--text-primary)] font-semibold hover:border-[var(--accent-primary)] hover:text-[var(--accent-primary)] transition-colors"
+              className="px-6 md:px-8 py-2.5 md:py-3 border border-[var(--border-color)] text-[var(--text-primary)] font-semibold hover:border-[var(--accent-primary)] hover:text-[var(--accent-primary)] transition-colors text-sm md:text-base"
             >
               View Pricing
             </button>

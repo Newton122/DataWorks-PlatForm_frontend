@@ -255,15 +255,15 @@ const Home = () => {
                   <span className="absolute inset-x-3 bottom-2 h-1.5 bg-[rgba(15, 78, 43, 0.3)] rounded-full blur-sm" />
                 </motion.button>
               </div>
-              <div className="flex items-center gap-4 pt-2">
-                <div className="flex -space-x-2">
+              <div className="flex items-center gap-3 md:gap-4 pt-2">
+                <div className="flex -space-x-1 md:-space-x-2">
                   {[1, 2, 3, 4].map((i) => (
-                    <div key={i} className="w-8 h-8 bg-[var(--bg-tertiary)] border-2 border-[var(--border-color)] flex items-center justify-center text-xs text-[var(--accent-primary)]">
+                    <div key={i} className="w-6 h-6 md:w-8 md:h-8 bg-[var(--bg-tertiary)] border-2 border-[var(--border-color)] flex items-center justify-center text-xs">
                       {String.fromCharCode(64 + i)}
                     </div>
                   ))}
                 </div>
-                <div className="text-xs text-[var(--text-muted)]">
+                <div className="text-xs md:text-sm text-[var(--text-muted)]">
                   <span className="text-[var(--text-primary)] font-semibold">500+</span> data engineers available
                 </div>
               </div>
@@ -325,18 +325,18 @@ transformed.write \\
         whileInView={{ opacity: 1, x: 0 }}
         viewport={{ once: true, amount: 0.3 }}
         transition={{ duration: 1, ease: "easeOut", delay: 0.2 }}
-        className="py-12 md:py-16 px-4 bg-[var(--bg-secondary)]"
+        className="py-8 md:py-12 lg:py-16 px-3 sm:px-4 bg-[var(--bg-secondary)]"
       >
         <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-2xl lg:text-3xl font-bold text-[var(--text-primary)] mb-3">
+          <div className="text-center mb-8 md:mb-12">
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-[var(--text-primary)] mb-3">
               DataWorks Agency Services
             </h2>
-            <p className="text-sm text-[var(--text-muted)] max-w-2xl mx-auto">
+            <p className="text-xs sm:text-sm md:text-base text-[var(--text-muted)] max-w-2xl mx-auto px-2">
               End-to-end data solutions from pipeline development to machine learning deployment
             </p>
           </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
             {[
               {
                 icon: "⚡",
