@@ -17,7 +17,9 @@ const Home = () => {
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
-  const mobileInitial = { opacity: 1, x: 0, y: 0, scale: 1 };
+  const mobileInitial = { opacity: 1, x: 0, y: 0, scale: 1, rotateY: 0 };
+  const initialFor = (variants) => (isMobile ? mobileInitial : variants);
+
   const fadeUp = isMobile ? mobileInitial : { opacity: 0, y: 100 };
   const fadeLeft = isMobile ? mobileInitial : { opacity: 0, x: -100 };
   const scaleIn = isMobile ? mobileInitial : { opacity: 0, scale: 0.8 };
@@ -607,7 +609,7 @@ transformed.write \\
 
       {/* Case Studies Section */}
       <motion.section
-        initial={{ opacity: 0, x: 100 }}
+        initial={initialFor({ opacity: 0, x: 100 })}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 1, ease: "easeOut", delay: 0.4 }}
         className="py-12 md:py-16 px-4 bg-[var(--bg-primary)]"
@@ -643,7 +645,7 @@ transformed.write \\
 
       {/* Internship Programs Section */}
       <motion.section
-        initial={{ opacity: 0, y: -100 }}
+        initial={initialFor({ opacity: 0, y: -100 })}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, ease: "easeOut", delay: 0.5 }}
         className="py-12 md:py-16 px-4 bg-[var(--bg-secondary)]"
@@ -686,7 +688,7 @@ transformed.write \\
 
       {/* Architecture Diagrams Section */}
       <motion.section
-        initial={{ opacity: 0, rotateY: 90 }}
+        initial={initialFor({ opacity: 0, rotateY: 90 })}
         animate={{ opacity: 1, rotateY: 0 }}
         transition={{ duration: 1.2, ease: "easeOut", delay: 0.6 }}
         className="py-12 md:py-16 px-4 bg-[var(--bg-primary)]"
@@ -717,7 +719,7 @@ transformed.write \\
 
       {/* Stats Section */}
       <motion.section
-        initial={{ opacity: 0, scale: 0.5 }}
+        initial={initialFor({ opacity: 0, scale: 0.5 })}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 1, ease: "easeOut", delay: 0.7 }}
         className="py-12 md:py-16 px-4 bg-[var(--bg-secondary)]"
@@ -741,7 +743,7 @@ transformed.write \\
 
       {/* Global Presence Section */}
       <motion.section
-        initial={fadeLeft}
+        initial={initialFor(fadeLeft)}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 1, ease: "easeOut", delay: 0.8 }}
         className="py-12 md:py-16 px-4 bg-[var(--bg-primary)]"
@@ -778,7 +780,7 @@ transformed.write \\
 
       {/* CTA Section */}
       <motion.section
-        initial={{ opacity: 0, y: 100 }}
+        initial={initialFor({ opacity: 0, y: 100 })}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, ease: "easeOut", delay: 0.9 }}
         className="py-12 md:py-16 px-4 bg-[var(--bg-secondary)]"
