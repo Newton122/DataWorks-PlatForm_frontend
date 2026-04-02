@@ -35,21 +35,31 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (credentials) => {
     console.log('🔍 Auth: Logging in...')
-    const response = await axios.post('/api/auth/login', credentials)
-    console.log('✅ Auth: Login response:', response.data)
-    const token = response.data.token
-    const userData = response.data.user
-    
-    // Set token first
-    localStorage.setItem('token', token)
-    axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
-    
-    // Set user state BEFORE navigating
-    setUser(userData)
-    console.log('✅ Auth: User set, navigating to dashboard...')
-    
-    // Return the user data so the component can handle navigation
-    return userData
+    try {
+      const response = await axios.post('/api/auth/login', credentials, {
+        timeout: 10000 // 10 second timeout
+      })
+      console.log('✅ Auth: Login response:', response.data)
+      const token = response.data.token
+      const userData = response.data.user
+
+      // Set token first
+      localStorage.setItem('token', token)
+      axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
+
+      // Set user state BEFORE navigating
+      setUser(userData)
+      console.log('✅ Auth: User set, navigating to dashboard...')
+
+      // Return the user data so the component can handle navigation
+      return userData
+    } catch (error) {
+      console.error('❌ Auth: Login error:', error)
+      if (error.code === 'ECONNABORTED') {
+        throw new Error('Request timed out. Please check your connection.')
+      }
+      throw error
+    }
   }
 
   const signup = async (credentials) => {
