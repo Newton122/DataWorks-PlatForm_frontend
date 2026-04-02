@@ -184,8 +184,7 @@ const Services = () => {
       {/* Hero Section */}
       <motion.section
         initial={{ opacity: 0, y: 100 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.3 }}
+        animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, ease: "easeOut" }}
         className="relative py-12 md:py-20 lg:py-24 px-3 sm:px-4 overflow-hidden"
       >
@@ -223,8 +222,7 @@ const Services = () => {
       {/* Services Grid */}
       <motion.section
         initial={{ opacity: 0, x: -100 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        viewport={{ once: true, amount: 0.3 }}
+        animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 1, ease: "easeOut", delay: 0.2 }}
         className="py-12 md:py-16 px-4 bg-[var(--bg-secondary)]"
       >
@@ -277,8 +275,7 @@ const Services = () => {
       {/* Service Details */}
       <motion.section
         initial={{ opacity: 0, scale: 0.8 }}
-        whileInView={{ opacity: 1, scale: 1 }}
-        viewport={{ once: true, amount: 0.3 }}
+        animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 1.2, ease: "easeOut", delay: 0.3 }}
         className="py-12 md:py-16 px-4 bg-[var(--bg-primary)]"
       >
@@ -330,8 +327,7 @@ const Services = () => {
       {/* Pricing Section */}
       <motion.section
         initial={{ opacity: 0, y: -100 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.3 }}
+        animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, ease: "easeOut", delay: 0.4 }}
         className="py-12 md:py-16 px-4 bg-[var(--bg-secondary)]"
       >
@@ -394,8 +390,7 @@ const Services = () => {
       {/* CTA Section */}
       <motion.section
         initial={{ opacity: 0, scale: 0.8 }}
-        whileInView={{ opacity: 1, scale: 1 }}
-        viewport={{ once: true, amount: 0.3 }}
+        animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 1.2, ease: "easeOut", delay: 0.5 }}
         className="py-12 md:py-16 px-4 bg-[var(--bg-primary)]"
       >
