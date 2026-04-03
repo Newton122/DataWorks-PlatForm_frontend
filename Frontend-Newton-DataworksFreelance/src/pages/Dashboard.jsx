@@ -134,7 +134,7 @@ const Dashboard = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-[var(--bg-primary)] flex items-center justify-center">
+      <div className="min-h-screen bg-[var(--bg-primary)] flex items-center justify-center mobile-compact">
         <div className="text-center">
           <div className="w-12 h-12 border-4 border-[var(--accent-primary)] border-t-transparent animate-spin mx-auto mb-4"></div>
           <p className="text-[var(--text-secondary)]">Loading dashboard...</p>
@@ -144,7 +144,7 @@ const Dashboard = () => {
   }
 
   return (
-    <div className="min-h-screen bg-[var(--bg-primary)]">
+    <div className="min-h-screen bg-[var(--bg-primary)] mobile-compact">
       {/* Header with Logo */}
       <div className="bg-[var(--bg-secondary)] border-b border-[var(--border-color)] shadow-sm">
         <div className="max-w-7xl mx-auto px-4 py-6">

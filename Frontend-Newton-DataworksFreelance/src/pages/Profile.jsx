@@ -110,7 +110,7 @@ const Profile = () => {
   };
 
   return (
-    <div className="bg-gray-50 dark:bg-slate-900">
+    <div className="bg-gray-50 dark:bg-slate-900 mobile-compact">
 
       {/* Header */}
       <div className="bg-[var(--bg-secondary)] border-b border-[var(--border-color)]">

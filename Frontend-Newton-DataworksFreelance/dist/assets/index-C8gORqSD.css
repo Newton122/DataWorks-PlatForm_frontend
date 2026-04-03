@@ -1045,6 +1045,10 @@ video {
   resize: none;
 }
 
+.resize{
+  resize: both;
+}
+
 .list-inside{
   list-style-position: inside;
 }
@@ -2558,6 +2562,92 @@ body.dark {
 @keyframes float-zone {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-6px); }
+}
+
+@media (max-width: 767px) {
+  .mobile-compact {
+    min-height: auto !important;
+    font-size: 9px !important;
+    line-height: 12px !important;
+  }
+
+  .mobile-compact section,
+  .mobile-compact .section-wrapper,
+  .mobile-compact .section-divider {
+    padding: 20px !important;
+    margin: 24px 0 !important;
+    border: 1px dashed var(--border-color) !important;
+    border-radius: 4px !important;
+  }
+
+  .mobile-compact section {
+    border-bottom: 1px solid var(--border-color) !important;
+    background: rgba(255,255,255,0.02) !important;
+    overflow: visible !important;
+  }
+
+  .mobile-compact h1,
+  .mobile-compact h2,
+  .mobile-compact h3,
+  .mobile-compact p,
+  .mobile-compact span,
+  .mobile-compact li,
+  .mobile-compact a,
+  .mobile-compact label,
+  .mobile-compact button {
+    font-size: 9px !important;
+    line-height: 12px !important;
+    margin: 8px 0 !important;
+    padding: 4px 0 !important;
+  }
+
+  .mobile-compact button,
+  .mobile-compact .nav-btn-small,
+  .mobile-compact .polidhed-dark-green-btn,
+  .mobile-compact .btn,
+  .mobile-compact .card-hover {
+    padding: 8px 12px !important;
+    min-width: 80px !important;
+    min-height: 32px !important;
+    border-radius: 4px !important;
+  }
+
+  .mobile-compact * {
+    gap: 16px !important;
+    margin: 4px 0 !important;
+    padding: 4px 0 !important;
+    transform: none !important;
+    opacity: 1 !important;
+  }
+
+  .mobile-compact .overflow-hidden,
+  .mobile-compact [class*="overflow-hidden"],
+  .mobile-compact [style*="overflow"] {
+    overflow: visible !important;
+  }
+
+  .mobile-compact .fixed,
+  .mobile-compact .absolute,
+  .mobile-compact [class*="fixed"],
+  .mobile-compact [class*="absolute"] {
+    position: static !important;
+  }
+
+  .mobile-compact .hidden,
+  .mobile-compact [class*="hidden"] {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+
+  .mobile-compact .section-divider {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 1px;
+    background: var(--border-color);
+    margin: 4px 0 !important;
+  }
 }
 
 .transition-deluxe {

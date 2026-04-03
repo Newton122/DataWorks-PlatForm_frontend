@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 const SecurityAI = () => {
   return (
-    <div className="min-h-screen bg-[var(--bg-primary)] py-12 px-4">
+    <div className="min-h-screen bg-[var(--bg-primary)] py-12 px-4 mobile-compact">
       <div className="max-w-6xl mx-auto">
         <Link to="/services" className="inline-flex items-center gap-2 text-sm text-[var(--text-secondary)] hover:text-[var(--accent-primary)] mb-8">
           ← Back to Services

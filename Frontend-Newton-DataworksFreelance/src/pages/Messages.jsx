@@ -554,7 +554,7 @@ const Messages = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-[var(--bg-primary)] flex items-center justify-center">
+      <div className="min-h-screen bg-[var(--bg-primary)] flex items-center justify-center mobile-compact">
         <div className="text-center">
           <div className="w-12 h-12 border-4 border-[var(--accent-primary)] border-t-transparent animate-spin mx-auto mb-4"></div>
           <p className="text-[var(--text-muted)]">Loading messages...</p>
@@ -564,7 +564,7 @@ const Messages = () => {
   }
 
   return (
-    <div className="bg-[var(--bg-primary)]">
+    <div className="bg-[var(--bg-primary)] mobile-compact">
       <div className="max-w-7xl mx-auto px-4">
         <div className="bg-[var(--bg-secondary)] border border-[var(--border-color)] min-h-[80vh] overflow-hidden">
         <div className="grid md:grid-cols-3 gap-2 md:gap-0 h-full">

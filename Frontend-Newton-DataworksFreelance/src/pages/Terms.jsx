@@ -1,6 +1,6 @@
 const Terms = () => {
   return (
-    <div className="min-h-screen bg-[var(--bg-primary)] py-12">
+    <div className="min-h-screen bg-[var(--bg-primary)] py-12 mobile-compact">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-12">
           <h1 className="text-4xl font-bold text-[var(--text-primary)] mb-4">Terms of Service</h1>

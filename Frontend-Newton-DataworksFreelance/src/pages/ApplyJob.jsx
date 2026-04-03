@@ -121,7 +121,7 @@ const ApplyJob = () => {
   }
 
   return (
-    <div className="min-h-screen bg-[var(--bg-primary)] py-8 px-4">
+    <div className="min-h-screen bg-[var(--bg-primary)] py-8 px-4 mobile-compact">
       <div className="max-w-4xl mx-auto">
         <button 
           onClick={() => navigate('/jobs')}

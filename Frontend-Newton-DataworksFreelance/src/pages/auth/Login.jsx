@@ -26,7 +26,7 @@ const Login = () => {
   }
 
   return (
-    <div className="min-h-screen bg-[var(--bg-primary)] flex items-center justify-center px-4">
+    <div className="min-h-screen bg-[var(--bg-primary)] flex items-center justify-center px-4 mobile-compact">
       <div className="max-w-md w-full">
         <div className="text-center mb-8">
           <h1 className="text-3xl font-bold text-[var(--text-primary)] mb-2">Welcome Back</h1>

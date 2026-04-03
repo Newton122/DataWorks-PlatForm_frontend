@@ -48,7 +48,7 @@ const FAQ = () => {
   ]
 
   return (
-    <div className="min-h-screen bg-[var(--bg-primary)] py-12">
+    <div className="min-h-screen bg-[var(--bg-primary)] py-12 mobile-compact">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <h1 className="text-4xl font-bold text-highlight mb-4">Frequently Asked Questions</h1>

@@ -4,7 +4,7 @@ const About = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="min-h-screen bg-[var(--bg-primary)]">
+    <div className="min-h-screen bg-[var(--bg-primary)] mobile-compact">
 
       {/* Hero Section */}
       <section className="relative py-16 px-4 overflow-hidden bg-gradient-to-br from-bg-primary via-bg-secondary to-bg-primary fade-in">
