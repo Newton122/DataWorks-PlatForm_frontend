@@ -85,7 +85,7 @@ const Overview = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-[var(--bg-primary)] mobile-compact">
+    <div className="min-h-screen bg-[var(--bg-primary)]">
 
       {/* Hero Section */}
       <section className="relative py-12 md:py-20 lg:py-24 px-3 sm:px-4 overflow-hidden">
