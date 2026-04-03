@@ -368,7 +368,7 @@ const Services = () => {
             {pricingPlans.map((plan, index) => (
               <div
                 key={index}
-                className={`bg-[var(--bg-secondary)] border border-[var(--border-color)] p-6 relative ${
+                className={`bg-[var(--bg-secondary)] border border-[var(--border-color)] p-6 relative flex flex-col h-full ${
                   plan.popular ? 'border-[var(--accent-primary)] shadow-lg shadow-[var(--accent-primary)]/10' : ''
                 }`}
               >
@@ -384,7 +384,7 @@ const Services = () => {
                   <span className="text-3xl font-bold text-[var(--accent-primary)]">{plan.price}</span>
                   <span className="text-sm text-[var(--text-muted)]">{plan.period}</span>
                 </div>
-                <p className="text-sm text-[var(--text-muted)] mb-6">{plan.description}</p>
+                <p className="text-sm text-[var(--text-muted)] mb-6 flex-grow">{plan.description}</p>
                 <ul className="space-y-3 mb-6">
                   {plan.features.map((feature, i) => (
                     <li key={i} className="flex items-center gap-2 text-sm text-[var(--text-primary)]">
@@ -397,7 +397,7 @@ const Services = () => {
                 </ul>
                 <button
                   onClick={handleGetStarted}
-                  className={`w-full py-2 text-sm font-semibold transition-colors ${
+                  className={`w-full py-2 text-sm font-semibold transition-colors mt-auto ${
                     plan.popular
                       ? 'bg-[var(--accent-primary)] text-white hover:bg-[var(--accent-hover)]'
                       : 'border border-[var(--border-color)] text-[var(--text-primary)] hover:border-[var(--accent-primary)] hover:text-[var(--accent-primary)]'

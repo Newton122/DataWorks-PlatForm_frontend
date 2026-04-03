@@ -659,10 +659,10 @@ transformed.write \\
           </div>
           <div className="grid md:grid-cols-3 gap-6">
             {caseStudies.map((study, index) => (
-              <div key={index} className="bg-[var(--bg-secondary)] border border-[var(--border-color)] p-6 hover:border-[var(--accent-primary)] transition-colors">
+              <div key={index} className="bg-[var(--bg-secondary)] border border-[var(--border-color)] p-6 hover:border-[var(--accent-primary)] transition-colors flex flex-col h-full">
                 <div className="text-xs text-[var(--accent-primary)] font-semibold mb-2">{study.client}</div>
                 <h3 className="text-lg font-semibold text-[var(--text-primary)] mb-3">{study.title}</h3>
-                <p className="text-sm text-[var(--text-muted)] mb-4">{study.description}</p>
+                <p className="text-sm text-[var(--text-muted)] mb-4 flex-grow">{study.description}</p>
                 <div className="flex flex-wrap gap-2 mb-4">
                   {study.tech.map((tech, i) => (
                     <span key={i} className="px-2 py-1 bg-[var(--bg-secondary)] border border-[var(--border-color)] text-xs text-[var(--text-muted)]">
@@ -670,7 +670,7 @@ transformed.write \\
                     </span>
                   ))}
                 </div>
-                <div className="text-xs text-[var(--accent-primary)] font-semibold">{study.result}</div>
+                <div className="text-xs text-[var(--accent-primary)] font-semibold mt-auto">{study.result}</div>
               </div>
             ))}
           </div>
@@ -695,12 +695,12 @@ transformed.write \\
           </div>
           <div className="grid md:grid-cols-3 gap-6">
             {internshipPrograms.map((program, index) => (
-              <div key={index} className="bg-[var(--bg-secondary)] border border-[var(--border-color)] p-6 hover:border-[var(--accent-primary)] transition-colors">
+              <div key={index} className="bg-[var(--bg-secondary)] border border-[var(--border-color)] p-6 hover:border-[var(--accent-primary)] transition-colors flex flex-col h-full">
                 <div className="flex items-center justify-between mb-4">
                   <h3 className="text-lg font-semibold text-[var(--text-primary)]">{program.title}</h3>
                   <span className="px-2 py-1 bg-[var(--accent-primary)] text-white text-xs font-semibold">{program.duration}</span>
                 </div>
-                <p className="text-sm text-[var(--text-muted)] mb-4">{program.description}</p>
+                <p className="text-sm text-[var(--text-muted)] mb-4 flex-grow">{program.description}</p>
                 <div className="flex flex-wrap gap-2 mb-4">
                   {program.skills.map((skill, i) => (
                     <span key={i} className="px-2 py-1 bg-[var(--bg-secondary)] border border-[var(--border-color)] text-xs text-[var(--text-muted)]">
@@ -710,7 +710,7 @@ transformed.write \\
                 </div>
                 <button
                   onClick={() => navigate('/jobs?type=internship')}
-                  className="w-full px-4 py-2 text-white text-sm font-semibold polidhed-dark-green-btn"
+                  className="w-full px-4 py-2 text-white text-sm font-semibold polidhed-dark-green-btn mt-auto"
                 >
                   Apply Now
                 </button>
