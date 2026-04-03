@@ -7,7 +7,8 @@ import { store } from './store/index.js'
 import App from './App.jsx'
 import './index.css'
 
-axios.defaults.baseURL = import.meta.env.VITE_API_BASE_URL
+// Use production URL as fallback if environment variable is not set
+axios.defaults.baseURL = import.meta.env.VITE_API_BASE_URL || 'https://dataworks-platform.onrender.com'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>

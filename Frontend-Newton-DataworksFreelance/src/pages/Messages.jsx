@@ -2,6 +2,9 @@ import { useState, useEffect, useRef } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { io } from 'socket.io-client';
 
+// Use production URL as fallback
+const API_URL = import.meta.env.VITE_API_BASE_URL || 'https://dataworks-platform.onrender.com';
+
 const Messages = () => {
   const { user } = useAuth();
   const [conversations, setConversations] = useState([]);
@@ -26,8 +29,8 @@ const Messages = () => {
   const typingTimeoutRef = useRef(null);
 
   useEffect(() => {
-    // Initialize socket connection
-    const newSocket = io(import.meta.env.VITE_API_BASE_URL, {
+    // Initialize socket connection with fallback to production URL
+    const newSocket = io(API_URL, {
       auth: {
         token: localStorage.getItem('token')
       }
@@ -260,7 +263,7 @@ const Messages = () => {
   const fetchConversations = async () => {
     try {
       setLoading(true);
-      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/messages/conversations`, {
+      const response = await fetch(`${API_URL}/api/messages/conversations`, {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`
         }
@@ -289,7 +292,7 @@ const Messages = () => {
     }
 
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/messages/${userId}?page=${page}&limit=30`, {
+      const response = await fetch(`${API_URL}/api/messages/${userId}?page=${page}&limit=30`, {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`
         }
@@ -395,7 +398,7 @@ const Messages = () => {
         });
       } else {
         // fallback HTTP call if socket is disconnected
-        await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/messages`, {
+        await fetch(`${API_URL}/api/messages`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -418,7 +421,7 @@ const Messages = () => {
     if (!confirm('Are you sure you want to delete this message?')) return;
 
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/messages/${messageId}`, {
+      const response = await fetch(`${API_URL}/api/messages/${messageId}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`
@@ -500,7 +503,7 @@ const Messages = () => {
   const fetchAvailableUsers = async () => {
     setLoadingUsers(true);
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/messages/users`, {
+      const response = await fetch(`${API_URL}/api/messages/users`, {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`
         }
