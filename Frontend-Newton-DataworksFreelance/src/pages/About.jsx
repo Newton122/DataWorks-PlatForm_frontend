@@ -30,10 +30,16 @@ const About = () => {
                   Join Our Team
                 </button>
                 <button
-                  onClick={() => navigate('/services')}
+                  onClick={() => navigate('/team')}
                   className="px-6 py-3 bg-[rgba(168,85,247,0.08)] text-[var(--text-primary)] font-semibold border border-[var(--text-primary)]/10 backdrop-blur-md hover:bg-[rgba(168,85,247,0.12)] transition-all duration-200 shadow-[0_20px_60px_rgba(0,0,0,0.8)] hover:shadow-[0_30px_80px_rgba(0,0,0,0.9)]"
                 >
-                  Explore Our Work
+                  Meet the Team
+                </button>
+                <button
+                  onClick={() => navigate('/featured')}
+                  className="px-6 py-3 bg-[rgba(34,197,94,0.08)] text-green-400 font-semibold border border-green-400/10 backdrop-blur-md hover:bg-[rgba(34,197,94,0.12)] transition-all duration-200 shadow-[0_20px_60px_rgba(0,0,0,0.8)] hover:shadow-[0_30px_80px_rgba(0,0,0,0.9)]"
+                >
+                  Featured Work
                 </button>
               </div>
             </div>

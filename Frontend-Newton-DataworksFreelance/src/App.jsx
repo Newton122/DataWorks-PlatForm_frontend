@@ -19,6 +19,8 @@ import Dashboard from './pages/Dashboard'
 import Messages from './pages/Messages'
 import Profile from './pages/Profile'
 import Settings from './pages/Settings'
+import Team from './pages/Team'
+import Featured from './pages/Featured'
 import Login from './pages/auth/Login'
 import Signup from './pages/auth/Signup'
 import Careers from './pages/Careers'
@@ -78,6 +80,8 @@ function AppRoutes() {
       <Route element={<PublicLayout />}>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
+        <Route path="/team" element={<Team />} />
+        <Route path="/featured" element={<Featured />} />
         <Route path="/overview" element={<Overview />} />
         <Route path="/services" element={<Services />} />
         <Route path="/jobs" element={<Jobs />} />
