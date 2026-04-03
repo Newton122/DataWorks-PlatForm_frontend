@@ -17,6 +17,15 @@ const DashboardLayout = () => {
 
   const initialFor = (variants) => (isMobile ? false : variants)
 
+  // Motion components that render as plain HTML on mobile
+  const MotionMain = ({ children, ...props }) => {
+    return isMobile ? <main {...props}>{children}</main> : <motion.main {...props}>{children}</motion.main>;
+  };
+
+  const MotionDiv = ({ children, ...props }) => {
+    return isMobile ? <div {...props}>{children}</div> : <motion.div {...props}>{children}</motion.div>;
+  };
+
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-slate-900 flex lg:flex-row">
 
@@ -24,7 +33,7 @@ const DashboardLayout = () => {
       <div className="flex-1 flex flex-col lg:min-w-0">
         <Topbar />
         <AnimatePresence mode="wait">
-          <motion.main
+          <MotionMain
             key={location.pathname}
             initial={initialFor({ opacity: 0, x: 18 })}
             animate={{ opacity: 1, x: 0 }}
@@ -32,15 +41,15 @@ const DashboardLayout = () => {
             transition={{ duration: 0.4, ease: 'easeInOut' }}
             className="flex-1 p-4 lg:p-6"
           >
-            <motion.div
+            <MotionDiv
               initial={initialFor({ opacity: 0, y: 14 })}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.45, ease: 'easeOut' }}
               className="h-full"
             >
               <Outlet />
-            </motion.div>
-          </motion.main>
+            </MotionDiv>
+          </MotionMain>
         </AnimatePresence>
         <footer className="bg-[var(--bg-secondary)] border-t border-[var(--border-color)] p-6 mt-auto">
           <div className="max-w-7xl mx-auto text-center text-sm text-[var(--text-muted)]">
