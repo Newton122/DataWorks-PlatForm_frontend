@@ -31,7 +31,7 @@ const NotificationBell = ({ userId }) => {
 
   const fetchNotifications = async () => {
     try {
-      const res = await axios.get('/api/notifications', {
+      const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/notifications`, {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
       });
       setNotifications(res.data.notifications);
@@ -43,7 +43,7 @@ const NotificationBell = ({ userId }) => {
 
   const markAllRead = async () => {
     try {
-      await axios.patch('/api/notifications/read', {}, {
+      await axios.patch(`${import.meta.env.VITE_API_BASE_URL}/api/notifications/read`, {}, {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
       });
       setUnreadCount(0);

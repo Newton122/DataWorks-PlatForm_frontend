@@ -79,7 +79,7 @@ const ApplyJob = () => {
       submitData.append('visaSponsorship', formData.visaSponsorship);
       if (formData.cv) submitData.append('cv', formData.cv);
 
-      const response = await fetch('/api/applications/apply', {
+      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/applications/apply`, {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`

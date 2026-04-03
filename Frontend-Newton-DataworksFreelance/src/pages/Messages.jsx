@@ -260,7 +260,7 @@ const Messages = () => {
   const fetchConversations = async () => {
     try {
       setLoading(true);
-      const response = await fetch('/api/messages/conversations', {
+      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/messages/conversations`, {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`
         }
@@ -289,7 +289,7 @@ const Messages = () => {
     }
 
     try {
-      const response = await fetch(`/api/messages/${userId}?page=${page}&limit=30`, {
+      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/messages/${userId}?page=${page}&limit=30`, {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`
         }
@@ -395,7 +395,7 @@ const Messages = () => {
         });
       } else {
         // fallback HTTP call if socket is disconnected
-        await fetch('/api/messages', {
+        await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/messages`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -418,7 +418,7 @@ const Messages = () => {
     if (!confirm('Are you sure you want to delete this message?')) return;
 
     try {
-      const response = await fetch(`/api/messages/${messageId}`, {
+      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/messages/${messageId}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`
@@ -500,7 +500,7 @@ const Messages = () => {
   const fetchAvailableUsers = async () => {
     setLoadingUsers(true);
     try {
-      const response = await fetch('/api/messages/users', {
+      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/messages/users`, {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`
         }

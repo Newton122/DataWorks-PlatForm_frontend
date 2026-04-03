@@ -40,7 +40,7 @@ const Dashboard = () => {
       setLoading(true);
 
       // Fetch stats
-      const statsResponse = await fetch('/api/jobs/stats', {
+      const statsResponse = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/jobs/stats`, {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`
         }
@@ -59,7 +59,7 @@ const Dashboard = () => {
       }
 
       // Fetch recent jobs
-      const jobsResponse = await fetch('/api/jobs?limit=5', {
+      const jobsResponse = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/jobs?limit=5`, {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`
         }
@@ -74,7 +74,7 @@ const Dashboard = () => {
 
       // Fetch recent activity from API
       try {
-        const activityResponse = await fetch('/api/users/activity', {
+        const activityResponse = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/users/activity`, {
           headers: {
             'Authorization': `Bearer ${localStorage.getItem('token')}`
           }
