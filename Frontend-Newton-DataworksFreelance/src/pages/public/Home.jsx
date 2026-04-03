@@ -254,7 +254,7 @@ const Home = () => {
   ];
 
   return (
-    <div className="bg-[var(--bg-primary)] overflow-x-hidden">
+    <div className="bg-[var(--bg-primary)] overflow-x-hidden mobile-compact">
 
       {/* Hero Section */}
       <MotionSection
