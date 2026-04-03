@@ -17,11 +17,20 @@ const PublicLayout = () => {
 
   const initialFor = (variants) => (isMobile ? false : variants)
 
+  // Motion components that render as plain HTML on mobile
+  const MotionMain = ({ children, ...props }) => {
+    return isMobile ? <main {...props}>{children}</main> : <motion.main {...props}>{children}</motion.main>;
+  };
+
+  const MotionDiv = ({ children, ...props }) => {
+    return isMobile ? <div {...props}>{children}</div> : <motion.div {...props}>{children}</motion.div>;
+  };
+
   return (
     <div className="min-h-screen bg-bg-primary">
       <Navbar />
       <AnimatePresence mode="wait">
-        <motion.main
+        <MotionMain
           key={location.pathname}
           initial={initialFor({ opacity: 0, y: 16 })}
           animate={{ opacity: 1, y: 0 }}
@@ -29,15 +38,15 @@ const PublicLayout = () => {
           transition={{ duration: 0.45, ease: 'easeInOut' }}
           className="w-full pt-16 md:pt-20 min-h-screen"
         >
-          <motion.div
+          <MotionDiv
             initial={initialFor({ opacity: 0, y: 12 })}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, ease: 'easeOut' }}
             className="w-full min-h-screen"
           >
             <Outlet />
-          </motion.div>
-        </motion.main>
+          </MotionDiv>
+        </MotionMain>
       </AnimatePresence>
       <Footer />
     </div>
