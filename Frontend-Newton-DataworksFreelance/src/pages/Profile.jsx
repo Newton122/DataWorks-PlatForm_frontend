@@ -36,9 +36,9 @@ const Profile = () => {
         phone: user.phone || '',
         location: user.location || '',
         bio: user.bio || '',
-        skills: user.skills || ['Python', 'SQL', 'Spark', 'Kafka'],
-        experience: user.experience || '5+ years',
-        education: user.education || 'Master\'s in Computer Science',
+        skills: user.skills || [],
+        experience: user.experience || '',
+        education: user.education || '',
         linkedin: user.linkedin || '',
         github: user.github || '',
         portfolio: user.portfolio || ''
@@ -94,9 +94,9 @@ const Profile = () => {
         phone: user.phone || '',
         location: user.location || '',
         bio: user.bio || '',
-        skills: user.skills || ['Python', 'SQL', 'Spark', 'Kafka'],
-        experience: user.experience || '5+ years',
-        education: user.education || 'Master\'s in Computer Science',
+        skills: user.skills || [],
+        experience: user.experience || '',
+        education: user.education || '',
         linkedin: user.linkedin || '',
         github: user.github || '',
         portfolio: user.portfolio || ''
@@ -384,7 +384,7 @@ const Profile = () => {
                           name="linkedin"
                           value={profileData.linkedin}
                           onChange={handleInputChange}
-                          placeholder="https://linkedin.com/in/..."
+                          placeholder="Enter your LinkedIn profile URL"
                           className="w-full px-3 py-2 bg-[var(--bg-primary)] border border-[var(--border-color)] text-[var(--text-primary)] text-sm focus:outline-none focus:border-[var(--accent-primary)]"
                         />
                       ) : (
@@ -407,7 +407,7 @@ const Profile = () => {
                           name="github"
                           value={profileData.github}
                           onChange={handleInputChange}
-                          placeholder="https://github.com/..."
+                          placeholder="Enter your GitHub profile URL"
                           className="w-full px-3 py-2 bg-[var(--bg-primary)] border border-[var(--border-color)] text-[var(--text-primary)] text-sm focus:outline-none focus:border-[var(--accent-primary)]"
                         />
                       ) : (
@@ -430,7 +430,7 @@ const Profile = () => {
                           name="portfolio"
                           value={profileData.portfolio}
                           onChange={handleInputChange}
-                          placeholder="https://..."
+                          placeholder="Enter your portfolio URL"
                           className="w-full px-3 py-2 bg-[var(--bg-secondary)] border border-[var(--border-color)] text-[var(--text-primary)] text-sm focus:outline-none focus:border-[var(--accent-primary)]"
                         />
                       ) : (

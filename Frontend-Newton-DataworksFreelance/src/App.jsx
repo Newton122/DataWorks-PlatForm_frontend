@@ -18,6 +18,7 @@ import DataEngineering from './pages/industry/DataEngineering'
 import Dashboard from './pages/Dashboard'
 import Messages from './pages/Messages'
 import Profile from './pages/Profile'
+import Settings from './pages/Settings'
 import Login from './pages/auth/Login'
 import Signup from './pages/auth/Signup'
 import Careers from './pages/Careers'
@@ -107,6 +108,7 @@ function AppRoutes() {
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/messages" element={<Messages />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/settings" element={<Settings />} />
       </Route>
       
       {/* Catch all */}

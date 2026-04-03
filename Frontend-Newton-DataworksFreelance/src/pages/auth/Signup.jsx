@@ -78,7 +78,7 @@ const Signup = () => {
                 value={formData.name}
                 onChange={handleChange}
                 className="w-full px-4 py-3 bg-[var(--bg-primary)] border border-[var(--border-color)] rounded-lg text-[var(--text-primary)] placeholder-[#64748B] focus:outline-none focus:border-[var(--accent-primary)] transition-colors"
-                placeholder="John Doe"
+                placeholder="Enter your full name"
                 required
               />
             </div>
@@ -94,7 +94,7 @@ const Signup = () => {
                 value={formData.email}
                 onChange={handleChange}
                 className="w-full px-4 py-3 bg-[var(--bg-primary)] border border-[var(--border-color)] rounded-lg text-[var(--text-primary)] placeholder-[#64748B] focus:outline-none focus:border-[var(--accent-primary)] transition-colors"
-                placeholder="you@example.com"
+                placeholder="Enter your email address"
                 required
               />
             </div>

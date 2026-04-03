@@ -31,16 +31,13 @@ const ApplyJob = () => {
 
   const fetchJob = async () => {
     try {
-      // Demo job data (fix "Job not found")
-      setJob({
-        _id: jobId,
-        title: 'Data Engineer',
-        company: 'Dataworks',
-        location: 'Remote',
-        type: 'Full-time',
-        salary: '$120k+',
-        description: 'Building scalable data pipelines with Spark, Python, SQL. Kafka streaming experience preferred.'
-      });
+      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/jobs/${jobId}`);
+      if (response.ok) {
+        const data = await response.json();
+        setJob(data);
+      } else {
+        console.error('Job not found');
+      }
     } catch (error) {
       console.error('Error fetching job:', error);
     } finally {
@@ -82,9 +79,13 @@ const ApplyJob = () => {
       const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/applications/apply`, {
         method: 'POST',
         headers: {
-          'Authorization': `Bearer ${localStorage.getItem('token')}`
+          'Authorization': `Bearer ${localStorage.getItem('token')}`,
+          'Content-Type': 'application/json'
         },
-        body: submitData
+        body: JSON.stringify({
+          jobId: jobId,
+          proposal: formData.coverLetter
+        })
       });
 
       if (response.ok) {
@@ -161,7 +162,7 @@ const ApplyJob = () => {
                 value={formData.fullName}
                 onChange={handleChange}
                 className="w-full px-4 py-3 bg-[var(--bg-primary)] border border-[var(--border-color)] rounded-lg text-[var(--text-primary)] focus:ring-2 focus:ring-[var(--accent-primary)] focus:border-transparent text-sm"
-                placeholder="John Doe"
+                placeholder="Enter your full name"
               />
               {errors.fullName && <p className="mt-1 text-xs text-red-500">{errors.fullName}</p>}
             </div>
@@ -176,7 +177,7 @@ const ApplyJob = () => {
                 value={formData.email}
                 onChange={handleChange}
                 className="w-full px-4 py-3 bg-[var(--bg-primary)] border border-[var(--border-color)] rounded-lg text-[var(--text-primary)] focus:ring-2 focus:ring-[var(--accent-primary)] focus:border-transparent text-sm"
-                placeholder="john@example.com"
+                placeholder="Enter your email address"
               />
               {errors.email && <p className="mt-1 text-xs text-red-500">{errors.email}</p>}
             </div>
@@ -191,7 +192,7 @@ const ApplyJob = () => {
                 value={formData.phone}
                 onChange={handleChange}
                 className="w-full px-4 py-3 bg-[var(--bg-primary)] border border-[var(--border-color)] rounded-lg text-[var(--text-primary)] text-sm"
-                placeholder="+1 (555) 123-4567"
+                placeholder="Enter your phone number"
               />
             </div>
 
@@ -203,7 +204,7 @@ const ApplyJob = () => {
                 value={formData.location}
                 onChange={handleChange}
                 className="w-full px-4 py-3 bg-[var(--bg-primary)] border border-[var(--border-color)] rounded-lg text-[var(--text-primary)] text-sm"
-                placeholder="New York, NY or Remote"
+                placeholder="Enter your location"
               />
             </div>
           </div>
@@ -217,7 +218,7 @@ const ApplyJob = () => {
                 value={formData.github}
                 onChange={handleChange}
                 className="w-full px-4 py-3 bg-[var(--bg-primary)] border border-[var(--border-color)] rounded-lg text-[var(--text-primary)] text-sm"
-                placeholder="https://github.com/username"
+                placeholder="Enter your GitHub profile URL"
               />
             </div>
 
@@ -229,7 +230,7 @@ const ApplyJob = () => {
                 value={formData.linkedin}
                 onChange={handleChange}
                 className="w-full px-4 py-3 bg-[var(--bg-primary)] border border-[var(--border-color)] rounded-lg text-[var(--text-primary)] text-sm"
-                placeholder="https://linkedin.com/in/username"
+                placeholder="Enter your LinkedIn profile URL"
               />
             </div>
           </div>
@@ -243,7 +244,7 @@ const ApplyJob = () => {
                 value={formData.yearsExperience}
                 onChange={handleChange}
                 className="w-full px-4 py-3 bg-[var(--bg-primary)] border border-[var(--border-color)] rounded-lg text-[var(--text-primary)] text-sm"
-                placeholder="5+ years"
+                placeholder="Enter years of experience"
               />
             </div>
 
@@ -255,7 +256,7 @@ const ApplyJob = () => {
                 value={formData.desiredSalary}
                 onChange={handleChange}
                 className="w-full px-4 py-3 bg-[var(--bg-primary)] border border-[var(--border-color)] rounded-lg text-[var(--text-primary)] text-sm"
-                placeholder="$120,000"
+                placeholder="Enter your expected salary"
               />
             </div>
           </div>
