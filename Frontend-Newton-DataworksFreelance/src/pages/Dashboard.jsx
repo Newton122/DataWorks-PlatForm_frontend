@@ -17,6 +17,19 @@ const Dashboard = () => {
   const [recentJobs, setRecentJobs] = useState([]);
   const [recentActivity, setRecentActivity] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  // Motion component that renders as plain HTML on mobile, framer motion on desktop
+  const MotionDiv = ({ children, ...rest }) => {
+    return isMobile ? <div {...rest}>{children}</div> : <motion.div {...rest}>{children}</motion.div>;
+  };
 
   useEffect(() => {
     fetchDashboardData();
@@ -232,7 +245,7 @@ const Dashboard = () => {
               { label: 'Sales Done', value: stats.salesDone, icon: '💰', color: 'from-emerald-500 to-teal-600' },
               { label: 'Operations', value: stats.aiInsights, icon: '⚙️', color: 'from-indigo-500 to-purple-600' }
             ].map((stat, index) => (
-              <motion.div
+              <MotionDiv
                 key={index}
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -248,13 +261,13 @@ const Dashboard = () => {
                   </span>
                 </div>
                 <p className="text-sm font-medium text-[var(--text-secondary)]">{stat.label}</p>
-              </motion.div>
+              </MotionDiv>
             ))}
           </div>
         </div>
 
         {/* Operational Insights Section */}
-        <motion.div
+        <MotionDiv
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.45, ease: 'easeOut' }}
@@ -286,7 +299,7 @@ const Dashboard = () => {
               </div>
             </div>
           </div>
-        </motion.div>
+        </MotionDiv>
 
         {/* Quick Actions */}
         <div className="mb-8">
