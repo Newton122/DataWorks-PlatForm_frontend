@@ -2707,7 +2707,66 @@ body.dark {
   }
 
   .mobile-compact .section-divider {
+    margin: 64px 0 !important;
+    padding: 32px 0 !important;
+  }
+
+  /* Extra large spacing for Home page sections */
+  .mobile-compact section:not(:first-child) {
+    margin-top: 80px !important;
+    padding-top: 48px !important;
+  }
+
+  .mobile-compact section:not(:last-child) {
+    margin-bottom: 80px !important;
+    padding-bottom: 48px !important;
+  }
+
+  /* Hero section - extra breathing room */
+  .mobile-compact [class*="hero"],
+  .mobile-compact [class*="Hero"] {
+    padding: 60px 20px !important;
+    margin: 40px 0 !important;
+  }
+
+  /* Content blocks spacing */
+  .mobile-compact [class*="block"],
+  .mobile-compact [class*="Block"],
+  .mobile-compact [class*="card"],
+  .mobile-compact [class*="Card"] {
     margin: 32px 0 !important;
+    padding: 32px 16px !important;
+  }
+
+  /* Large gaps between rows */
+  .mobile-compact [class*="flex-col"],
+  .mobile-compact [class*="flex"][class*="flex-col"] {
+    gap: 40px !important;
+    padding: 24px 0 !important;
+  }
+
+  /* Carousel and slider spacing */
+  .mobile-compact [class*="carousel"],
+  .mobile-compact [class*="slider"],
+  .mobile-compact [class*="Carousel"],
+  .mobile-compact [class*="Slider"] {
+    margin: 48px 0 !important;
+    padding: 32px 0 !important;
+  }
+
+  /* Technology section breathing room */
+  .mobile-compact [class*="tech"],
+  .mobile-compact [class*="Tech"] {
+    gap: 32px !important;
+    margin: 40px 0 !important;
+    padding: 32px 0 !important;
+  }
+
+  /* CTA buttons get more space */
+  .mobile-compact [class*="cta"],
+  .mobile-compact [class*="CTA"] {
+    margin: 40px 0 !important;
+    padding: 24px 0 !important;
   }
 
   /* Grid adjustments for mobile */
