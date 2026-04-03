@@ -69,7 +69,7 @@ const Messages = () => {
       });
 
       // Show browser notification if not focused and message is not from self
-      if (message.senderId !== user?._id && !document.hasFocus()) {
+      if (message.senderId !== user?.id && !document.hasFocus()) {
         if (Notification.permission === 'granted') {
           new Notification('New message', {
             body: message.content,
@@ -94,7 +94,7 @@ const Messages = () => {
         const updated = prev.map(conv => {
           if (conv.userId === message.senderId || conv.userId === message.receiverId) {
             conversationExists = true;
-            const otherUserId = message.senderId === user?._id ? message.receiverId : message.senderId;
+            const otherUserId = message.senderId === user?.id ? message.receiverId : message.senderId;
             return {
               ...conv,
               userId: otherUserId,
@@ -103,7 +103,7 @@ const Messages = () => {
               lastMessage: message.content,
               lastMessageTime: message.timestamp,
               timestamp: message.timestamp,
-              unread: message.receiverId === user?._id ? (conv.unread || 0) + 1 : conv.unread,
+              unread: message.receiverId === user?.id ? (conv.unread || 0) + 1 : conv.unread,
               online: onlineUsers.some(u => u._id.toString() === otherUserId.toString())
             };
           }
@@ -112,7 +112,7 @@ const Messages = () => {
         
         // If conversation doesn't exist, add it
         if (!conversationExists) {
-          const otherUserId = message.senderId === user?._id ? message.receiverId : message.senderId;
+          const otherUserId = message.senderId === user?.id ? message.receiverId : message.senderId;
           const otherUser = onlineUsers.find(u => u._id.toString() === otherUserId.toString());
           const newConv = {
             userId: otherUserId,
@@ -121,7 +121,7 @@ const Messages = () => {
             lastMessage: message.content,
             lastMessageTime: message.timestamp,
             timestamp: message.timestamp,
-            unread: message.receiverId === user?._id ? 1 : 0,
+            unread: message.receiverId === user?.id ? 1 : 0,
             online: !!otherUser
           };
           updated.unshift(newConv);
@@ -134,7 +134,7 @@ const Messages = () => {
       // Auto-scroll for current conversation when user is at bottom (or if message is from me)
       if (selectedConversation &&
           (message.senderId === selectedConversation.userId || message.receiverId === selectedConversation.userId) &&
-          (isAtBottom || message.senderId === user?._id)) {
+          (isAtBottom || message.senderId === user?.id)) {
         scrollToBottom();
       }
     });
@@ -154,7 +154,7 @@ const Messages = () => {
     newSocket.on('messagesRead', ({ readBy }) => {
       // Update messages to show they've been read
       setMessages(prev => prev.map(msg => {
-        if (msg.senderId === user?._id || msg.senderId === 'me') {
+        if (msg.senderId === user?.id || msg.senderId === 'me') {
           return { ...msg, read: true };
         }
         return msg;
@@ -174,7 +174,7 @@ const Messages = () => {
     newSocket.on('messagesRead', ({ readBy }) => {
       // Update messages to show they've been read
       setMessages(prev => prev.map(msg => {
-        if (msg.senderId === user?._id || msg.senderId === 'me') {
+        if (msg.senderId === user?.id || msg.senderId === 'me') {
           return { ...msg, read: true };
         }
         return msg;
@@ -364,7 +364,7 @@ const Messages = () => {
 
     const tempMessage = {
       _id: tempId,
-      senderId: user?._id || 'me',
+      senderId: user?.id || 'me',
       receiverId: selectedConversation.userId,
       content: messageToSend,
       timestamp: new Date().toISOString(),
@@ -729,19 +729,19 @@ const Messages = () => {
                         <div
                           key={message._id}
                           className={`flex ${
-                            message.senderId === user?._id || message.senderId === 'me'
+                            message.senderId === user?.id || message.senderId === 'me'
                               ? 'justify-end'
                               : 'justify-start'
                           }`}
                         >
                           <div
                             className={`max-w-[70%] px-4 py-2 relative group ${
-                              message.senderId === user?._id || message.senderId === 'me'
+                              message.senderId === user?.id || message.senderId === 'me'
                                 ? 'bg-[var(--accent-primary)] text-white'
                                 : 'bg-[var(--bg-secondary)] border border-[var(--border-color)] text-[var(--text-primary)]'
                             }`}
                           >
-                            {(message.senderId === user?._id || message.senderId === 'me') && (
+                            {(message.senderId === user?.id || message.senderId === 'me') && (
                               <button
                                 onClick={() => deleteMessage(message._id)}
                                 className="absolute -top-1 -right-1 w-6 h-6 bg-red-500 text-white rounded-full flex items-center justify-center hover:bg-red-600 transition-colors opacity-0 group-hover:opacity-100"
@@ -754,12 +754,12 @@ const Messages = () => {
                             )}
                             <p className="text-sm">{message.content}</p>
                             <div className={`flex items-center justify-end gap-1 mt-1 ${
-                              message.senderId === user?._id || message.senderId === 'me'
+                              message.senderId === user?.id || message.senderId === 'me'
                                 ? 'text-indigo-200'
                                 : 'text-[#64748B]'
                             }`}>
                               <span className="text-xs">{formatTime(message.timestamp)}</span>
-                              {(message.senderId === user?._id || message.senderId === 'me') && message.read && (
+                              {(message.senderId === user?.id || message.senderId === 'me') && message.read && (
                                 <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
                                   <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                                 </svg>
