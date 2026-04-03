@@ -24,20 +24,39 @@ const Home = () => {
   const fadeLeft = isMobile ? false : { opacity: 0, x: -100 };
   const scaleIn = isMobile ? false : { opacity: 0, scale: 0.8 };
 
-  // Motion component that renders as div on mobile, motion on desktop
-  const MotionDiv = ({ children, ...props }) => {
-    return isMobile ? <div {...props}>{children}</div> : <MotionDiv {...props}>{children}</MotionDiv>;
+  // Motion component that renders as plain HTML on mobile, framer motion on desktop
+  const MotionSection = ({ children, initial, animate, exit, transition, ...rest }) => {
+    return isMobile ? (
+      <section {...rest}>{children}</section>
+    ) : (
+      <motion.section initial={initialFor(initial)} animate={animate} exit={exit} transition={transition} {...rest}>
+        {children}
+      </motion.section>
+    );
   };
 
-  const MotionSection = ({ children, ...props }) => {
-    return isMobile ? <section {...props}>{children}</section> : <MotionSection {...props}>{children}</MotionSection>;
+  const MotionDiv = ({ children, initial, animate, transition, ...rest }) => {
+    return isMobile ? (
+      <div {...rest}>{children}</div>
+    ) : (
+      <motion.div initial={initialFor(initial)} animate={animate} transition={transition} {...rest}>
+        {children}
+      </motion.div>
+    );
   };
 
-  const MotionButton = ({ children, ...props }) => {
-    return isMobile ? <button {...props}>{children}</button> : <motion.button {...props}>{children}</motion.button>;
+  const MotionButton = ({ children, whileHover, whileTap, transition, ...rest }) => {
+    return isMobile ? (
+      <button {...rest}>{children}</button>
+    ) : (
+      <motion.button whileHover={whileHover} whileTap={whileTap} transition={transition} {...rest}>
+        {children}
+      </motion.button>
+    );
   };
-  const MotionImg = ({ ...props }) => {
-    return isMobile ? <img {...props} /> : <MotionImg {...props} />;
+
+  const MotionImg = ({ whileHover, whileTap, transition, ...rest }) => {
+    return isMobile ? <img {...rest} /> : <motion.img whileHover={whileHover} whileTap={whileTap} transition={transition} {...rest} />;
   };
   // Technology items for carousel
   const techRow1 = [

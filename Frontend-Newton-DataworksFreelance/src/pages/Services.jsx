@@ -22,6 +22,20 @@ const Services = () => {
   const fadeLeft = isMobile ? false : { opacity: 0, x: -100 };
   const scaleIn = isMobile ? false : { opacity: 0, scale: 0.8 };
 
+  const MotionSection = ({ children, initial, animate, transition, ...rest }) => {
+    return isMobile ? (
+      <section {...rest}>{children}</section>
+    ) : (
+      <MotionSection initial={initialFor(initial)} animate={animate} transition={transition} {...rest}>
+        {children}
+      </MotionSection>
+    );
+  };
+
+  const MotionSectionNoAnimate = ({ children, ...rest }) => {
+    return isMobile ? <section {...rest}>{children}</section> : <MotionSection {...rest}>{children}</MotionSection>;
+  };
+
   const handleGetStarted = () => {
     if (user) {
       navigate('/dashboard');
@@ -196,7 +210,7 @@ const Services = () => {
     <div className="bg-[var(--bg-primary)] overflow-x-hidden">
 
       {/* Hero Section */}
-      <motion.section
+      <MotionSection
         initial={fadeUp}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, ease: "easeOut" }}
@@ -231,10 +245,10 @@ const Services = () => {
             </button>
           </div>
         </div>
-      </motion.section>
+      </MotionSection>
 
       {/* Services Grid */}
-      <motion.section
+      <MotionSection
         initial={fadeLeft}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 1, ease: "easeOut", delay: 0.2 }}
@@ -284,10 +298,10 @@ const Services = () => {
 
           </div>
         </div>
-      </motion.section>
+      </MotionSection>
 
       {/* Service Details */}
-      <motion.section
+      <MotionSection
         initial={scaleIn}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 1.2, ease: "easeOut", delay: 0.3 }}
@@ -336,10 +350,10 @@ const Services = () => {
             </div>
           </div>
         </div>
-      </motion.section>
+      </MotionSection>
 
       {/* Pricing Section */}
-      <motion.section
+      <MotionSection
         initial={fadeLeft}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, ease: "easeOut", delay: 0.4 }}
@@ -399,10 +413,10 @@ const Services = () => {
             ))}
           </div>
         </div>
-      </motion.section>
+      </MotionSection>
 
       {/* CTA Section */}
-      <motion.section
+      <MotionSection
         initial={scaleIn}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 1.2, ease: "easeOut", delay: 0.5 }}
@@ -430,7 +444,7 @@ const Services = () => {
             </button>
           </div>
         </div>
-      </motion.section>
+      </MotionSection>
     </div>
   );
 };

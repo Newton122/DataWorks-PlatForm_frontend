@@ -18,13 +18,22 @@ const PublicLayout = () => {
   const initialFor = (variants) => (isMobile ? false : variants)
 
   // Motion components that render as plain HTML on mobile
-  const MotionMain = ({ children, ...props }) => {
-    return isMobile ? <main {...props}>{children}</main> : <motion.main {...props}>{children}</motion.main>;
+  const MotionMain = ({ children, initial, animate, exit, transition, ...props }) => {
+    return isMobile ? (
+      <main {...props}>{children}</main>
+    ) : (
+      <motion.main initial={initialFor(initial)} animate={animate} exit={exit} transition={transition} {...props}>{children}</motion.main>
+    );
   };
 
-  const MotionDiv = ({ children, ...props }) => {
-    return isMobile ? <div {...props}>{children}</div> : <motion.div {...props}>{children}</motion.div>;
+  const MotionDiv = ({ children, initial, animate, transition, ...props }) => {
+    return isMobile ? (
+      <div {...props}>{children}</div>
+    ) : (
+      <motion.div initial={initialFor(initial)} animate={animate} transition={transition} {...props}>{children}</motion.div>
+    );
   };
+
 
   return (
     <div className="min-h-screen bg-bg-primary">
