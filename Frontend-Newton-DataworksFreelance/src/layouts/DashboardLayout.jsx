@@ -1,10 +1,21 @@
 import { Outlet, Link, useLocation } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
+import { useState, useEffect } from 'react'
 import Sidebar from '../components/Sidebar'
 import Topbar from '../components/Topbar'
 
 const DashboardLayout = () => {
   const location = useLocation()
+  const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768)
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
+
+  const initialFor = (variants) => (isMobile ? false : variants)
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-slate-900 flex lg:flex-row">
@@ -15,14 +26,14 @@ const DashboardLayout = () => {
         <AnimatePresence mode="wait">
           <motion.main
             key={location.pathname}
-            initial={{ opacity: 0, x: 18 }}
+            initial={initialFor({ opacity: 0, x: 18 })}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -18 }}
             transition={{ duration: 0.4, ease: 'easeInOut' }}
             className="flex-1 p-4 lg:p-6"
           >
             <motion.div
-              initial={{ opacity: 0, y: 14 }}
+              initial={initialFor({ opacity: 0, y: 14 })}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.45, ease: 'easeOut' }}
               className="h-full"

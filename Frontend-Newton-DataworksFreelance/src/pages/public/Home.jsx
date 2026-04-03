@@ -18,11 +18,11 @@ const Home = () => {
   }, []);
 
   const mobileInitial = { opacity: 1, x: 0, y: 0, scale: 1, rotateY: 0 };
-  const initialFor = (variants) => (isMobile ? mobileInitial : variants);
+  const initialFor = (variants) => (isMobile ? false : variants);
 
-  const fadeUp = isMobile ? mobileInitial : { opacity: 0, y: 100 };
-  const fadeLeft = isMobile ? mobileInitial : { opacity: 0, x: -100 };
-  const scaleIn = isMobile ? mobileInitial : { opacity: 0, scale: 0.8 };
+  const fadeUp = isMobile ? false : { opacity: 0, y: 100 };
+  const fadeLeft = isMobile ? false : { opacity: 0, x: -100 };
+  const scaleIn = isMobile ? false : { opacity: 0, scale: 0.8 };
 
   // Technology items for carousel
   const techRow1 = [
