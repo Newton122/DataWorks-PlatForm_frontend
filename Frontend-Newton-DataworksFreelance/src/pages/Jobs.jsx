@@ -55,7 +55,7 @@ const Jobs = () => {
   const fetchJobs = async () => {
     try {
       setLoading(true);
-      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/jobs`);
+      const response = await fetch(`https://dataworks-platform.onrender.com/api/jobs`);
       if (response.ok) {
         const data = await response.json();
         setJobs(data.jobs || data);
@@ -111,7 +111,7 @@ const Jobs = () => {
 
   const submitApplication = async () => {
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/applications`, {
+      const response = await fetch(`https://dataworks-platform.onrender.com/api/applications`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
