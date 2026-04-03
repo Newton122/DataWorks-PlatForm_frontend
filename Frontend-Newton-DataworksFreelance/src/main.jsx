@@ -7,8 +7,18 @@ import { store } from './store/index.js'
 import App from './App.jsx'
 import './index.css'
 
-// Use production URL as fallback if environment variable is not set
-axios.defaults.baseURL = import.meta.env.VITE_API_BASE_URL || 'https://dataworks-platform.onrender.com'
+// Resolve base API URL with priority:
+// 1. VITE_API_BASE_URL (set by environment; e.g., Vercel)
+// 2. Local dev (localhost:5173) -> local backend http://localhost:5000
+// 3. Production default (Render backend)
+const getApiBaseUrl = () => {
+  if (import.meta.env.VITE_API_BASE_URL) return import.meta.env.VITE_API_BASE_URL
+  if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+    return 'http://localhost:5000'
+  }
+  return 'https://dataworks-platform.onrender.com'
+}
+axios.defaults.baseURL = getApiBaseUrl()
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
