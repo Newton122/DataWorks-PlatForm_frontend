@@ -33,7 +33,8 @@ const Jobs = () => {
     'Big Data',
     'Data Warehousing',
     'ETL Development',
-    'Product Management'
+    'Product Management',
+    'UI/UX Design',
   ];
 
   const jobTypes = ['All', 'Full-time', 'Part-time', 'Contract', 'Internship', 'Freelance'];
@@ -58,22 +59,13 @@ const Jobs = () => {
       if (response.ok) {
         const data = await response.json();
         setJobs(data.jobs || data);
-
-        // Force user jobs for demo
-        setJobs([
-          { _id: '1', title: 'Data Engineer', company: 'Dataworks', description: 'Spark/Python/SQL job from DB', location: 'Remote', type: 'Full-time', salary: '$120k+', category: 'Data Engineering', skills: ['Python', 'SQL', 'Spark'], experience: 'Senior Level', postedDate: '2 days ago', requirements: ['5+ years experience in Spark', 'ETL pipelines', 'Cloud data platforms'] },
-          { _id: '2', title: 'Data Analytics Architect', company: 'Client A', description: 'High-impact analytics role at growing startup', location: 'NYC', type: 'Contract', salary: '$80k', category: 'Data Analytics', skills: ['SQL', 'Python'], experience: 'Mid Level', postedDate: '1 week ago', requirements: ['Business intelligence', 'Tableau/Power BI', 'Strong SQL'] },
-          { _id: '3', title: 'Machine Learning Engineer', company: 'Client B', description: 'AI model production in remote-first team', location: 'Remote', type: 'Full-time', salary: '$150k+', category: 'Data Science', skills: ['ML', 'Python'], experience: 'Senior Level', postedDate: '3 days ago', requirements: ['Model training', 'TensorFlow/PyTorch', 'A/B testing'] }
-        ]);
+      } else {
+        console.error('Failed to fetch jobs:', response.status);
+        setJobs([]);
       }
     } catch (error) {
       console.error('Error fetching jobs:', error);
-      // Force user jobs
-      setJobs([
-        { _id: '1', title: 'Data Engineer', company: 'Dataworks', description: 'Spark/Python/SQL job from DB', location: 'Remote', type: 'Full-time', salary: '$120k+', category: 'Data Engineering', skills: ['Python', 'SQL', 'Spark'], experience: 'Senior Level', postedDate: '2 days ago' },
-        { _id: '2', title: 'Job1', company: 'Client A', description: 'Test job from dataworks.jobs', location: 'NYC', type: 'Contract', salary: '$80k', category: 'Data Analytics', skills: ['SQL', 'Python'], experience: 'Mid Level', postedDate: '1 week ago' },
-        { _id: '3', title: 'Job2', company: 'Client B', description: 'Another user job', location: 'Remote', type: 'Full-time', salary: '$150k+', category: 'Data Science', skills: ['ML', 'Python'], experience: 'Senior Level', postedDate: '3 days ago' }
-      ]);
+      setJobs([]);
     } finally {
       setLoading(false);
     }
