@@ -11,11 +11,10 @@ const Team = () => {
             Our Team
           </div>
           <h1 className="text-3xl lg:text-4xl font-bold text-[var(--text-primary)] mb-6">
-            Team will be updated
+            Our Dedicated Team
           </h1>
           <p className="text-lg text-[var(--text-secondary)] max-w-2xl mx-auto">
-            We're currently building an amazing team of data engineering experts and AI specialists.
-            Stay tuned for updates on our team members and their expertise.
+            Meet the experienced professionals driving DataWorks innovation. Our team combines expertise in data engineering, analytics, and AI to deliver exceptional results for our clients and platform members.
           </p>
         </div>
       </section>

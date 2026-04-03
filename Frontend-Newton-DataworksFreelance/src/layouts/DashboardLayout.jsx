@@ -61,7 +61,7 @@ const DashboardLayout = () => {
         </AnimatePresence>
         <footer className="bg-[var(--bg-secondary)] border-t border-[var(--border-color)] p-6 mt-auto">
           <div className="max-w-7xl mx-auto text-center text-sm text-[var(--text-muted)]">
-            &copy; 2024 DataWorks Freelance. All rights reserved. | 
+            &copy; 2026 DataWorks Freelance. All rights reserved. | 
             <Link to="/privacy" className="text-[var(--accent-primary)] hover:text-[var(--accent-hover)] mx-2">Privacy</Link> | 
             <Link to="/terms" className="text-[var(--accent-primary)] hover:text-[var(--accent-hover)]">Terms</Link>
           </div>

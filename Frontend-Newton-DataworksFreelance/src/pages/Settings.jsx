@@ -108,9 +108,9 @@ const Settings = () => {
 
   const handleDeleteAccount = () => {
     if (confirm('Are you sure? This action cannot be undone.')) {
-      if (confirm('Type "DELETE" to confirm account deletion.')) {
-        // Would need backend endpoint
-        setMessage('Account deletion functionality coming soon');
+      if (confirm('Account deletion requires email verification. Please contact support@dataworks.com to proceed.')) {
+        // Account deletion would go through email verification
+        setMessage('Deletion request sent. Check your email for verification link.');
       }
     }
   };

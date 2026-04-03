@@ -4,7 +4,7 @@ const Cookies = () => {
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-12">
           <h1 className="text-4xl font-bold text-[var(--text-primary)] mb-4">Cookie Policy</h1>
-          <p className="text-[var(--text-muted)]">Last updated: March 2024</p>
+          <p className="text-[var(--text-muted)]">Last updated: April 2026</p>
         </div>
 
         <div className="bg-[var(--bg-secondary)] border border-[var(--border-color)] rounded-lg p-8 space-y-8">

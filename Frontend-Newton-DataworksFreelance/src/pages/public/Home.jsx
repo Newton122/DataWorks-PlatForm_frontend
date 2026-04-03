@@ -338,7 +338,7 @@ spark = SparkSession.builder \\
 # Define DAG
 dag = DAG(
     'data_pipeline',
-    start_date=datetime(2024, 1, 1),
+    start_date=datetime(2026, 1, 1),
     schedule_interval='@daily'
 )
 

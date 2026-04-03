@@ -11,11 +11,10 @@ const Featured = () => {
             Featured
           </div>
           <h1 className="text-3xl lg:text-4xl font-bold text-[var(--text-primary)] mb-6">
-            Upcoming
+            Featured Projects & Showcases
           </h1>
           <p className="text-lg text-[var(--text-secondary)] max-w-2xl mx-auto">
-            Exciting featured content and showcases are coming soon.
-            We're working on amazing projects and success stories to share with you.
+            Explore our latest success stories and featured data solutions. Discover how DataWorks helps organizations transform their data infrastructure and unlock actionable insights.
           </p>
         </div>
       </section>
