@@ -22,18 +22,14 @@ const Services = () => {
   const fadeLeft = isMobile ? false : { opacity: 0, x: -100 };
   const scaleIn = isMobile ? false : { opacity: 0, scale: 0.8 };
 
-  const MotionSection = ({ children, initial, animate, transition, ...rest }) => {
-    return isMobile ? (
-      <section {...rest}>{children}</section>
-    ) : (
-      <MotionSection initial={initialFor(initial)} animate={animate} transition={transition} {...rest}>
-        {children}
-      </MotionSection>
-    );
+  // Motion component that renders as plain HTML on mobile, framer motion on desktop
+  const MotionSection = ({ children, ...rest }) => {
+    if (isMobile) return <section>{children}</section>;
+    return <motion.section {...rest}>{children}</motion.section>;
   };
 
   const MotionSectionNoAnimate = ({ children, ...rest }) => {
-    return isMobile ? <section {...rest}>{children}</section> : <MotionSection {...rest}>{children}</MotionSection>;
+    return isMobile ? <section {...rest}>{children}</section> : <motion.div {...rest}>{children}</motion.div>;
   };
 
   const handleGetStarted = () => {
