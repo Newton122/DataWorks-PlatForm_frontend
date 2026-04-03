@@ -81,6 +81,7 @@ const Navbar = () => {
             </div>
 
             <Link to="/about" className="nav-btn-small">About</Link>
+            <Link to="/team" className="nav-btn-small">Team</Link>
             <Link to="/overview" className="nav-btn-small">Overview</Link>
             <Link to="/contact" className="nav-btn-small">Contact</Link>
             <Link to="/blog" className="nav-btn-small">Blog</Link>
@@ -173,6 +174,9 @@ const Navbar = () => {
 
               <Link to="/about" onClick={() => setIsMenuOpen(false)} className="block px-3 py-2 text-sm text-text-secondary hover:text-text-primary hover:bg-bg-tertiary rounded-lg transition-colors">
                 About
+              </Link>
+              <Link to="/team" onClick={() => setIsMenuOpen(false)} className="block px-3 py-2 text-sm text-text-secondary hover:text-text-primary hover:bg-bg-tertiary rounded-lg transition-colors">
+                Team
               </Link>
               <Link to="/overview" onClick={() => setIsMenuOpen(false)} className="block px-3 py-2 text-sm text-text-secondary hover:text-text-primary hover:bg-bg-tertiary rounded-lg transition-colors">
                 Overview
