@@ -312,7 +312,7 @@ const Home = () => {
                   ))}
                 </div>
                 <div className="text-xs md:text-sm text-[var(--text-muted)]">
-                  <span className="text-[var(--text-primary)] font-semibold">500+</span> data engineers available
+                  Building the future of<span className="text-[var(--text-primary)] font-semibold"> data talent</span>
                 </div>
               </div>
             </div>
@@ -761,10 +761,10 @@ transformed.write \\
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             {[
-              { value: "500+", label: "Data Engineers" },
-              { value: "150+", label: "Projects Delivered" },
-              { value: "98%", label: "Client Satisfaction" },
-              { value: "24/7", label: "Support Available" }
+              { value: "Beta", label: "Platform Status" },
+              { value: "Algiers", label: "Headquarters" },
+              { value: "100%", label: "AI-Powered" },
+              { value: "Growing", label: "Community" }
             ].map((stat, index) => (
               <div key={index} className="text-center">
                 <div className="text-2xl lg:text-3xl font-bold text-[var(--accent-primary)] mb-2">{stat.value}</div>
@@ -788,7 +788,7 @@ transformed.write \\
               Global Presence
             </h2>
             <p className="text-sm text-[var(--text-muted)] max-w-2xl mx-auto">
-              Serving clients worldwide with data engineering excellence
+              Building an innovative platform for data talent and enterprise solutions
             </p>
           </div>
           <div className="bg-[var(--bg-secondary)] border border-[var(--border-color)] p-8">
@@ -824,7 +824,7 @@ transformed.write \\
             Ready to Transform Your Data Infrastructure?
           </h2>
           <p className="text-sm text-[var(--text-muted)] mb-8 max-w-2xl mx-auto">
-            Join 500+ companies that trust DataWorks Agency for their data engineering needs
+            Be part of the next generation of data professionals joining DataWorks
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <button
