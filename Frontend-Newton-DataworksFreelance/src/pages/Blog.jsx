@@ -6,7 +6,7 @@ const Blog = () => {
       id: 1,
       title: "Getting Started with Apache Spark for Data Engineering",
       excerpt: "Learn the fundamentals of Apache Spark and how to build scalable data pipelines for your organization.",
-      date: "March 15, 2024",
+      date: "April 10, 2026",
       category: "Data Engineering",
       readTime: "8 min read"
     },
@@ -14,7 +14,7 @@ const Blog = () => {
       id: 2,
       title: "Best Practices for Data Quality in ETL Pipelines",
       excerpt: "Discover essential strategies for maintaining high data quality throughout your ETL processes.",
-      date: "March 10, 2024",
+      date: "March 28, 2026",
       category: "Data Quality",
       readTime: "6 min read"
     },
@@ -22,7 +22,7 @@ const Blog = () => {
       id: 3,
       title: "Introduction to Machine Learning with Python",
       excerpt: "A beginner's guide to machine learning concepts and practical implementation using Python.",
-      date: "March 5, 2024",
+      date: "March 20, 2026",
       category: "Machine Learning",
       readTime: "10 min read"
     },
@@ -30,7 +30,7 @@ const Blog = () => {
       id: 4,
       title: "Building Real-time Dashboards with Tableau",
       excerpt: "Step-by-step guide to creating interactive and real-time dashboards for business intelligence.",
-      date: "February 28, 2024",
+      date: "March 15, 2026",
       category: "Data Visualization",
       readTime: "7 min read"
     },
@@ -38,7 +38,7 @@ const Blog = () => {
       id: 5,
       title: "Cloud Data Warehousing: Snowflake vs BigQuery",
       excerpt: "Compare two leading cloud data warehouse solutions and choose the right one for your needs.",
-      date: "February 20, 2024",
+      date: "March 5, 2026",
       category: "Cloud Computing",
       readTime: "9 min read"
     },
@@ -46,7 +46,7 @@ const Blog = () => {
       id: 6,
       title: "Data Governance: A Complete Guide",
       excerpt: "Understand the importance of data governance and how to implement it in your organization.",
-      date: "February 15, 2024",
+      date: "February 25, 2026",
       category: "Data Governance",
       readTime: "11 min read"
     }
