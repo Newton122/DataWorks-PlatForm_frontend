@@ -24,6 +24,21 @@ const Home = () => {
   const fadeLeft = isMobile ? false : { opacity: 0, x: -100 };
   const scaleIn = isMobile ? false : { opacity: 0, scale: 0.8 };
 
+  // Motion component that renders as div on mobile, motion on desktop
+  const MotionDiv = ({ children, ...props }) => {
+    return isMobile ? <div {...props}>{children}</div> : <MotionDiv {...props}>{children}</MotionDiv>;
+  };
+
+  const MotionSection = ({ children, ...props }) => {
+    return isMobile ? <section {...props}>{children}</section> : <MotionSection {...props}>{children}</MotionSection>;
+  };
+
+  const MotionButton = ({ children, ...props }) => {
+    return isMobile ? <button {...props}>{children}</button> : <motion.button {...props}>{children}</motion.button>;
+  };
+  const MotionImg = ({ ...props }) => {
+    return isMobile ? <img {...props} /> : <MotionImg {...props} />;
+  };
   // Technology items for carousel
   const techRow1 = [
     { name: "Apache Spark", logo: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" },
@@ -223,7 +238,7 @@ const Home = () => {
     <div className="bg-[var(--bg-primary)] overflow-x-hidden">
 
       {/* Hero Section */}
-      <motion.section
+      <MotionSection
         initial={fadeUp}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, ease: "easeOut" }}
@@ -248,7 +263,7 @@ const Home = () => {
                 {heroSlides[currentSlide].description}
               </p>
               <div className="flex flex-col sm:flex-row gap-2 sm:gap-3">
-                <motion.button
+                <MotionButton
                   onClick={handleGetStarted}
                   whileHover={{ y: -2, scale: 1.03 }}
                   whileTap={{ scale: 0.97 }}
@@ -257,8 +272,8 @@ const Home = () => {
                 >
                   {heroSlides[currentSlide].cta}
                   <span className="absolute inset-x-3 bottom-2 h-1.5 bg-[rgba(15, 78, 43, 0.45)] rounded-full blur-sm" />
-                </motion.button>
-                <motion.button
+                </MotionButton>
+                <MotionButton
                   onClick={handleViewDemo}
                   whileHover={{ y: -2, scale: 1.03 }}
                   whileTap={{ scale: 0.97 }}
@@ -267,7 +282,7 @@ const Home = () => {
                 >
                   {heroSlides[currentSlide].secondaryCta}
                   <span className="absolute inset-x-3 bottom-2 h-1.5 bg-[rgba(255, 255, 255, 0.2)] rounded-full blur-sm" />
-                </motion.button>
+                </MotionButton>
               </div>
               <div className="flex items-center gap-3 md:gap-4 pt-2">
                 <div className="flex -space-x-1 md:-space-x-2">
@@ -331,10 +346,10 @@ transformed.write \\
             </div>
           </div>
         </div>
-      </motion.section>
+      </MotionSection>
 
       {/* Services Section */}
-      <motion.section
+      <MotionSection
         initial={fadeLeft}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 1, ease: "easeOut", delay: 0.2 }}
@@ -390,10 +405,10 @@ transformed.write \\
             ))}
           </div>
         </div>
-      </motion.section>
+      </MotionSection>
 
       {/* Horizontal Motion Images Section */}
-      <motion.section
+      <MotionSection
         initial={scaleIn}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 1.2, ease: "easeOut", delay: 0.3 }}
@@ -414,14 +429,14 @@ transformed.write \\
           <div className="relative mb-6 overflow-hidden">
             <div className="flex animate-scroll-left gap-3 sm:gap-6 pb-4 items-center">
               {row1.map((tech, index) => (
-                <motion.div
+                <MotionDiv
                   key={index}
                   className="flex-shrink-0 cursor-pointer"
                   whileHover={{ y: -6 }}
                   transition={{ type: "spring", stiffness: 300 }}
                   onClick={() => handleTechClick(1, index)}
                 >
-                  <motion.div
+                  <MotionDiv
                     className={`bg-[var(--bg-secondary)] border p-3 sm:p-6 w-32 sm:w-40 md:w-48 h-24 sm:h-32 flex flex-col items-center justify-center hover:border-[var(--accent-primary)] transition-all duration-300 ${
                       selectedTechIndex?.row === 1 && selectedTechIndex?.index === index
                         ? 'border-[var(--accent-primary)] ring-2 ring-[var(--accent-primary)]'
@@ -429,7 +444,7 @@ transformed.write \\
                     }`}
                     whileHover={{ boxShadow: "0 0 30px rgba(184, 134, 11, 0.4)" }}
                   >
-                    <motion.img
+                    <MotionImg
                       src={tech.logo}
                       alt={tech.name}
                       className="w-8 h-8 sm:w-12 sm:h-12 md:w-16 md:h-16 object-cover rounded-lg mb-2 sm:mb-3"
@@ -439,19 +454,19 @@ transformed.write \\
                     <span className="text-xs sm:text-sm font-semibold text-[var(--text-primary)] text-center line-clamp-2">
                       {tech.name}
                     </span>
-                  </motion.div>
-                </motion.div>
+                  </MotionDiv>
+                </MotionDiv>
               ))}
               {/* Duplicate for seamless loop */}
               {row1.map((tech, index) => (
-                <motion.div
+                <MotionDiv
                   key={`dup1-${index}`}
                   className="flex-shrink-0 cursor-pointer"
                   whileHover={{ y: -6 }}
                   transition={{ type: "spring", stiffness: 300 }}
                   onClick={() => handleTechClick(1, index)}
                 >
-                  <motion.div
+                  <MotionDiv
                     className={`bg-[var(--bg-secondary)] border p-3 sm:p-6 w-32 sm:w-40 md:w-48 h-24 sm:h-32 flex flex-col items-center justify-center hover:border-[var(--accent-primary)] transition-all duration-300 ${
                       selectedTechIndex?.row === 1 && selectedTechIndex?.index === index
                         ? 'border-[var(--accent-primary)] ring-2 ring-[var(--accent-primary)]'
@@ -459,7 +474,7 @@ transformed.write \\
                     }`}
                     whileHover={{ boxShadow: "0 0 30px rgba(184, 134, 11, 0.4)" }}
                   >
-                    <motion.img
+                    <MotionImg
                       src={tech.logo}
                       alt={tech.name}
                       className="w-8 h-8 sm:w-12 sm:h-12 md:w-16 md:h-16 object-cover rounded-lg mb-2 sm:mb-3"
@@ -469,8 +484,8 @@ transformed.write \\
                     <span className="text-xs sm:text-sm font-semibold text-[var(--text-primary)] text-center line-clamp-2">
                       {tech.name}
                     </span>
-                  </motion.div>
-                </motion.div>
+                  </MotionDiv>
+                </MotionDiv>
               ))}
             </div>
           </div>
@@ -479,14 +494,14 @@ transformed.write \\
           <div className="relative mb-6 overflow-hidden">
             <div className="flex animate-scroll-left gap-3 sm:gap-6 pb-4 items-center">
               {row2.map((tech, index) => (
-                <motion.div
+                <MotionDiv
                   key={index}
                   className="flex-shrink-0 cursor-pointer"
                   whileHover={{ y: -6 }}
                   transition={{ type: "spring", stiffness: 300 }}
                   onClick={() => handleTechClick(2, index)}
                 >
-                  <motion.div
+                  <MotionDiv
                     className={`bg-[var(--bg-secondary)] border p-3 sm:p-6 w-32 sm:w-40 md:w-48 h-24 sm:h-32 flex flex-col items-center justify-center hover:border-[var(--accent-primary)] transition-all duration-300 ${
                       selectedTechIndex?.row === 2 && selectedTechIndex?.index === index
                         ? 'border-[var(--accent-primary)] ring-2 ring-[var(--accent-primary)]'
@@ -494,7 +509,7 @@ transformed.write \\
                     }`}
                     whileHover={{ boxShadow: "0 0 30px rgba(184, 134, 11, 0.4)" }}
                   >
-                    <motion.img
+                    <MotionImg
                       src={tech.logo}
                       alt={tech.name}
                       className="w-8 h-8 sm:w-12 sm:h-12 md:w-16 md:h-16 object-cover rounded-lg mb-2 sm:mb-3"
@@ -504,19 +519,19 @@ transformed.write \\
                     <span className="text-xs sm:text-sm font-semibold text-[var(--text-primary)] text-center line-clamp-2">
                       {tech.name}
                     </span>
-                  </motion.div>
-                </motion.div>
+                  </MotionDiv>
+                </MotionDiv>
               ))}
               {/* Duplicate for seamless loop */}
               {row2.map((tech, index) => (
-                <motion.div
+                <MotionDiv
                   key={`dup2-${index}`}
                   className="flex-shrink-0 cursor-pointer"
                   whileHover={{ y: -6 }}
                   transition={{ type: "spring", stiffness: 300 }}
                   onClick={() => handleTechClick(2, index)}
                 >
-                  <motion.div
+                  <MotionDiv
                     className={`bg-[var(--bg-secondary)] border p-3 sm:p-6 w-32 sm:w-40 md:w-48 h-24 sm:h-32 flex flex-col items-center justify-center hover:border-[var(--accent-primary)] transition-all duration-300 ${
                       selectedTechIndex?.row === 2 && selectedTechIndex?.index === index
                         ? 'border-[var(--accent-primary)] ring-2 ring-[var(--accent-primary)]'
@@ -524,7 +539,7 @@ transformed.write \\
                     }`}
                     whileHover={{ boxShadow: "0 0 30px rgba(184, 134, 11, 0.4)" }}
                   >
-                    <motion.img
+                    <MotionImg
                       src={tech.logo}
                       alt={tech.name}
                       className="w-8 h-8 sm:w-12 sm:h-12 md:w-16 md:h-16 object-cover rounded-lg mb-2 sm:mb-3"
@@ -534,8 +549,8 @@ transformed.write \\
                     <span className="text-xs sm:text-sm font-semibold text-[var(--text-primary)] text-center line-clamp-2">
                       {tech.name}
                     </span>
-                  </motion.div>
-                </motion.div>
+                  </MotionDiv>
+                </MotionDiv>
               ))}
             </div>
           </div>
@@ -544,14 +559,14 @@ transformed.write \\
           <div className="relative overflow-hidden">
             <div className="flex animate-scroll-left gap-3 sm:gap-6 pb-4 items-center">
               {row3.map((tech, index) => (
-                <motion.div
+                <MotionDiv
                   key={index}
                   className="flex-shrink-0 cursor-pointer"
                   whileHover={{ y: -6 }}
                   transition={{ type: "spring", stiffness: 300 }}
                   onClick={() => handleTechClick(3, index)}
                 >
-                  <motion.div
+                  <MotionDiv
                     className={`bg-[var(--bg-secondary)] border p-3 sm:p-6 w-32 sm:w-40 md:w-48 h-24 sm:h-32 flex flex-col items-center justify-center hover:border-[var(--accent-primary)] transition-all duration-300 ${
                       selectedTechIndex?.row === 3 && selectedTechIndex?.index === index
                         ? 'border-[var(--accent-primary)] ring-2 ring-[var(--accent-primary)]'
@@ -559,7 +574,7 @@ transformed.write \\
                     }`}
                     whileHover={{ boxShadow: "0 0 30px rgba(184, 134, 11, 0.4)" }}
                   >
-                    <motion.img
+                    <MotionImg
                       src={tech.logo}
                       alt={tech.name}
                       className="w-8 h-8 sm:w-12 sm:h-12 md:w-16 md:h-16 object-cover rounded-lg mb-2 sm:mb-3"
@@ -569,19 +584,19 @@ transformed.write \\
                     <span className="text-xs sm:text-sm font-semibold text-[var(--text-primary)] text-center line-clamp-2">
                       {tech.name}
                     </span>
-                  </motion.div>
-                </motion.div>
+                  </MotionDiv>
+                </MotionDiv>
               ))}
               {/* Duplicate for seamless loop */}
               {row3.map((tech, index) => (
-                <motion.div
+                <MotionDiv
                   key={`dup3-${index}`}
                   className="flex-shrink-0 cursor-pointer"
                   whileHover={{ y: -6 }}
                   transition={{ type: "spring", stiffness: 300 }}
                   onClick={() => handleTechClick(3, index)}
                 >
-                  <motion.div
+                  <MotionDiv
                     className={`bg-[var(--bg-secondary)] border p-3 sm:p-6 w-32 sm:w-40 md:w-48 h-24 sm:h-32 flex flex-col items-center justify-center hover:border-[var(--accent-primary)] transition-all duration-300 ${
                       selectedTechIndex?.row === 3 && selectedTechIndex?.index === index
                         ? 'border-[var(--accent-primary)] ring-2 ring-[var(--accent-primary)]'
@@ -589,7 +604,7 @@ transformed.write \\
                     }`}
                     whileHover={{ boxShadow: "0 0 30px rgba(184, 134, 11, 0.4)" }}
                   >
-                    <motion.img
+                    <MotionImg
                       src={tech.logo}
                       alt={tech.name}
                       className="w-8 h-8 sm:w-12 sm:h-12 md:w-16 md:h-16 object-cover rounded-lg mb-2 sm:mb-3"
@@ -599,16 +614,16 @@ transformed.write \\
                     <span className="text-xs sm:text-sm font-semibold text-[var(--text-primary)] text-center line-clamp-2">
                       {tech.name}
                     </span>
-                  </motion.div>
-                </motion.div>
+                  </MotionDiv>
+                </MotionDiv>
               ))}
             </div>
           </div>
         </div>
-      </motion.section>
+      </MotionSection>
 
       {/* Case Studies Section */}
-      <motion.section
+      <MotionSection
         initial={initialFor({ opacity: 0, x: 100 })}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 1, ease: "easeOut", delay: 0.4 }}
@@ -641,10 +656,10 @@ transformed.write \\
             ))}
           </div>
         </div>
-      </motion.section>
+      </MotionSection>
 
       {/* Internship Programs Section */}
-      <motion.section
+      <MotionSection
         initial={initialFor({ opacity: 0, y: -100 })}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, ease: "easeOut", delay: 0.5 }}
@@ -684,10 +699,10 @@ transformed.write \\
             ))}
           </div>
         </div>
-      </motion.section>
+      </MotionSection>
 
       {/* Architecture Diagrams Section */}
-      <motion.section
+      <MotionSection
         initial={initialFor({ opacity: 0, rotateY: 90 })}
         animate={{ opacity: 1, rotateY: 0 }}
         transition={{ duration: 1.2, ease: "easeOut", delay: 0.6 }}
@@ -715,10 +730,10 @@ transformed.write \\
             ))}
           </div>
         </div>
-      </motion.section>
+      </MotionSection>
 
       {/* Stats Section */}
-      <motion.section
+      <MotionSection
         initial={initialFor({ opacity: 0, scale: 0.5 })}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 1, ease: "easeOut", delay: 0.7 }}
@@ -739,10 +754,10 @@ transformed.write \\
             ))}
           </div>
         </div>
-      </motion.section>
+      </MotionSection>
 
       {/* Global Presence Section */}
-      <motion.section
+      <MotionSection
         initial={initialFor(fadeLeft)}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 1, ease: "easeOut", delay: 0.8 }}
@@ -776,10 +791,10 @@ transformed.write \\
             </div>
           </div>
         </div>
-      </motion.section>
+      </MotionSection>
 
       {/* CTA Section */}
-      <motion.section
+      <MotionSection
         initial={initialFor({ opacity: 0, y: 100 })}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, ease: "easeOut", delay: 0.9 }}
@@ -807,7 +822,7 @@ transformed.write \\
             </button>
           </div>
         </div>
-      </motion.section>
+      </MotionSection>
 
     </div>
   );
