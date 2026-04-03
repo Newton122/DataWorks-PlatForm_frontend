@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useAuth } from '../context/AuthContext';
@@ -7,6 +7,14 @@ const Services = () => {
   const navigate = useNavigate();
   const { user } = useAuth();
   const [activeService, setActiveService] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   const mobileInitial = { opacity: 1, x: 0, y: 0, scale: 1 };
   const initialFor = (variants) => (isMobile ? false : variants);
