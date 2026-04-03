@@ -503,16 +503,22 @@ const Messages = () => {
   const fetchAvailableUsers = async () => {
     setLoadingUsers(true);
     try {
+      console.log('Fetching available users from:', `${API_URL}/api/messages/users`);
+      console.log('Current user:', user);
       const response = await fetch(`${API_URL}/api/messages/users`, {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`
         }
       });
+      console.log('Fetch response status:', response.status, response.statusText);
       if (response.ok) {
         const data = await response.json();
+        console.log('Users received:', data.users?.length || 0, 'users');
         setAvailableUsers(data.users || []);
       } else {
         console.error('Failed to fetch users:', response.statusText);
+        const errorText = await response.text();
+        console.error('Error response:', errorText);
         setAvailableUsers([]);
       }
     } catch (error) {
