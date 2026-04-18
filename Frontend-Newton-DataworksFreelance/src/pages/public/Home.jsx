@@ -383,7 +383,7 @@ transformed.write \\
               End-to-end data solutions from pipeline development to machine learning deployment
             </p>
           </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-4">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-2 md:gap-3">
             {[
               {
                 title: "Data Engineering",
@@ -410,8 +410,8 @@ transformed.write \\
                 description: "Extract, transform, and load data from multiple sources efficiently"
               }
             ].map((service, index) => (
-              <div key={index} className="bg-[var(--bg-secondary)] border border-[var(--border-color)] p-4 hover:border-[var(--accent-primary)] transition-colors rounded-lg">
-                <h3 className="text-base font-semibold text-[var(--text-primary)] mb-2">{service.title}</h3>
+              <div key={index} className="bg-[var(--bg-secondary)] border border-[var(--border-color)] p-3 hover:border-[var(--accent-primary)] hover:shadow-lg transition-all duration-200 rounded-lg transform hover:-translate-y-1">
+                <h3 className="text-sm font-semibold text-[var(--text-primary)] mb-1">{service.title}</h3>
                 <p className="text-xs text-[var(--text-muted)]">{service.description}</p>
               </div>
             ))}

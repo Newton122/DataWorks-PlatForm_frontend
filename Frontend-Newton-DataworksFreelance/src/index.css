@@ -61,6 +61,30 @@ body {
   padding: 0;
 }
 
+/* Nice button hover effects */
+button {
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  position: relative;
+}
+
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(184, 134, 11, 0.3);
+}
+
+button:active {
+  transform: translateY(0);
+}
+
+.polidhed-dark-green-btn {
+  background: linear-gradient(120deg, #0f4e2b 0%, #10b981 50%, #059669 100%);
+}
+
+.polidhed-dark-green-btn:hover {
+  background: linear-gradient(120deg, #10b981 0%, #0f4e2b 50%, #10b981 100%);
+  box-shadow: 0 10px 25px rgba(16, 185, 129, 0.4);
+}
+
 /* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
