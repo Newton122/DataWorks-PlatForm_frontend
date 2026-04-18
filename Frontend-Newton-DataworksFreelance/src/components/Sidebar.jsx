@@ -46,7 +46,7 @@ const Sidebar = ({ onClose }) => {
   ]
 
   return (
-    <aside className="w-64 bg-[var(--bg-secondary)] border-r border-[var(--border-color)] h-full lg:bg-transparent lg:border-r-0">
+    <aside className="w-64 bg-[var(--bg-secondary)] border-l border-[var(--border-color)] h-full">
       {/* Mobile close button */}
       <div className="lg:hidden p-4 border-b border-[var(--border-color)]">
         <button
