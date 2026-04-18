@@ -284,20 +284,20 @@ const Home = () => {
               <div className="flex flex-col sm:flex-row gap-2 sm:gap-3">
                 <MotionButton
                   onClick={handleGetStarted}
-                  whileHover={{ y: -1, scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  transition={{ type: 'spring', stiffness: 400 }}
-                  className="px-4 md:px-6 py-2 md:py-2.5 polidhed-dark-green-btn font-semibold text-sm md:text-base backdrop-blur-sm bg-opacity-90"
+                  whileHover={{ y: -3, scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+                  className="px-4 md:px-6 py-2 md:py-2.5 polidhed-dark-green-btn font-semibold text-sm md:text-base backdrop-blur-sm bg-opacity-90 rounded-lg shadow-md hover:shadow-lg"
                 >
                   {heroSlides[currentSlide].cta}
                   <span className="absolute inset-x-3 bottom-2 h-1.5 bg-[rgba(15, 78, 43, 0.45)] rounded-full blur-sm" />
                 </MotionButton>
                 <MotionButton
                   onClick={handleViewDemo}
-                  whileHover={{ y: -1, scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  transition={{ type: 'spring', stiffness: 400 }}
-                  className="px-4 md:px-6 py-2 md:py-2.5 backdrop-blur-md bg-white/10 border border-white/20 text-white font-semibold hover:bg-white/20 transition-all text-sm md:text-base"
+                  whileHover={{ y: -3, scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+                  className="px-4 md:px-6 py-2 md:py-2.5 backdrop-blur-md bg-white/10 border border-white/20 text-white font-semibold hover:bg-white/30 transition-all text-sm md:text-base rounded-lg shadow-md hover:shadow-lg hover:border-white/40"
                 >
                   {heroSlides[currentSlide].secondaryCta}
                   <span className="absolute inset-x-3 bottom-2 h-1.5 bg-[rgba(255, 255, 255, 0.2)] rounded-full blur-sm" />

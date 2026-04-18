@@ -67,22 +67,13 @@ button {
   position: relative;
 }
 
-button:hover {
+button:hover:not(MotionButton) {
   transform: translateY(-2px);
-  box-shadow: 0 8px 16px rgba(184, 134, 11, 0.3);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
 }
 
 button:active {
   transform: translateY(0);
-}
-
-.polidhed-dark-green-btn {
-  background: linear-gradient(120deg, #0f4e2b 0%, #10b981 50%, #059669 100%);
-}
-
-.polidhed-dark-green-btn:hover {
-  background: linear-gradient(120deg, #10b981 0%, #0f4e2b 50%, #10b981 100%);
-  box-shadow: 0 10px 25px rgba(16, 185, 129, 0.4);
 }
 
 /* Custom scrollbar */
@@ -283,13 +274,14 @@ button:hover,
 }
 
 .polidhed-dark-green-btn {
-  background: linear-gradient(135deg, rgba(12, 80, 38, 0.95) 0%, rgba(16, 96, 44, 0.86) 45%, rgba(20, 118, 54, 0.78) 100%) !important;
-  color: #fff !important;
-  border: 1px solid rgba(14, 104, 49, 0.9) !important;
-  box-shadow: 0 26px 48px rgba(0, 0, 0, 0.65) !important;
+  background: linear-gradient(135deg, rgba(12, 80, 38, 0.95) 0%, rgba(16, 96, 44, 0.86) 45%, rgba(20, 118, 54, 0.78) 100%);
+  color: #fff;
+  border: 1px solid rgba(14, 104, 49, 0.9);
+  box-shadow: 0 26px 48px rgba(0, 0, 0, 0.65), inset 0 1px 0 rgba(255, 255, 255, 0.1);
   position: relative;
   overflow: hidden;
   backdrop-filter: blur(12px);
+  cursor: pointer;
 }
 
 .polidhed-dark-green-btn:before {
@@ -315,12 +307,9 @@ button:hover,
 }
 
 .polidhed-dark-green-btn:hover {
-  transform: translateY(-2px) scale(1.02);
-  box-shadow: 0 30px 58px rgba(0, 0, 0, 0.75) !important;
-}
-.polidhed-dark-green-btn:hover {
-  transform: translateY(-1px) scale(1.01);
-  box-shadow: 0 22px 44px rgba(0, 0, 0, 0.65) !important;
+  background: linear-gradient(135deg, rgba(16, 104, 49, 1) 0%, rgba(20, 118, 54, 0.95) 45%, rgba(24, 140, 64, 0.9) 100%);
+  box-shadow: 0 40px 70px rgba(16, 185, 129, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  border-color: rgba(16, 185, 129, 0.9);
 }
 .text-highlight {
   background: linear-gradient(135deg, #10b981, #059669);
