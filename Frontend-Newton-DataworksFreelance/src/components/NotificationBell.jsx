@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
+import { motion } from 'framer-motion'
 import { useAuth } from '../context/AuthContext'
 
 const NotificationBell = () => {

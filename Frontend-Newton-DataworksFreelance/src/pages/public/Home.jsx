@@ -701,12 +701,15 @@ transformed.write \\
                     </span>
                   ))}
                 </div>
-                <button
+                <MotionButton
                   onClick={() => navigate('/jobs?type=internship')}
+                  whileHover={{ scale: 1.05, y: -1 }}
+                  whileTap={{ scale: 0.95 }}
+                  transition={{ duration: 0.15 }}
                   className="w-full px-4 py-2 text-white text-sm font-semibold polidhed-dark-green-btn mt-auto"
                 >
                   Apply Now
-                </button>
+                </MotionButton>
               </div>
             ))}
           </div>
@@ -820,18 +823,24 @@ transformed.write \\
             Be part of the next generation of data professionals joining DataWorks
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button
+            <MotionButton
               onClick={handleGetStarted}
+              whileHover={{ scale: 1.05, y: -1 }}
+              whileTap={{ scale: 0.95 }}
+              transition={{ duration: 0.15 }}
               className="px-8 py-3 bg-[var(--accent-primary)] text-white font-semibold hover:bg-[var(--accent-hover)] transition-colors"
             >
               Get Started Free
-            </button>
-            <button
+            </MotionButton>
+            <MotionButton
               onClick={handleDeployNow}
+              whileHover={{ scale: 1.05, y: -1 }}
+              whileTap={{ scale: 0.95 }}
+              transition={{ duration: 0.15 }}
               className="px-8 py-3 border border-[var(--border-color)] text-[var(--text-primary)] font-semibold hover:border-[var(--accent-primary)] hover:text-[var(--accent-primary)] transition-colors"
             >
               Deploy Now Free
-            </button>
+            </MotionButton>
           </div>
         </div>
       </MotionSection>

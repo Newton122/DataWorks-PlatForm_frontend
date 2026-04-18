@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import { motion } from 'framer-motion'
 import { useTheme } from '../context/ThemeContext'
 
 const ThemeToggle = () => {
