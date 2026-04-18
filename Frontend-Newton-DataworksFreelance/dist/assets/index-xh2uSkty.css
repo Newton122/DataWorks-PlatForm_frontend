@@ -2302,28 +2302,40 @@ button, a, input, textarea, select {
 
 @keyframes scroll-left {
   0% {
-    transform: translateX(0);
+    transform: translate3d(0, 0, 0);
   }
   100% {
-    transform: translateX(calc(-100% / 2));
+    transform: translate3d(calc(-100% / 2), 0, 0);
   }
 }
 
 @keyframes scroll-right {
   0% {
-    transform: translateX(0);
+    transform: translate3d(0, 0, 0);
   }
   100% {
-    transform: translateX(calc(100% / 2));
+    transform: translate3d(calc(100% / 2), 0, 0);
   }
 }
 
 .animate-scroll-left {
-  animation: scroll-left 30s linear infinite;
+  animation: scroll-left 40s linear infinite;
+  animation-fill-mode: forwards;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  perspective: 1000px;
+  -webkit-perspective: 1000px;
+  transition: none;
 }
 
 .animate-scroll-right {
-  animation: scroll-right 30s linear infinite reverse;
+  animation: scroll-right 40s linear infinite reverse;
+  animation-fill-mode: forwards;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  perspective: 1000px;
+  -webkit-perspective: 1000px;
+  transition: none;
 }
 
 /* Smooth swap animation for carousel items */
