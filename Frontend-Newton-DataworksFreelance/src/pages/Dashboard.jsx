@@ -232,7 +232,7 @@ const Dashboard = () => {
           </div>
 
           {/* Stats Grid */}
-          <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-3 mb-8">
+          <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-2 mb-8">
             {[
               { label: 'Total Jobs', value: stats.totalJobs, color: 'from-blue-500 to-blue-600' },
               { label: 'Active Apps', value: stats.activeApplications, color: 'from-green-500 to-green-600' },
@@ -246,14 +246,14 @@ const Dashboard = () => {
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.35, delay: index * 0.05 }}
-                className="bg-[var(--bg-secondary)] border border-[var(--border-color)] p-3 hover:shadow-lg transition-all duration-200 group"
+                className="bg-[var(--bg-secondary)] border border-[var(--border-color)] p-2 hover:shadow-lg transition-all duration-200 group rounded-lg"
               >
-                <div className="flex items-center justify-between mb-2">
-                  <span className="text-2xl font-bold text-[var(--accent-primary)] group-hover:scale-110 transition-transform">
+                <div className="flex items-center justify-between mb-1">
+                  <span className="text-xl font-bold text-[var(--accent-primary)] group-hover:scale-110 transition-transform">
                     {stat.value}
                   </span>
                 </div>
-                <p className="text-sm font-medium text-[var(--text-secondary)]">{stat.label}</p>
+                <p className="text-xs font-medium text-[var(--text-secondary)]">{stat.label}</p>
               </MotionDiv>
             ))}
           </div>
@@ -294,18 +294,18 @@ const Dashboard = () => {
         {/* Quick Actions */}
         <div className="mb-8">
           <h3 className="text-2xl font-bold text-[var(--text-primary)] mb-6">Quick Actions</h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2">
             {quickActions.map((action, index) => (
               <button
                 key={index}
                 onClick={action.action}
-                className="relative bg-[rgba(15,23,42,0.25)] border border-[var(--border-color)] p-3 text-left overflow-hidden transition-all duration-200 group"
+                className="relative bg-[rgba(15,23,42,0.25)] border border-[var(--border-color)] p-2 text-left overflow-hidden transition-all duration-200 group rounded-lg"
               >
-                <span className="pointer-events-none absolute inset-x-3 bottom-3 h-3 bg-[rgba(0,0,0,0.65)] rounded-full blur-lg"></span>
-                <h4 className="text-lg font-semibold text-[var(--text-primary)] mb-2 group-hover:text-[var(--accent-primary)]">
+                <span className="pointer-events-none absolute inset-x-2 bottom-2 h-2 bg-[rgba(0,0,0,0.65)] rounded-full blur-lg"></span>
+                <h4 className="text-base font-semibold text-[var(--text-primary)] mb-1 group-hover:text-[var(--accent-primary)]">
                   {action.title}
                 </h4>
-                <p className="text-sm text-[var(--text-secondary)]">{action.description}</p>
+                <p className="text-xs text-[var(--text-secondary)]">{action.description}</p>
               </button>
             ))}
           </div>
@@ -314,8 +314,8 @@ const Dashboard = () => {
         <div className="grid lg:grid-cols-3 gap-8">
           {/* Recent Jobs */}
           <div className="lg:col-span-2">
-            <div className="bg-[var(--bg-secondary)] border border-[var(--border-color)] shadow-sm">
-              <div className="p-6 border-b border-[var(--border-color)]">
+            <div className="bg-[var(--bg-secondary)] border border-[var(--border-color)] shadow-sm rounded-lg">
+              <div className="p-4 border-b border-[var(--border-color)]">
                 <div className="flex items-center justify-between">
                   <h3 className="text-xl font-bold text-[var(--text-primary)]">Recent Jobs</h3>
                   <Link
@@ -328,29 +328,29 @@ const Dashboard = () => {
               </div>
               <div className="divide-y divide-[var(--border-color)]">
                 {recentJobs.length === 0 ? (
-                  <div className="p-8 text-center text-[var(--text-secondary)]">
+                  <div className="p-4 text-center text-[var(--text-secondary)]">
                     No jobs found
                   </div>
                 ) : (
                   recentJobs.map((job) => (
-                    <div key={job._id} className="p-6 hover:bg-[var(--bg-tertiary)] transition-colors">
-                      <div className="flex items-start justify-between mb-3">
+                    <div key={job._id} className="p-4 hover:bg-[var(--bg-tertiary)] transition-colors">
+                      <div className="flex items-start justify-between mb-2">
                         <div>
                           <h4 className="text-lg font-semibold text-[var(--text-primary)] mb-1">{job.title}</h4>
                           <p className="text-sm text-[var(--text-secondary)]">{job.company}</p>
                         </div>
-                        <span className="px-3 py-1 bg-gradient-to-r from-[var(--accent-primary)] to-[var(--accent-hover)] text-white text-xs font-medium">
+                        <span className="px-2 py-1 bg-gradient-to-r from-[var(--accent-primary)] to-[var(--accent-hover)] text-white text-xs font-medium rounded">
                           {job.type}
                         </span>
                       </div>
-                      <div className="flex items-center gap-6 text-sm text-[var(--text-muted)] mb-4">
+                      <div className="flex items-center gap-4 text-sm text-[var(--text-muted)] mb-3">
                         <span>{job.location}</span>
                         <span>{job.salary}</span>
                         <span>{job.postedDate}</span>
                       </div>
                       <button
                         onClick={() => navigate('/jobs')}
-                        className="px-4 py-2 bg-[var(--accent-primary)] text-white font-medium hover:bg-[var(--accent-hover)] transition-colors"
+                        className="px-3 py-1 bg-[var(--accent-primary)] text-white font-medium hover:bg-[var(--accent-hover)] transition-colors text-sm rounded"
                       >
                         View Details
                       </button>
@@ -363,22 +363,22 @@ const Dashboard = () => {
 
           {/* Recent Activity */}
           <div>
-            <div className="bg-[var(--bg-secondary)] border border-[var(--border-color)] shadow-sm">
-              <div className="p-6 border-b border-[var(--border-color)]">
+            <div className="bg-[var(--bg-secondary)] border border-[var(--border-color)] shadow-sm rounded-lg">
+              <div className="p-4 border-b border-[var(--border-color)]">
                 <h3 className="text-xl font-bold text-[var(--text-primary)]">Recent Activity</h3>
               </div>
               <div className="divide-y divide-[var(--border-color)]">
                 {recentActivity.length === 0 ? (
-                  <div className="p-6 text-center text-[var(--text-secondary)]">
-                    <div className="w-16 h-16 bg-[var(--bg-tertiary)] rounded-full flex items-center justify-center mx-auto mb-4">
+                  <div className="p-4 text-center text-[var(--text-secondary)]">
+                    <div className="w-12 h-12 bg-[var(--bg-tertiary)] rounded-full flex items-center justify-center mx-auto mb-3">
                     </div>
                     <p>No recent activity</p>
                   </div>
                 ) : (
                   recentActivity.map((activity) => (
-                    <div key={activity.id} className="p-6">
-                      <div className="flex items-start gap-4">
-                        <div className={`w-10 h-10 flex items-center justify-center text-lg shadow-lg ${
+                    <div key={activity.id} className="p-4">
+                      <div className="flex items-start gap-3">
+                        <div className={`w-8 h-8 flex items-center justify-center text-sm shadow-lg rounded-full ${
                           activity.type === 'application' ? 'bg-gradient-to-br from-green-500 to-green-600' :
                           activity.type === 'save' ? 'bg-gradient-to-br from-yellow-500 to-orange-600' :
                           'bg-gradient-to-br from-blue-500 to-purple-600'
