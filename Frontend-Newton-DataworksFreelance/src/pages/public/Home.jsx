@@ -372,264 +372,103 @@ transformed.write \\
         initial={fadeLeft}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
-        className="py-16 md:py-20 lg:py-24 px-3 sm:px-4 bg-[var(--bg-secondary)]"
+        className="py-12 md:py-16 lg:py-20 px-4 sm:px-6 bg-[var(--bg-secondary)]"
       >
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-8 md:mb-12">
-            <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-[var(--text-primary)] mb-3">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-10 md:mb-14">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[var(--text-primary)] mb-4">
               DataWorks Agency Services
             </h2>
-            <p className="text-xs sm:text-sm md:text-base text-[var(--text-muted)] max-w-2xl mx-auto px-2">
+            <p className="text-sm sm:text-base md:text-lg text-[var(--text-muted)] max-w-3xl mx-auto px-2">
               End-to-end data solutions from pipeline development to machine learning deployment
             </p>
           </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-2 md:gap-3">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5">
             {[
-              {
-                title: "Data Engineering",
-                description: "Build scalable ETL pipelines with Apache Spark, Airflow, and Kafka"
-              },
-              {
-                title: "Data Analytics",
-                description: "Transform raw data into actionable insights with SQL and BI tools"
-              },
-              {
-                title: "Machine Learning",
-                description: "Develop and deploy ML models for predictive analytics and automation"
-              },
-              {
-                title: "Data Visualization",
-                description: "Create interactive dashboards with Looker, Tableau, and Power BI"
-              },
-              {
-                title: "Data Warehousing",
-                description: "Design and implement modern data warehouses on Snowflake and BigQuery"
-              },
-              {
-                title: "ETL Development",
-                description: "Extract, transform, and load data from multiple sources efficiently"
-              }
+              { title: "Data Engineering", description: "Build scalable ETL pipelines with Apache Spark, Airflow, and Kafka", icon: "⚙️" },
+              { title: "Data Analytics", description: "Transform raw data into actionable insights with SQL and BI tools", icon: "📊" },
+              { title: "Machine Learning", description: "Develop and deploy ML models for predictive analytics and automation", icon: "🤖" },
+              { title: "Data Visualization", description: "Create interactive dashboards with Looker, Tableau, and Power BI", icon: "📈" },
+              { title: "Data Warehousing", description: "Design and implement modern data warehouses on Snowflake and BigQuery", icon: "🏗️" },
+              { title: "ETL Development", description: "Extract, transform, and load data from multiple sources efficiently", icon: "🔄" }
             ].map((service, index) => (
-              <div key={index} className="bg-[var(--bg-secondary)] border border-[var(--border-color)] p-3 hover:border-[var(--accent-primary)] hover:shadow-lg transition-all duration-200 rounded-lg transform hover:-translate-y-1">
-                <h3 className="text-sm font-semibold text-[var(--text-primary)] mb-1">{service.title}</h3>
-                <p className="text-xs text-[var(--text-muted)]">{service.description}</p>
-              </div>
+              <motion.div
+                key={index}
+                whileHover={{ y: -4, scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                transition={{ duration: 0.2 }}
+                className="bg-gradient-to-br from-[var(--bg-primary)] to-[var(--bg-secondary)] border border-[var(--border-color)] p-6 rounded-xl hover:border-[var(--accent-primary)] hover:shadow-lg transition-all duration-300 cursor-pointer group"
+              >
+                <div className="text-3xl mb-3 group-hover:scale-110 transition-transform duration-200">{service.icon}</div>
+                <h3 className="text-lg sm:text-xl font-semibold text-[var(--text-primary)] mb-2 leading-tight">{service.title}</h3>
+                <p className="text-sm text-[var(--text-muted)] leading-relaxed group-hover:text-[var(--text-secondary)] transition-colors">{service.description}</p>
+              </motion.div>
             ))}
           </div>
         </div>
       </MotionSection>
 
-      {/* Horizontal Motion Images Section */}
+      {/* Technologies Section */}
       <MotionSection
         initial={scaleIn}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.8, ease: "easeOut", delay: 0.3 }}
-        className="py-12 md:py-16 px-4 bg-[var(--bg-primary)] overflow-hidden"
+        className="py-12 md:py-16 lg:py-20 px-4 sm:px-6 bg-[var(--bg-primary)]"
       >
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-2xl lg:text-3xl font-bold text-[var(--text-primary)] mb-3">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-10 md:mb-14">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[var(--text-primary)] mb-4">
               Technologies We Work With
             </h2>
-            <p className="text-sm text-[var(--text-muted)] max-w-2xl mx-auto">
+            <p className="text-sm sm:text-base md:text-lg text-[var(--text-muted)] max-w-3xl mx-auto">
               Modern data stack technologies powering enterprise solutions
             </p>
           </div>
 
-          {/* Technologies Grid - Three Animated Rows */}
-          {/* First Row - Left to Right */}
-          <div className="relative mb-4 overflow-hidden">
-            <div className="flex animate-scroll-left gap-2 sm:gap-3 pb-4 items-center">
-              {row1.map((tech, index) => (
-                <MotionDiv
-                  key={index}
-                  className="flex-shrink-0 cursor-pointer"
-                  whileHover={{ y: -2 }}
-                  transition={{ type: "spring", stiffness: 400 }}
-                  onClick={() => handleTechClick(1, index)}
-                >
-                  <MotionDiv
-                    className={`bg-[var(--bg-secondary)] border p-2 sm:p-3 w-24 sm:w-28 md:w-32 h-16 sm:h-20 flex flex-col items-center justify-center hover:border-[var(--accent-primary)] transition-all duration-300 rounded-lg ${
-                      selectedTechIndex?.row === 1 && selectedTechIndex?.index === index
-                        ? 'border-[var(--accent-primary)] ring-1 ring-[var(--accent-primary)]'
-                        : 'border-[var(--border-color)]'
-                    }`}
-                    whileHover={{ boxShadow: "0 0 20px rgba(184, 134, 11, 0.3)" }}
-                  >
-                    <MotionImg
-                      src={tech.logo}
-                      alt={tech.name}
-                      className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 object-cover rounded mb-1 sm:mb-2"
-                      whileHover={{ rotate: 2, scale: 1.1 }}
-                      transition={{ type: "spring", stiffness: 400 }}
-                    />
-                    <span className="text-xs font-semibold text-[var(--text-primary)] text-center line-clamp-2">
-                      {tech.name}
-                    </span>
-                  </MotionDiv>
-                </MotionDiv>
-              ))}
-              {/* Duplicate for seamless loop */}
-              {row1.map((tech, index) => (
-                <MotionDiv
-                  key={`dup1-${index}`}
-                  className="flex-shrink-0 cursor-pointer"
-                  whileHover={{ y: -2 }}
-                  transition={{ type: "spring", stiffness: 400 }}
-                  onClick={() => handleTechClick(1, index)}
-                >
-                  <MotionDiv
-                    className={`bg-[var(--bg-secondary)] border p-2 sm:p-3 w-24 sm:w-28 md:w-32 h-16 sm:h-20 flex flex-col items-center justify-center hover:border-[var(--accent-primary)] transition-all duration-300 rounded-lg ${
-                      selectedTechIndex?.row === 1 && selectedTechIndex?.index === index
-                        ? 'border-[var(--accent-primary)] ring-1 ring-[var(--accent-primary)]'
-                        : 'border-[var(--border-color)]'
-                    }`}
-                    whileHover={{ boxShadow: "0 0 20px rgba(184, 134, 11, 0.3)" }}
-                  >
-                    <MotionImg
-                      src={tech.logo}
-                      alt={tech.name}
-                      className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 object-cover rounded mb-1 sm:mb-2"
-                      whileHover={{ rotate: 2, scale: 1.1 }}
-                      transition={{ type: "spring", stiffness: 400 }}
-                    />
-                    <span className="text-xs font-semibold text-[var(--text-primary)] text-center line-clamp-2">
-                      {tech.name}
-                    </span>
-                  </MotionDiv>
-                </MotionDiv>
-              ))}
-            </div>
+          {/* Technologies Clean Grid - No Animation Glitches */}
+          <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3 md:gap-4">
+            {techRow1.map((tech, index) => (
+              <motion.div
+                key={index}
+                whileHover={{ scale: 1.08, y: -2 }}
+                whileTap={{ scale: 0.95 }}
+                transition={{ duration: 0.2 }}
+                className="bg-[var(--bg-secondary)] border border-[var(--border-color)] p-4 rounded-lg hover:border-[var(--accent-primary)] hover:shadow-lg transition-all duration-300 flex flex-col items-center justify-center cursor-pointer group h-24 sm:h-28"
+              >
+                <img src={tech.logo} alt={tech.name} className="w-10 h-10 sm:w-12 sm:h-12 object-cover rounded-md mb-2 group-hover:scale-110 transition-transform" />
+                <span className="text-xs sm:text-sm font-semibold text-[var(--text-primary)] text-center group-hover:text-[var(--accent-primary)] transition-colors">{tech.name}</span>
+              </motion.div>
+            ))}
           </div>
-
-          {/* Second Row - Left to Right */}
-          <div className="relative mb-4 overflow-hidden">
-            <div className="flex animate-scroll-left gap-2 sm:gap-3 pb-4 items-center">
-              {row2.map((tech, index) => (
-                <MotionDiv
-                  key={index}
-                  className="flex-shrink-0 cursor-pointer"
-                  whileHover={{ y: -2 }}
-                  transition={{ type: "spring", stiffness: 400 }}
-                  onClick={() => handleTechClick(2, index)}
-                >
-                  <MotionDiv
-                    className={`bg-[var(--bg-secondary)] border p-2 sm:p-3 w-24 sm:w-28 md:w-32 h-16 sm:h-20 flex flex-col items-center justify-center hover:border-[var(--accent-primary)] transition-all duration-300 rounded-lg ${
-                      selectedTechIndex?.row === 2 && selectedTechIndex?.index === index
-                        ? 'border-[var(--accent-primary)] ring-1 ring-[var(--accent-primary)]'
-                        : 'border-[var(--border-color)]'
-                    }`}
-                    whileHover={{ boxShadow: "0 0 20px rgba(184, 134, 11, 0.3)" }}
-                  >
-                    <MotionImg
-                      src={tech.logo}
-                      alt={tech.name}
-                      className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 object-cover rounded mb-1 sm:mb-2"
-                      whileHover={{ rotate: 2, scale: 1.1 }}
-                      transition={{ type: "spring", stiffness: 400 }}
-                    />
-                    <span className="text-xs font-semibold text-[var(--text-primary)] text-center line-clamp-2">
-                      {tech.name}
-                    </span>
-                  </MotionDiv>
-                </MotionDiv>
-              ))}
-              {/* Duplicate for seamless loop */}
-              {row2.map((tech, index) => (
-                <MotionDiv
-                  key={`dup2-${index}`}
-                  className="flex-shrink-0 cursor-pointer"
-                  whileHover={{ y: -2 }}
-                  transition={{ type: "spring", stiffness: 400 }}
-                  onClick={() => handleTechClick(2, index)}
-                >
-                  <MotionDiv
-                    className={`bg-[var(--bg-secondary)] border p-2 sm:p-3 w-24 sm:w-28 md:w-32 h-16 sm:h-20 flex flex-col items-center justify-center hover:border-[var(--accent-primary)] transition-all duration-300 rounded-lg ${
-                      selectedTechIndex?.row === 2 && selectedTechIndex?.index === index
-                        ? 'border-[var(--accent-primary)] ring-1 ring-[var(--accent-primary)]'
-                        : 'border-[var(--border-color)]'
-                    }`}
-                    whileHover={{ boxShadow: "0 0 20px rgba(184, 134, 11, 0.3)" }}
-                  >
-                    <MotionImg
-                      src={tech.logo}
-                      alt={tech.name}
-                      className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 object-cover rounded mb-1 sm:mb-2"
-                      whileHover={{ rotate: 2, scale: 1.1 }}
-                      transition={{ type: "spring", stiffness: 400 }}
-                    />
-                    <span className="text-xs font-semibold text-[var(--text-primary)] text-center line-clamp-2">
-                      {tech.name}
-                    </span>
-                  </MotionDiv>
-                </MotionDiv>
-              ))}
-            </div>
+          
+          <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3 md:gap-4 mt-4 md:mt-5">
+            {techRow2.map((tech, index) => (
+              <motion.div
+                key={index}
+                whileHover={{ scale: 1.08, y: -2 }}
+                whileTap={{ scale: 0.95 }}
+                transition={{ duration: 0.2 }}
+                className="bg-[var(--bg-secondary)] border border-[var(--border-color)] p-4 rounded-lg hover:border-[var(--accent-primary)] hover:shadow-lg transition-all duration-300 flex flex-col items-center justify-center cursor-pointer group h-24 sm:h-28"
+              >
+                <img src={tech.logo} alt={tech.name} className="w-10 h-10 sm:w-12 sm:h-12 object-cover rounded-md mb-2 group-hover:scale-110 transition-transform" />
+                <span className="text-xs sm:text-sm font-semibold text-[var(--text-primary)] text-center group-hover:text-[var(--accent-primary)] transition-colors">{tech.name}</span>
+              </motion.div>
+            ))}
           </div>
-
-          {/* Third Row - Left to Right */}
-          <div className="relative overflow-hidden">
-            <div className="flex animate-scroll-left gap-2 sm:gap-3 pb-4 items-center">
-              {row3.map((tech, index) => (
-                <MotionDiv
-                  key={index}
-                  className="flex-shrink-0 cursor-pointer"
-                  whileHover={{ y: -2 }}
-                  transition={{ type: "spring", stiffness: 400 }}
-                  onClick={() => handleTechClick(3, index)}
-                >
-                  <MotionDiv
-                    className={`bg-[var(--bg-secondary)] border p-2 sm:p-3 w-24 sm:w-28 md:w-32 h-16 sm:h-20 flex flex-col items-center justify-center hover:border-[var(--accent-primary)] transition-all duration-300 rounded-lg ${
-                      selectedTechIndex?.row === 3 && selectedTechIndex?.index === index
-                        ? 'border-[var(--accent-primary)] ring-1 ring-[var(--accent-primary)]'
-                        : 'border-[var(--border-color)]'
-                    }`}
-                    whileHover={{ boxShadow: "0 0 20px rgba(184, 134, 11, 0.3)" }}
-                  >
-                    <MotionImg
-                      src={tech.logo}
-                      alt={tech.name}
-                      className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 object-cover rounded mb-1 sm:mb-2"
-                      whileHover={{ rotate: 2, scale: 1.1 }}
-                      transition={{ type: "spring", stiffness: 400 }}
-                    />
-                    <span className="text-xs font-semibold text-[var(--text-primary)] text-center line-clamp-2">
-                      {tech.name}
-                    </span>
-                  </MotionDiv>
-                </MotionDiv>
-              ))}
-              {/* Duplicate for seamless loop */}
-              {row3.map((tech, index) => (
-                <MotionDiv
-                  key={`dup3-${index}`}
-                  className="flex-shrink-0 cursor-pointer"
-                  whileHover={{ y: -2 }}
-                  transition={{ type: "spring", stiffness: 400 }}
-                  onClick={() => handleTechClick(3, index)}
-                >
-                  <MotionDiv
-                    className={`bg-[var(--bg-secondary)] border p-2 sm:p-3 w-24 sm:w-28 md:w-32 h-16 sm:h-20 flex flex-col items-center justify-center hover:border-[var(--accent-primary)] transition-all duration-300 rounded-lg ${
-                      selectedTechIndex?.row === 3 && selectedTechIndex?.index === index
-                        ? 'border-[var(--accent-primary)] ring-1 ring-[var(--accent-primary)]'
-                        : 'border-[var(--border-color)]'
-                    }`}
-                    whileHover={{ boxShadow: "0 0 20px rgba(184, 134, 11, 0.3)" }}
-                  >
-                    <MotionImg
-                      src={tech.logo}
-                      alt={tech.name}
-                      className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 object-cover rounded mb-1 sm:mb-2"
-                      whileHover={{ rotate: 2, scale: 1.1 }}
-                      transition={{ type: "spring", stiffness: 400 }}
-                    />
-                    <span className="text-xs font-semibold text-[var(--text-primary)] text-center line-clamp-2">
-                      {tech.name}
-                    </span>
-                  </MotionDiv>
-                </MotionDiv>
-              ))}
-            </div>
+          
+          <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3 md:gap-4 mt-4 md:mt-5">
+            {techRow3.map((tech, index) => (
+              <motion.div
+                key={index}
+                whileHover={{ scale: 1.08, y: -2 }}
+                whileTap={{ scale: 0.95 }}
+                transition={{ duration: 0.2 }}
+                className="bg-[var(--bg-secondary)] border border-[var(--border-color)] p-4 rounded-lg hover:border-[var(--accent-primary)] hover:shadow-lg transition-all duration-300 flex flex-col items-center justify-center cursor-pointer group h-24 sm:h-28"
+              >
+                <img src={tech.logo} alt={tech.name} className="w-10 h-10 sm:w-12 sm:h-12 object-cover rounded-md mb-2 group-hover:scale-110 transition-transform" />
+                <span className="text-xs sm:text-sm font-semibold text-[var(--text-primary)] text-center group-hover:text-[var(--accent-primary)] transition-colors">{tech.name}</span>
+              </motion.div>
+            ))}
           </div>
         </div>
       </MotionSection>
