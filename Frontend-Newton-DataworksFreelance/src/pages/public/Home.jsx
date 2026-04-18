@@ -250,21 +250,21 @@ const Home = () => {
         initial={fadeUp}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
-        className="relative py-12 md:py-20 lg:py-24 px-3 sm:px-4 overflow-hidden"
+        className="relative py-8 md:py-14 lg:py-18 px-3 sm:px-4 overflow-hidden"
       >
 
         <div className="relative max-w-6xl mx-auto">
-          <div className="grid lg:grid-cols-2 gap-6 md:gap-8 items-center">
-            <div className="space-y-4 md:space-y-6">
-                <div className="inline-flex items-center px-3 py-1.5 bg-[var(--bg-tertiary)] border border-[var(--border-color)] text-[var(--accent-primary)] text-xs font-medium">
+          <div className="grid lg:grid-cols-2 gap-4 md:gap-6 items-center">
+            <div className="space-y-3 md:space-y-4">
+                <div className="inline-flex items-center px-2.5 py-1 bg-[var(--bg-tertiary)] border border-[var(--border-color)] text-[var(--accent-primary)] text-xs font-medium rounded-full">
 
                 <span className="w-2 h-2 bg-[var(--accent-primary)] mr-2 animate-pulse"></span>
                 DataWorks Agency
               </div>
-              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-[var(--text-primary)] leading-tight">
+              <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-[var(--text-primary)] leading-tight">
                 {heroSlides[currentSlide].title}
               </h1>
-              <p className="text-base sm:text-lg md:text-xl text-[var(--accent-primary)] font-semibold">
+              <p className="text-sm sm:text-base md:text-lg text-[var(--accent-primary)] font-semibold">
                 {heroSlides[currentSlide].subtitle}
               </p>
               <p className="text-xs sm:text-sm md:text-base text-[var(--text-muted)] max-w-lg">
@@ -273,20 +273,20 @@ const Home = () => {
               <div className="flex flex-col sm:flex-row gap-2 sm:gap-3">
                 <MotionButton
                   onClick={handleGetStarted}
-                  whileHover={{ y: -3, scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
+                  whileHover={{ y: -2, scale: 1.04 }}
+                  whileTap={{ scale: 0.96 }}
                   transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-                  className="px-4 md:px-6 py-2 md:py-2.5 polidhed-dark-green-btn font-semibold text-sm md:text-base backdrop-blur-sm bg-opacity-90 rounded-lg shadow-md hover:shadow-lg"
+                  className="px-5 md:px-6 py-2 md:py-2.5 polidhed-dark-green-btn font-semibold text-xs md:text-sm backdrop-blur-sm bg-opacity-90 rounded-full shadow-md hover:shadow-lg"
                 >
                   {heroSlides[currentSlide].cta}
                   <span className="absolute inset-x-3 bottom-2 h-1.5 bg-[rgba(15, 78, 43, 0.45)] rounded-full blur-sm" />
                 </MotionButton>
                 <MotionButton
                   onClick={handleViewDemo}
-                  whileHover={{ y: -3, scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
+                  whileHover={{ y: -2, scale: 1.04 }}
+                  whileTap={{ scale: 0.96 }}
                   transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-                  className="px-4 md:px-6 py-2 md:py-2.5 backdrop-blur-md bg-white/10 border border-white/20 text-white font-semibold hover:bg-white/30 transition-all text-sm md:text-base rounded-lg shadow-md hover:shadow-lg hover:border-white/40"
+                  className="px-5 md:px-6 py-2 md:py-2.5 backdrop-blur-md bg-white/10 border border-white/20 text-white font-semibold hover:bg-white/30 transition-all text-xs md:text-sm rounded-full shadow-md hover:shadow-lg hover:border-white/40"
                 >
                   {heroSlides[currentSlide].secondaryCta}
                   <span className="absolute inset-x-3 bottom-2 h-1.5 bg-[rgba(255, 255, 255, 0.2)] rounded-full blur-sm" />
@@ -361,18 +361,18 @@ transformed.write \\
         initial={fadeLeft}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
-        className="py-12 md:py-16 lg:py-20 px-4 sm:px-6 bg-[var(--bg-secondary)]"
+        className="py-8 md:py-12 lg:py-14 px-4 sm:px-6 bg-[var(--bg-secondary)]"
       >
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-10 md:mb-14">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[var(--text-primary)] mb-4">
+          <div className="text-center mb-8 md:mb-10">
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-[var(--text-primary)] mb-3">
               DataWorks Agency Services
             </h2>
-            <p className="text-sm sm:text-base md:text-lg text-[var(--text-muted)] max-w-3xl mx-auto px-2">
+            <p className="text-xs sm:text-sm md:text-base text-[var(--text-muted)] max-w-3xl mx-auto px-2">
               End-to-end data solutions from pipeline development to machine learning deployment
             </p>
           </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-4">
             {[
               { title: "Data Engineering", description: "Build scalable ETL pipelines with Apache Spark, Airflow, and Kafka", icon: "⚙️" },
               { title: "Data Analytics", description: "Transform raw data into actionable insights with SQL and BI tools", icon: "📊" },
@@ -383,14 +383,14 @@ transformed.write \\
             ].map((service, index) => (
               <motion.div
                 key={index}
-                whileHover={{ y: -4, scale: 1.02 }}
+                whileHover={{ y: -3, scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 transition={{ duration: 0.2 }}
-                className="bg-gradient-to-br from-[var(--bg-primary)] to-[var(--bg-secondary)] border border-[var(--border-color)] p-6 rounded-xl hover:border-[var(--accent-primary)] hover:shadow-lg transition-all duration-300 cursor-pointer group"
+                className="bg-gradient-to-br from-[var(--bg-primary)] to-[var(--bg-secondary)] border border-[var(--border-color)] p-4 rounded-xl hover:border-[var(--accent-primary)] hover:shadow-lg transition-all duration-300 cursor-pointer group"
               >
-                <div className="text-3xl mb-3 group-hover:scale-110 transition-transform duration-200">{service.icon}</div>
-                <h3 className="text-lg sm:text-xl font-semibold text-[var(--text-primary)] mb-2 leading-tight">{service.title}</h3>
-                <p className="text-sm text-[var(--text-muted)] leading-relaxed group-hover:text-[var(--text-secondary)] transition-colors">{service.description}</p>
+                <div className="text-2xl mb-2 group-hover:scale-110 transition-transform duration-200">{service.icon}</div>
+                <h3 className="text-base sm:text-lg font-semibold text-[var(--text-primary)] mb-1.5 leading-tight">{service.title}</h3>
+                <p className="text-xs sm:text-sm text-[var(--text-muted)] leading-relaxed group-hover:text-[var(--text-secondary)] transition-colors">{service.description}</p>
               </motion.div>
             ))}
           </div>
@@ -402,60 +402,60 @@ transformed.write \\
         initial={scaleIn}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.8, ease: "easeOut", delay: 0.3 }}
-        className="py-12 md:py-16 lg:py-20 px-4 sm:px-6 bg-[var(--bg-primary)]"
+        className="py-8 md:py-12 lg:py-14 px-4 sm:px-6 bg-[var(--bg-primary)]"
       >
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-10 md:mb-14">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[var(--text-primary)] mb-4">
+          <div className="text-center mb-8 md:mb-10">
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-[var(--text-primary)] mb-3">
               Technologies We Work With
             </h2>
-            <p className="text-sm sm:text-base md:text-lg text-[var(--text-muted)] max-w-3xl mx-auto">
+            <p className="text-xs sm:text-sm md:text-base text-[var(--text-muted)] max-w-3xl mx-auto">
               Modern data stack technologies powering enterprise solutions
             </p>
           </div>
 
           {/* Technologies Clean Grid - No Animation Glitches */}
-          <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3 md:gap-4">
+          <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-2 md:gap-3">
             {techRow1.map((tech, index) => (
               <motion.div
                 key={index}
-                whileHover={{ scale: 1.08, y: -2 }}
+                whileHover={{ scale: 1.08, y: -1 }}
                 whileTap={{ scale: 0.95 }}
                 transition={{ duration: 0.2 }}
-                className="bg-[var(--bg-secondary)] border border-[var(--border-color)] p-4 rounded-lg hover:border-[var(--accent-primary)] hover:shadow-lg transition-all duration-300 flex flex-col items-center justify-center cursor-pointer group h-24 sm:h-28"
+                className="bg-[var(--bg-secondary)] border border-[var(--border-color)] p-3 rounded-lg hover:border-[var(--accent-primary)] hover:shadow-lg transition-all duration-300 flex flex-col items-center justify-center cursor-pointer group h-20 sm:h-24"
               >
-                <img src={tech.logo} alt={tech.name} className="w-10 h-10 sm:w-12 sm:h-12 object-cover rounded-md mb-2 group-hover:scale-110 transition-transform" />
-                <span className="text-xs sm:text-sm font-semibold text-[var(--text-primary)] text-center group-hover:text-[var(--accent-primary)] transition-colors">{tech.name}</span>
+                <img src={tech.logo} alt={tech.name} className="w-8 h-8 sm:w-10 sm:h-10 object-cover rounded-md mb-1.5 group-hover:scale-110 transition-transform" />
+                <span className="text-xs font-semibold text-[var(--text-primary)] text-center group-hover:text-[var(--accent-primary)] transition-colors">{tech.name}</span>
               </motion.div>
             ))}
           </div>
           
-          <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3 md:gap-4 mt-4 md:mt-5">
+          <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-2 md:gap-3 mt-3 md:mt-4">
             {techRow2.map((tech, index) => (
               <motion.div
                 key={index}
-                whileHover={{ scale: 1.08, y: -2 }}
+                whileHover={{ scale: 1.08, y: -1 }}
                 whileTap={{ scale: 0.95 }}
                 transition={{ duration: 0.2 }}
-                className="bg-[var(--bg-secondary)] border border-[var(--border-color)] p-4 rounded-lg hover:border-[var(--accent-primary)] hover:shadow-lg transition-all duration-300 flex flex-col items-center justify-center cursor-pointer group h-24 sm:h-28"
+                className="bg-[var(--bg-secondary)] border border-[var(--border-color)] p-3 rounded-lg hover:border-[var(--accent-primary)] hover:shadow-lg transition-all duration-300 flex flex-col items-center justify-center cursor-pointer group h-20 sm:h-24"
               >
-                <img src={tech.logo} alt={tech.name} className="w-10 h-10 sm:w-12 sm:h-12 object-cover rounded-md mb-2 group-hover:scale-110 transition-transform" />
-                <span className="text-xs sm:text-sm font-semibold text-[var(--text-primary)] text-center group-hover:text-[var(--accent-primary)] transition-colors">{tech.name}</span>
+                <img src={tech.logo} alt={tech.name} className="w-8 h-8 sm:w-10 sm:h-10 object-cover rounded-md mb-1.5 group-hover:scale-110 transition-transform" />
+                <span className="text-xs font-semibold text-[var(--text-primary)] text-center group-hover:text-[var(--accent-primary)] transition-colors">{tech.name}</span>
               </motion.div>
             ))}
           </div>
           
-          <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3 md:gap-4 mt-4 md:mt-5">
+          <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-2 md:gap-3 mt-3 md:mt-4">
             {techRow3.map((tech, index) => (
               <motion.div
                 key={index}
-                whileHover={{ scale: 1.08, y: -2 }}
+                whileHover={{ scale: 1.08, y: -1 }}
                 whileTap={{ scale: 0.95 }}
                 transition={{ duration: 0.2 }}
-                className="bg-[var(--bg-secondary)] border border-[var(--border-color)] p-4 rounded-lg hover:border-[var(--accent-primary)] hover:shadow-lg transition-all duration-300 flex flex-col items-center justify-center cursor-pointer group h-24 sm:h-28"
+                className="bg-[var(--bg-secondary)] border border-[var(--border-color)] p-3 rounded-lg hover:border-[var(--accent-primary)] hover:shadow-lg transition-all duration-300 flex flex-col items-center justify-center cursor-pointer group h-20 sm:h-24"
               >
-                <img src={tech.logo} alt={tech.name} className="w-10 h-10 sm:w-12 sm:h-12 object-cover rounded-md mb-2 group-hover:scale-110 transition-transform" />
-                <span className="text-xs sm:text-sm font-semibold text-[var(--text-primary)] text-center group-hover:text-[var(--accent-primary)] transition-colors">{tech.name}</span>
+                <img src={tech.logo} alt={tech.name} className="w-8 h-8 sm:w-10 sm:h-10 object-cover rounded-md mb-1.5 group-hover:scale-110 transition-transform" />
+                <span className="text-xs font-semibold text-[var(--text-primary)] text-center group-hover:text-[var(--accent-primary)] transition-colors">{tech.name}</span>
               </motion.div>
             ))}
           </div>
@@ -467,32 +467,37 @@ transformed.write \\
         initial={initialFor({ opacity: 0, x: 100 })}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 1, ease: "easeOut", delay: 0.4 }}
-        className="py-12 md:py-16 px-4 bg-[var(--bg-primary)]"
+        className="py-8 md:py-12 px-4 bg-[var(--bg-primary)]"
       >
         <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-2xl lg:text-3xl font-bold text-[var(--text-primary)] mb-3">
+          <div className="text-center mb-8">
+            <h2 className="text-xl md:text-2xl font-bold text-[var(--text-primary)] mb-2">
               Case Studies
             </h2>
-            <p className="text-sm text-[var(--text-muted)] max-w-2xl mx-auto">
+            <p className="text-xs text-[var(--text-muted)] max-w-2xl mx-auto">
               Real-world data engineering projects that delivered measurable business impact
             </p>
           </div>
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-3 gap-4">
             {caseStudies.map((study, index) => (
-              <div key={index} className="bg-[var(--bg-secondary)] border border-[var(--border-color)] p-6 hover:border-[var(--accent-primary)] transition-colors flex flex-col h-full">
+              <motion.div
+                key={index}
+                whileHover={{ y: -2 }}
+                transition={{ duration: 0.2 }}
+                className="bg-[var(--bg-secondary)] border border-[var(--border-color)] p-4 hover:border-[var(--accent-primary)] transition-colors flex flex-col h-full rounded-lg cursor-pointer"
+              >
                 <div className="text-xs text-[var(--accent-primary)] font-semibold mb-2">{study.client}</div>
-                <h3 className="text-lg font-semibold text-[var(--text-primary)] mb-3">{study.title}</h3>
-                <p className="text-sm text-[var(--text-muted)] mb-4 flex-grow">{study.description}</p>
-                <div className="flex flex-wrap gap-2 mb-4">
+                <h3 className="text-base font-semibold text-[var(--text-primary)] mb-2">{study.title}</h3>
+                <p className="text-xs text-[var(--text-muted)] mb-3 flex-grow">{study.description}</p>
+                <div className="flex flex-wrap gap-1.5 mb-3">
                   {study.tech.map((tech, i) => (
-                    <span key={i} className="px-2 py-1 bg-[var(--bg-secondary)] border border-[var(--border-color)] text-xs text-[var(--text-muted)]">
+                    <span key={i} className="px-2 py-0.5 bg-[var(--bg-secondary)] border border-[var(--border-color)] text-xs text-[var(--text-muted)]">
                       {tech}
                     </span>
                   ))}
                 </div>
                 <div className="text-xs text-[var(--accent-primary)] font-semibold mt-auto">{study.result}</div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
@@ -503,42 +508,47 @@ transformed.write \\
         initial={initialFor({ opacity: 0, y: -100 })}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, ease: "easeOut", delay: 0.5 }}
-        className="py-12 md:py-16 px-4 bg-[var(--bg-secondary)]"
+        className="py-8 md:py-12 px-4 bg-[var(--bg-secondary)]"
       >
         <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-2xl lg:text-3xl font-bold text-[var(--text-primary)] mb-3">
+          <div className="text-center mb-8">
+            <h2 className="text-xl md:text-2xl font-bold text-[var(--text-primary)] mb-2">
               Internship Programs
             </h2>
-            <p className="text-sm text-[var(--text-muted)] max-w-2xl mx-auto">
+            <p className="text-xs text-[var(--text-muted)] max-w-2xl mx-auto">
               Launch your data career with hands-on experience and industry mentorship
             </p>
           </div>
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-3 gap-4">
             {internshipPrograms.map((program, index) => (
-              <div key={index} className="bg-[var(--bg-secondary)] border border-[var(--border-color)] p-6 hover:border-[var(--accent-primary)] transition-colors flex flex-col h-full">
-                <div className="flex items-center justify-between mb-4">
-                  <h3 className="text-lg font-semibold text-[var(--text-primary)]">{program.title}</h3>
-                  <span className="px-2 py-1 bg-[var(--accent-primary)] text-white text-xs font-semibold">{program.duration}</span>
+              <motion.div
+                key={index}
+                whileHover={{ y: -2 }}
+                transition={{ duration: 0.2 }}
+                className="bg-[var(--bg-secondary)] border border-[var(--border-color)] p-4 hover:border-[var(--accent-primary)] transition-colors flex flex-col h-full rounded-lg"
+              >
+                <div className="flex items-center justify-between mb-3">
+                  <h3 className="text-sm font-semibold text-[var(--text-primary)]">{program.title}</h3>
+                  <span className="px-2 py-0.5 bg-[var(--accent-primary)] text-white text-xs font-semibold rounded-full">{program.duration}</span>
                 </div>
-                <p className="text-sm text-[var(--text-muted)] mb-4 flex-grow">{program.description}</p>
-                <div className="flex flex-wrap gap-2 mb-4">
+                <p className="text-xs text-[var(--text-muted)] mb-3 flex-grow">{program.description}</p>
+                <div className="flex flex-wrap gap-1.5 mb-3">
                   {program.skills.map((skill, i) => (
-                    <span key={i} className="px-2 py-1 bg-[var(--bg-secondary)] border border-[var(--border-color)] text-xs text-[var(--text-muted)]">
+                    <span key={i} className="px-2 py-0.5 bg-[var(--bg-secondary)] border border-[var(--border-color)] text-xs text-[var(--text-muted)] rounded-full">
                       {skill}
                     </span>
                   ))}
                 </div>
                 <MotionButton
                   onClick={() => navigate('/jobs?type=internship')}
-                  whileHover={{ scale: 1.05, y: -1 }}
-                  whileTap={{ scale: 0.95 }}
+                  whileHover={{ scale: 1.04, y: -1 }}
+                  whileTap={{ scale: 0.96 }}
                   transition={{ duration: 0.15 }}
-                  className="w-full px-4 py-2 text-white text-sm font-semibold polidhed-dark-green-btn mt-auto"
+                  className="w-full px-3 py-1.5 text-white text-xs font-semibold polidhed-dark-green-btn mt-auto rounded-full"
                 >
                   Apply Now
                 </MotionButton>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
@@ -549,27 +559,32 @@ transformed.write \\
         initial={initialFor({ opacity: 0, rotateY: 90 })}
         animate={{ opacity: 1, rotateY: 0 }}
         transition={{ duration: 1.2, ease: "easeOut", delay: 0.6 }}
-        className="py-12 md:py-16 px-4 bg-[var(--bg-primary)]"
+        className="py-8 md:py-12 px-4 bg-[var(--bg-primary)]"
       >
         <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-2xl lg:text-3xl font-bold text-[var(--text-primary)] mb-3">
+          <div className="text-center mb-8">
+            <h2 className="text-xl md:text-2xl font-bold text-[var(--text-primary)] mb-2">
               System Architecture
             </h2>
-            <p className="text-sm text-[var(--text-muted)] max-w-2xl mx-auto">
+            <p className="text-xs text-[var(--text-muted)] max-w-2xl mx-auto">
               Enterprise-grade data architectures designed for scale and reliability
             </p>
           </div>
-          <div className="grid md:grid-cols-2 gap-4 md:gap-6">
+          <div className="grid md:grid-cols-2 gap-3 md:gap-4">
             {architectureDiagrams.map((diagram, index) => (
-              <div key={index} className="bg-[var(--bg-secondary)] border border-[var(--border-color)] p-4 md:p-6">
-                <h3 className="text-base md:text-lg font-semibold text-[var(--text-primary)] mb-3 md:mb-4">{diagram.title}</h3>
+              <motion.div
+                key={index}
+                whileHover={{ y: -1 }}
+                transition={{ duration: 0.2 }}
+                className="bg-[var(--bg-secondary)] border border-[var(--border-color)] p-3 md:p-4 rounded-lg hover:border-[var(--accent-primary)] transition-colors cursor-pointer"
+              >
+                <h3 className="text-sm md:text-base font-semibold text-[var(--text-primary)] mb-2">{diagram.title}</h3>
                 <div className="overflow-x-auto">
-                  <pre className="text-xs md:text-xs text-[var(--text-muted)] font-mono bg-[var(--bg-secondary)] p-3 md:p-4 border border-[var(--border-color)] max-w-full">
+                  <pre className="text-xs text-[var(--text-muted)] font-mono bg-[var(--bg-secondary)] p-2 md:p-3 border border-[var(--border-color)] max-w-full rounded">
                     <code>{diagram.code}</code>
                   </pre>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
@@ -580,20 +595,25 @@ transformed.write \\
         initial={initialFor({ opacity: 0, scale: 0.5 })}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 1, ease: "easeOut", delay: 0.7 }}
-        className="py-12 md:py-16 px-4 bg-[var(--bg-secondary)]"
+        className="py-8 md:py-12 px-4 bg-[var(--bg-secondary)]"
       >
         <div className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {[
               { value: "Beta", label: "Platform Status" },
               { value: "Algiers", label: "Headquarters" },
               { value: "100%", label: "AI-Powered" },
               { value: "Growing", label: "Community" }
             ].map((stat, index) => (
-              <div key={index} className="text-center">
-                <div className="text-2xl lg:text-3xl font-bold text-[var(--accent-primary)] mb-2">{stat.value}</div>
-                <div className="text-sm text-[var(--text-muted)]">{stat.label}</div>
-              </div>
+              <motion.div
+                key={index}
+                whileHover={{ scale: 1.05 }}
+                transition={{ duration: 0.2 }}
+                className="text-center cursor-pointer"
+              >
+                <div className="text-xl md:text-2xl font-bold text-[var(--accent-primary)] mb-1">{stat.value}</div>
+                <div className="text-xs md:text-sm text-[var(--text-muted)]">{stat.label}</div>
+              </motion.div>
             ))}
           </div>
         </div>
@@ -604,32 +624,37 @@ transformed.write \\
         initial={initialFor(fadeLeft)}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 1, ease: "easeOut", delay: 0.8 }}
-        className="py-12 md:py-16 px-4 bg-[var(--bg-primary)]"
+        className="py-8 md:py-12 px-4 bg-[var(--bg-primary)]"
       >
         <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-2xl lg:text-3xl font-bold text-[var(--text-primary)] mb-3">
+          <div className="text-center mb-8">
+            <h2 className="text-xl md:text-2xl font-bold text-[var(--text-primary)] mb-2">
               Global Presence
             </h2>
-            <p className="text-sm text-[var(--text-muted)] max-w-2xl mx-auto">
+            <p className="text-xs text-[var(--text-muted)] max-w-2xl mx-auto">
               Building an innovative platform for data talent and enterprise solutions
             </p>
           </div>
-          <div className="bg-[var(--bg-secondary)] border border-[var(--border-color)] p-8">
-            <div className="grid md:grid-cols-3 gap-6">
+          <div className="bg-[var(--bg-secondary)] border border-[var(--border-color)] p-4 md:p-6 rounded-lg">
+            <div className="grid md:grid-cols-3 gap-4">
               {[
                 { city: "Algiers", country: "Algeria", timezone: "UTC+1", status: "Headquarters" },
                 { city: "London", country: "United Kingdom", timezone: "UTC+0", status: "European Hub" },
                 { city: "Dubai", country: "UAE", timezone: "UTC+4", status: "Middle East Hub" }
               ].map((location, index) => (
-                <div key={index} className="bg-[var(--bg-secondary)] border border-[var(--border-color)] p-6 hover:border-[var(--accent-primary)] transition-colors">
-                  <div className="flex items-center justify-between mb-4">
-                    <h3 className="text-lg font-semibold text-[var(--text-primary)]">{location.city}</h3>
-                    <span className="px-2 py-1 bg-[var(--accent-primary)] text-white text-xs font-semibold">{location.status}</span>
+                <motion.div
+                  key={index}
+                  whileHover={{ y: -1 }}
+                  transition={{ duration: 0.2 }}
+                  className="bg-[var(--bg-secondary)] border border-[var(--border-color)] p-4 hover:border-[var(--accent-primary)] transition-colors rounded-lg cursor-pointer"
+                >
+                  <div className="flex items-center justify-between mb-3">
+                    <h3 className="text-sm font-semibold text-[var(--text-primary)]">{location.city}</h3>
+                    <span className="px-2 py-0.5 bg-[var(--accent-primary)] text-white text-xs font-semibold rounded-full">{location.status}</span>
                   </div>
-                  <p className="text-sm text-[var(--text-muted)] mb-2">{location.country}</p>
+                  <p className="text-xs text-[var(--text-muted)] mb-1">{location.country}</p>
                   <p className="text-xs text-[#64748B]">{location.timezone}</p>
-                </div>
+                </motion.div>
               ))}
             </div>
           </div>
@@ -641,22 +666,22 @@ transformed.write \\
         initial={initialFor({ opacity: 0, y: 100 })}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, ease: "easeOut", delay: 0.9 }}
-        className="py-12 md:py-16 px-4 bg-[var(--bg-secondary)]"
+        className="py-8 md:py-12 px-4 bg-[var(--bg-secondary)]"
       >
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-2xl lg:text-3xl font-bold text-[var(--text-primary)] mb-4">
+          <h2 className="text-xl md:text-2xl font-bold text-[var(--text-primary)] mb-3">
             Ready to Transform Your Data Infrastructure?
           </h2>
-          <p className="text-sm text-[var(--text-muted)] mb-8 max-w-2xl mx-auto">
+          <p className="text-xs md:text-sm text-[var(--text-muted)] mb-6 max-w-2xl mx-auto">
             Be part of the next generation of data professionals joining DataWorks
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <MotionButton
               onClick={handleGetStarted}
               whileHover={{ scale: 1.05, y: -1 }}
               whileTap={{ scale: 0.95 }}
               transition={{ duration: 0.15 }}
-              className="px-8 py-3 bg-[var(--accent-primary)] text-white font-semibold hover:bg-[var(--accent-hover)] transition-colors"
+              className="px-6 py-2.5 bg-[var(--accent-primary)] text-white font-semibold text-sm hover:bg-[var(--accent-hover)] transition-colors rounded-full shadow-md hover:shadow-lg"
             >
               Get Started Free
             </MotionButton>
@@ -665,7 +690,7 @@ transformed.write \\
               whileHover={{ scale: 1.05, y: -1 }}
               whileTap={{ scale: 0.95 }}
               transition={{ duration: 0.15 }}
-              className="px-8 py-3 border border-[var(--border-color)] text-[var(--text-primary)] font-semibold hover:border-[var(--accent-primary)] hover:text-[var(--accent-primary)] transition-colors"
+              className="px-6 py-2.5 border border-[var(--accent-primary)] text-[var(--accent-primary)] font-semibold text-sm hover:bg-[var(--accent-primary)] hover:text-white transition-all rounded-full shadow-md hover:shadow-lg"
             >
               Deploy Now Free
             </MotionButton>
