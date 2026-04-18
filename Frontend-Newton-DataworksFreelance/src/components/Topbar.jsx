@@ -5,7 +5,7 @@ import { useAuth } from '../context/AuthContext'
 import ThemeToggle from './ThemeToggle'
 import NotificationBell from './NotificationBell'
 
-const Topbar = () => {
+const Topbar = ({ onMenuClick }) => {
   const [isProfileOpen, setIsProfileOpen] = useState(false)
   const { user, logout } = useAuth()
   const navigate = useNavigate()
@@ -17,7 +17,17 @@ const Topbar = () => {
 
   return (
     <header className="bg-[var(--bg-secondary)] border-b border-[var(--border-color)] sticky top-0 z-40">
-      <div className="flex items-center justify-between h-16 px-6">
+      <div className="flex items-center justify-between h-16 px-4 sm:px-6">
+        {/* Mobile menu button */}
+        <button
+          onClick={onMenuClick}
+          className="lg:hidden p-2 rounded-lg hover:bg-[var(--border-color)] transition-colors mr-3"
+        >
+          <svg className="w-5 h-5 text-[var(--text-secondary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+
         {/* Search */}
         <div className="flex-1 max-w-md">
           <div className="relative">

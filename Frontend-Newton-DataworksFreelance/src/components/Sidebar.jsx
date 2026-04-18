@@ -2,7 +2,7 @@
 import { Link, useLocation } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
 
-const Sidebar = () => {
+const Sidebar = ({ onClose }) => {
   const location = useLocation()
   const { user } = useAuth()
 
@@ -46,7 +46,18 @@ const Sidebar = () => {
   ]
 
   return (
-    <aside className="w-64 bg-[var(--bg-secondary)] border-r border-[var(--border-color)]">
+    <aside className="w-64 bg-[var(--bg-secondary)] border-r border-[var(--border-color)] h-full">
+      {/* Mobile close button */}
+      <div className="lg:hidden p-4 border-b border-[var(--border-color)]">
+        <button
+          onClick={onClose}
+          className="p-2 rounded-lg hover:bg-[var(--bg-tertiary)] transition-colors"
+        >
+          <svg className="w-5 h-5 text-[var(--text-secondary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
       <div className="p-6">
         {/* User Info */}
         <div className="mb-8">
