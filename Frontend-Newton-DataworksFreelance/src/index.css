@@ -61,19 +61,19 @@ body {
   padding: 0;
 }
 
-/* Nice button hover effects */
+/* Button styles - animations handled by Framer Motion */
 button {
-  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: all 0.15s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   position: relative;
-}
-
-button:hover:not(MotionButton) {
-  transform: translateY(-2px);
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
 }
 
 button:active {
   transform: translateY(0);
+}
+
+/* Disable conflicting hover styles - Framer Motion handles animations */
+button:hover {
+  /* Hover handled by Framer Motion - no CSS transforms */
 }
 
 /* Custom scrollbar */
@@ -314,8 +314,8 @@ button:hover,
 .text-highlight {
   background: linear-gradient(135deg, #10b981, #059669);
   -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
   background-clip: text;
+  -webkit-text-fill-color: transparent;
   font-weight: 600;
 }
 
@@ -330,8 +330,8 @@ button:hover,
   font-size: 1.5rem;
   background: linear-gradient(135deg, #c9d1d9 0%, #f0f6fc 50%, #b8860b 100%);
   -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
   background-clip: text;
+  -webkit-text-fill-color: transparent;
   text-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
