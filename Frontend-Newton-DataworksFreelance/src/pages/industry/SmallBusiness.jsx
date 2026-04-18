@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { DollarSign, Box, Users } from 'lucide-react';
 
 const SmallBusiness = () => {
   return (
@@ -48,21 +49,21 @@ const SmallBusiness = () => {
         <div className="grid md:grid-cols-3 gap-8 mb-16">
 
           <div className="bg-[var(--bg-secondary)] border border-[var(--border-color)] p-6 rounded-xl">
-            <div className="text-3xl mb-4">💰</div>
+            <DollarSign className="w-10 h-10 text-[var(--accent-primary)] mb-4" />
             <h3 className="text-lg font-semibold text-[var(--text-primary)] mb-2">Cash Flow Prediction</h3>
             <p className="text-sm text-[var(--text-secondary)]">
               Forecast cash flow gaps and identify working capital needs for retail/wholesale businesses
             </p>
           </div>
           <div className="bg-[var(--bg-secondary)] border border-[var(--border-color)] p-6 rounded-xl">
-            <div className="text-3xl mb-4">📦</div>
+            <Box className="w-10 h-10 text-[var(--accent-primary)] mb-4" />
             <h3 className="text-lg font-semibold text-[var(--text-primary)] mb-2">Inventory Optimization</h3>
             <p className="text-sm text-[var(--text-secondary)]">
               Right-size inventory to reduce stockouts and carrying costs for FMCG distributors
             </p>
           </div>
           <div className="bg-[var(--bg-secondary)] border border-[var(--border-color)] p-6 rounded-xl">
-            <div className="text-3xl mb-4">👥</div>
+            <Users className="w-10 h-10 text-[var(--accent-primary)] mb-4" />
             <h3 className="text-lg font-semibold text-[var(--text-primary)] mb-2">Customer 360</h3>
             <p className="text-sm text-[var(--text-secondary)]">
               Complete customer profiles from POS data, loyalty programs, and social media

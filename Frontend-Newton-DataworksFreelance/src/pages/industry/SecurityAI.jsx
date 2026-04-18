@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { Target, TrendingUp, Shield } from 'lucide-react';
 
 const SecurityAI = () => {
   return (
@@ -47,21 +48,21 @@ const SecurityAI = () => {
 
         <div className="grid md:grid-cols-3 gap-8 mb-16">
           <div className="bg-[var(--bg-secondary)] border border-[var(--border-color)] p-6 rounded-xl">
-            <div className="text-3xl mb-4">🎯</div>
+            <Target className="w-10 h-10 text-[var(--accent-primary)] mb-4" />
             <h3 className="text-lg font-semibold text-[var(--text-primary)] mb-2">Risk Assessment</h3>
             <p className="text-sm text-[var(--text-secondary)]">
               Credit risk scoring and fraud detection systems for financial institutions and SMEs
             </p>
           </div>
           <div className="bg-[var(--bg-secondary)] border border-[var(--border-color)] p-6 rounded-xl">
-            <div className="text-3xl mb-4">📈</div>
+            <TrendingUp className="w-10 h-10 text-[var(--accent-primary)] mb-4" />
             <h3 className="text-lg font-semibold text-[var(--text-primary)] mb-2">Recommendation Engine</h3>
             <p className="text-sm text-[var(--text-secondary)]">
               Personalized product/service recommendations increasing conversion rates by 35%
             </p>
           </div>
           <div className="bg-[var(--bg-secondary)] border border-[var(--border-color)] p-6 rounded-xl">
-            <div className="text-3xl mb-4">🔒</div>
+            <Shield className="w-10 h-10 text-[var(--accent-primary)] mb-4" />
             <h3 className="text-lg font-semibold text-[var(--text-primary)] mb-2">Anomaly Detection</h3>
             <p className="text-sm text-[var(--text-secondary)]">
               Real-time anomaly detection for cybersecurity and operational monitoring

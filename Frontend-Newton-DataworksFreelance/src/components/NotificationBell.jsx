@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
+import { Bell } from 'lucide-react'
 import { useAuth } from '../context/AuthContext'
 
 const NotificationBell = () => {
@@ -47,7 +48,7 @@ const NotificationBell = () => {
         setNotifications(data)
       }
     } catch (error) {
-      console.error('❌ Error fetching notifications:', error)
+      console.error('Error fetching notifications:', error)
     } finally {
       setLoading(false)
     }

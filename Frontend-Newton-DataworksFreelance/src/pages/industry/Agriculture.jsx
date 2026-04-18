@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { BarChart3, Leaf, Zap } from 'lucide-react';
 
 const Agriculture = () => {
   return (
@@ -54,21 +55,21 @@ const Agriculture = () => {
 
         <div className="grid md:grid-cols-3 gap-8 mb-16">
           <div className="bg-[var(--bg-secondary)] border border-[var(--border-color)] p-6 rounded-xl text-center">
-            <div className="text-3xl mb-4">📊</div>
+            <BarChart3 className="w-10 h-10 text-[var(--accent-primary)] mx-auto mb-4" />
             <h3 className="text-lg font-semibold text-[var(--text-primary)] mb-2">92% Yield Accuracy</h3>
             <p className="text-sm text-[var(--text-secondary)]">
               Machine learning models predicting crop yields with high precision
             </p>
           </div>
           <div className="bg-[var(--bg-secondary)] border border-[var(--border-color)] p-6 rounded-xl text-center">
-            <div className="text-3xl mb-4">🌾</div>
+            <Leaf className="w-10 h-10 text-[var(--accent-primary)] mx-auto mb-4" />
             <h3 className="text-lg font-semibold text-[var(--text-primary)] mb-2">+47% Maize Increase</h3>
             <p className="text-sm text-[var(--text-secondary)]">
               Optimized farming practices leading to higher yields
             </p>
           </div>
           <div className="bg-[var(--bg-secondary)] border border-[var(--border-color)] p-6 rounded-xl text-center">
-            <div className="text-3xl mb-4">⚡</div>
+            <Zap className="w-10 h-10 text-[var(--accent-primary)] mx-auto mb-4" />
             <h3 className="text-lg font-semibold text-[var(--text-primary)] mb-2">14 Days Early Warning</h3>
             <p className="text-sm text-[var(--text-secondary)]">
               Predictive analytics for weather and pest alerts

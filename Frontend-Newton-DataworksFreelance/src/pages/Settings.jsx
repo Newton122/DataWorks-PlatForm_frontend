@@ -57,25 +57,15 @@ const Settings = () => {
         name: formData.name,
         email: formData.email
       });
-      setMessage('✅ Profile updated successfully');
+      setMessage('Profile updated successfully');
       setTimeout(() => setMessage(''), 3000);
     } catch (error) {
-      setMessage('❌ Error updating profile: ' + (error.response?.data?.message || error.message));
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const handleChangePassword = async (e) => {
-    e.preventDefault();
-    
-    if (formData.newPassword !== formData.confirmPassword) {
-      setMessage('❌ Passwords do not match');
+      setMessage('Error updating profile: ' + (error.response?.data?.message || error.message));
       return;
     }
 
     if (formData.newPassword.length < 6) {
-      setMessage('❌ Password must be at least 6 characters');
+      setMessage('Password must be at least 6 characters');
       return;
     }
 
@@ -84,7 +74,7 @@ const Settings = () => {
 
     try {
       // Note: This would require a backend endpoint that we'd need to create
-      setMessage('✅ Password changed successfully');
+      setMessage('Password changed successfully');
       setFormData(prev => ({
         ...prev,
         currentPassword: '',
@@ -93,7 +83,7 @@ const Settings = () => {
       }));
       setTimeout(() => setMessage(''), 3000);
     } catch (error) {
-      setMessage('❌ Error changing password');
+      setMessage('Error changing password');
     } finally {
       setLoading(false);
     }
@@ -128,9 +118,9 @@ const Settings = () => {
       <div className="max-w-7xl mx-auto px-4 py-8">
         {message && (
           <div className={`mb-6 p-4 rounded-lg border ${
-            message.includes('✅')
-              ? 'bg-green-500/10 border-green-500/20 text-green-600'
-              : 'bg-red-500/10 border-red-500/20 text-red-600'
+            message.toLowerCase().startsWith('error')
+              ? 'bg-red-500/10 border-red-500/20 text-red-600'
+              : 'bg-green-500/10 border-green-500/20 text-green-600'
           }`}>
             {message}
           </div>
@@ -142,11 +132,11 @@ const Settings = () => {
             <div className="bg-[var(--bg-secondary)] border border-[var(--border-color)] rounded-lg overflow-hidden sticky top-4">
               <nav className="flex flex-col">
                 {[
-                  { id: 'account', label: 'Account Settings', icon: '👤' },
-                  { id: 'password', label: 'Change Password', icon: '🔐' },
-                  { id: 'notifications', label: 'Notifications', icon: '🔔' },
-                  { id: 'privacy', label: 'Privacy & Visibility', icon: '👁️' },
-                  { id: 'theme', label: 'Appearance', icon: '🎨' }
+                  { id: 'account', label: 'Account Settings' },
+                  { id: 'password', label: 'Change Password' },
+                  { id: 'notifications', label: 'Notifications' },
+                  { id: 'privacy', label: 'Privacy & Visibility' },
+                  { id: 'theme', label: 'Appearance' }
                 ].map(tab => (
                   <button
                     key={tab.id}
@@ -157,7 +147,7 @@ const Settings = () => {
                         : 'hover:bg-[var(--bg-tertiary)] text-[var(--text-primary)]'
                     }`}
                   >
-                    <span className="mr-2">{tab.icon}</span> {tab.label}
+                    {tab.label}
                   </button>
                 ))}
               </nav>
@@ -299,7 +289,7 @@ const Settings = () => {
                     ))}
                   </div>
                   <button
-                    onClick={() => setMessage('✅ Notification preferences saved')}
+                    onClick={() => setMessage('Notification preferences saved')}
                     className="btn btn-primary mt-6"
                   >
                     Save Preferences
@@ -352,7 +342,7 @@ const Settings = () => {
                     </div>
 
                     <button
-                      onClick={() => setMessage('✅ Privacy settings saved')}
+                      onClick={() => setMessage('Privacy settings saved')}
                       className="px-6 py-2 bg-[var(--accent-primary)] text-white font-semibold rounded-lg hover:bg-[var(--accent-hover)] transition-colors"
                     >
                       Save Privacy Settings
@@ -372,9 +362,9 @@ const Settings = () => {
                       </label>
                       <div className="space-y-3">
                         {[
-                          { value: 'light', label: '☀️ Light', desc: 'Bright, eye-friendly light theme' },
-                          { value: 'dark', label: '🌙 Dark', desc: 'Easy on the eyes dark theme' },
-                          { value: 'auto', label: '⚙️ Auto', desc: 'Follow system preferences' }
+                          { value: 'light', label: 'Light', desc: 'Bright, eye-friendly light theme' },
+                          { value: 'dark', label: 'Dark', desc: 'Easy on the eyes dark theme' },
+                          { value: 'auto', label: 'Auto', desc: 'Follow system preferences' }
                         ].map(option => (
                           <label key={option.value} className="flex items-center p-4 border border-[var(--border-color)] rounded-lg cursor-pointer hover:bg-[var(--bg-primary)]">
                             <input
@@ -395,7 +385,7 @@ const Settings = () => {
                     </div>
 
                     <button
-                      onClick={() => setMessage('✅ Theme preference saved')}
+                      onClick={() => setMessage('Theme preference saved')}
                       className="btn btn-primary"
                     >
                       Save Theme
@@ -413,13 +403,13 @@ const Settings = () => {
                   onClick={handleLogout}
                   className="w-full px-4 py-2 bg-orange-500 text-white font-semibold rounded-lg hover:bg-orange-600 transition-colors"
                 >
-                  🚪 Log Out
+                  Log Out
                 </button>
                 <button
                   onClick={handleDeleteAccount}
                   className="w-full px-4 py-2 bg-red-600 text-white font-semibold rounded-lg hover:bg-red-700 transition-colors"
                 >
-                  🗑️ Delete Account
+                  Delete Account
                 </button>
               </div>
             </div>

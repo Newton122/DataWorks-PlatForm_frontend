@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
 import { Link, useNavigate } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
+import { ClipboardList, Leaf, ShoppingBag, Shield, Settings2 } from 'lucide-react'
 import ThemeToggle from './ThemeToggle'
 
 const Navbar = () => {
@@ -72,11 +73,21 @@ const Navbar = () => {
                 Services ▼
               </motion.button>
               <div className="absolute left-0 mt-2 w-72 bg-bg-secondary border border-border-color rounded-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible shadow-xl z-50 py-1">
-                <Link to="/services" className="block px-4 py-2 text-8px text-text-secondary hover:bg-bg-tertiary hover:text-text-primary rounded">📋 All Services</Link>
-                <Link to="/industry/agriculture" className="block px-4 py-2 text-8px text-text-secondary hover:bg-bg-tertiary hover:text-text-primary rounded flex items-center gap-2">🌾 Agriculture Data</Link>
-                <Link to="/industry/small-business" className="block px-4 py-2 text-8px text-text-secondary hover:bg-bg-tertiary hover:text-text-primary rounded flex items-center gap-2">🏪 Small Business Analytics</Link>
-                <Link to="/industry/security-ai" className="block px-4 py-2 text-8px text-text-secondary hover:bg-bg-tertiary hover:text-text-primary rounded flex items-center gap-2">🔐 Security AI/ML</Link>
-                <Link to="/industry/data-engineering" className="block px-4 py-2 text-8px text-text-secondary hover:bg-bg-tertiary hover:text-text-primary rounded flex items-center gap-2">⚙️ Data Engineering</Link>
+                <Link to="/services" className="block px-4 py-2 text-8px text-text-secondary hover:bg-bg-tertiary hover:text-text-primary rounded flex items-center gap-2">
+                  <ClipboardList className="w-4 h-4" /> All Services
+                </Link>
+                <Link to="/industry/agriculture" className="block px-4 py-2 text-8px text-text-secondary hover:bg-bg-tertiary hover:text-text-primary rounded flex items-center gap-2">
+                  <Leaf className="w-4 h-4" /> Agriculture Data
+                </Link>
+                <Link to="/industry/small-business" className="block px-4 py-2 text-8px text-text-secondary hover:bg-bg-tertiary hover:text-text-primary rounded flex items-center gap-2">
+                  <ShoppingBag className="w-4 h-4" /> Small Business Analytics
+                </Link>
+                <Link to="/industry/security-ai" className="block px-4 py-2 text-8px text-text-secondary hover:bg-bg-tertiary hover:text-text-primary rounded flex items-center gap-2">
+                  <Shield className="w-4 h-4" /> Security AI/ML
+                </Link>
+                <Link to="/industry/data-engineering" className="block px-4 py-2 text-8px text-text-secondary hover:bg-bg-tertiary hover:text-text-primary rounded flex items-center gap-2">
+                  <Settings2 className="w-4 h-4" /> Data Engineering
+                </Link>
               </div>
             </div>
 
@@ -155,20 +166,20 @@ const Navbar = () => {
                 <div className="px-3 py-1 text-xs font-semibold text-text-muted uppercase tracking-wider">
                   Services
                 </div>
-                <Link to="/services" onClick={() => setIsMenuOpen(false)} className="block px-6 py-2 text-sm text-text-secondary hover:text-text-primary hover:bg-bg-tertiary rounded-lg transition-colors">
-                  📋 All Services
+                <Link to="/services" onClick={() => setIsMenuOpen(false)} className="block px-6 py-2 text-sm text-text-secondary hover:text-text-primary hover:bg-bg-tertiary rounded-lg transition-colors flex items-center gap-2">
+                  <ClipboardList className="w-4 h-4" /> All Services
                 </Link>
-                <Link to="/industry/agriculture" onClick={() => setIsMenuOpen(false)} className="block px-6 py-2 text-sm text-text-secondary hover:text-text-primary hover:bg-bg-tertiary rounded-lg transition-colors">
-                  🌾 Agriculture Data
+                <Link to="/industry/agriculture" onClick={() => setIsMenuOpen(false)} className="block px-6 py-2 text-sm text-text-secondary hover:text-text-primary hover:bg-bg-tertiary rounded-lg transition-colors flex items-center gap-2">
+                  <Leaf className="w-4 h-4" /> Agriculture Data
                 </Link>
-                <Link to="/industry/small-business" onClick={() => setIsMenuOpen(false)} className="block px-6 py-2 text-sm text-text-secondary hover:text-text-primary hover:bg-bg-tertiary rounded-lg transition-colors">
-                  🏪 Small Business Analytics
+                <Link to="/industry/small-business" onClick={() => setIsMenuOpen(false)} className="block px-6 py-2 text-sm text-text-secondary hover:text-text-primary hover:bg-bg-tertiary rounded-lg transition-colors flex items-center gap-2">
+                  <ShoppingBag className="w-4 h-4" /> Small Business Analytics
                 </Link>
-                <Link to="/industry/security-ai" onClick={() => setIsMenuOpen(false)} className="block px-6 py-2 text-sm text-text-secondary hover:text-text-primary hover:bg-bg-tertiary rounded-lg transition-colors">
-                  🔐 Security AI/ML
+                <Link to="/industry/security-ai" onClick={() => setIsMenuOpen(false)} className="block px-6 py-2 text-sm text-text-secondary hover:text-text-primary hover:bg-bg-tertiary rounded-lg transition-colors flex items-center gap-2">
+                  <Shield className="w-4 h-4" /> Security AI/ML
                 </Link>
-                <Link to="/industry/data-engineering" onClick={() => setIsMenuOpen(false)} className="block px-6 py-2 text-sm text-text-secondary hover:text-text-primary hover:bg-bg-tertiary rounded-lg transition-colors">
-                  ⚙️ Data Engineering
+                <Link to="/industry/data-engineering" onClick={() => setIsMenuOpen(false)} className="block px-6 py-2 text-sm text-text-secondary hover:text-text-primary hover:bg-bg-tertiary rounded-lg transition-colors flex items-center gap-2">
+                  <Settings2 className="w-4 h-4" /> Data Engineering
                 </Link>
               </div>
 

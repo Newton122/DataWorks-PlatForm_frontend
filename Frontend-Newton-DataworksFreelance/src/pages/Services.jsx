@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useAuth } from '../context/AuthContext';
+import { Settings2, BarChart3, Cpu, AreaChart, Database, Repeat, Leaf, ShoppingBag, Shield } from 'lucide-react';
 
 const Services = () => {
   const navigate = useNavigate();
@@ -46,7 +47,7 @@ const Services = () => {
 
   const services = [
     {
-      icon: "⚡",
+      icon: Settings2,
       title: "Data Engineering",
       description: "Build scalable data pipelines with Apache Spark, Kafka, and Airflow. We design and implement enterprise-grade data infrastructure that processes millions of events daily.",
       features: [
@@ -59,7 +60,7 @@ const Services = () => {
       technologies: ["Spark", "Kafka", "Airflow", "Python", "SQL"]
     },
     {
-      icon: "📊",
+      icon: BarChart3,
       title: "Data Analytics",
       description: "Transform raw data into actionable insights. Our analytics team creates interactive dashboards and reports that drive business decisions.",
       features: [
@@ -72,7 +73,7 @@ const Services = () => {
       technologies: ["Tableau", "Power BI", "Looker", "SQL", "Python"]
     },
     {
-      icon: "🤖",
+      icon: Cpu,
       title: "Machine Learning",
       description: "Develop and deploy ML models for predictive analytics, recommendation systems, and automation. We bring AI from prototype to production.",
       features: [
@@ -85,7 +86,7 @@ const Services = () => {
       technologies: ["TensorFlow", "PyTorch", "Scikit-learn", "Python", "Docker"]
     },
     {
-      icon: "📈",
+      icon: AreaChart,
       title: "Data Visualization",
       description: "Create stunning visualizations that make complex data understandable. We design charts, graphs, and interactive displays that tell your data story.",
       features: [
@@ -98,7 +99,7 @@ const Services = () => {
       technologies: ["D3.js", "Tableau", "Power BI", "React", "Vega-Lite"]
     },
     {
-      icon: "🏗️",
+      icon: Database,
       title: "Data Warehousing",
       description: "Design and implement modern data warehouses on Snowflake, BigQuery, and Redshift. We build scalable, cost-effective data storage solutions.",
       features: [
@@ -111,7 +112,7 @@ const Services = () => {
       technologies: ["Snowflake", "BigQuery", "Redshift", "dbt", "Airflow"]
     },
     {
-      icon: "🔄",
+      icon: Repeat,
       title: "ETL Development",
       description: "Extract, transform, and load data from multiple sources efficiently. We build reliable data integration pipelines that keep your data fresh.",
       features: [
@@ -124,28 +125,28 @@ const Services = () => {
       technologies: ["Informatica", "Talend", "Airflow", "Python", "SQL"]
     },
     {
-      icon: "🌾",
+      icon: Leaf,
       title: "Agriculture Data",
       description: "Crop insights, yield prediction, and farm management analytics for Zimbabwe farmers.",
       link: "/industry/agriculture",
       features: ["Weather analytics", "Satellite NDVI", "Maize yield prediction"]
     },
     {
-      icon: "🏪",
+      icon: ShoppingBag,
       title: "Small Business Analytics",
       description: "Sales forecasting and customer insights for SMEs in Harare & Bulawayo.",
       link: "/industry/small-business",
       features: ["Cash flow prediction", "Inventory optimization", "Customer 360"]
     },
     {
-      icon: "🔐",
+      icon: Shield,
       title: "Security AI/ML",
       description: "Prediction systems for sales, demand, risk, and recommendations.",
       link: "/industry/security-ai",
       features: ["Sales prediction", "Risk assessment", "Recommendation engines"]
     },
     {
-      icon: "⚙️",
+      icon: Settings2,
       title: "Data Engineering",
       description: "Build pipelines, clean messy data, connect APIs, PowerBI dashboards.",
       link: "/industry/data-engineering",
@@ -271,7 +272,12 @@ const Services = () => {
                   }`}
                   onClick={(e) => !isIndustry && setActiveService(index)}
                 >
-                  <div className="text-4xl mb-4">{service.icon}</div>
+                  <div className="text-4xl mb-4">
+                    {(() => {
+                      const Icon = service.icon;
+                      return <Icon className="w-10 h-10 text-[var(--accent-primary)]" />;
+                    })()}
+                  </div>
                   <h3 className="text-lg font-semibold text-[var(--text-primary)] mb-2">{service.title}</h3>
                   <p className="text-sm text-[var(--text-muted)] mb-4">{service.description}</p>
                   {service.technologies && (

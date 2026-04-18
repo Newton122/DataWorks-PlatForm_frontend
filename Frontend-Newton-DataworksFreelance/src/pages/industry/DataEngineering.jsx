@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { Plug, Brush, BarChart3 } from 'lucide-react';
 
 const DataEngineering = () => {
   return (
@@ -103,21 +104,21 @@ const DataEngineering = () => {
 
         <div className="grid md:grid-cols-3 gap-8 mb-16">
           <div className="bg-[var(--bg-secondary)] border border-[var(--border-color)] p-6 rounded-xl">
-            <div className="text-3xl mb-4">🔌</div>
+            <Plug className="w-10 h-10 text-[var(--accent-primary)] mb-4" />
             <h3 className="text-lg font-semibold text-[var(--text-primary)] mb-2">API Integration</h3>
             <p className="text-sm text-[var(--text-secondary)]">
               Connect Zimbabwe payment gateways (EcoCash, OneMoney), ERP systems, and third-party APIs
             </p>
           </div>
           <div className="bg-[var(--bg-secondary)] border border-[var(--border-color)] p-6 rounded-xl">
-            <div className="text-3xl mb-4">🧹</div>
+            <Brush className="w-10 h-10 text-[var(--accent-primary)] mb-4" />
             <h3 className="text-lg font-semibold text-[var(--text-primary)] mb-2">Data Cleaning</h3>
             <p className="text-sm text-[var(--text-secondary)]">
               Handle messy POS data, duplicate records, and inconsistent formats from multiple sources
             </p>
           </div>
           <div className="bg-[var(--bg-secondary)] border border-[var(--border-color)] p-6 rounded-xl">
-            <div className="text-3xl mb-4">📊</div>
+            <BarChart3 className="w-10 h-10 text-[var(--accent-primary)] mb-4" />
             <h3 className="text-lg font-semibold text-[var(--text-primary)] mb-2">PowerBI Dashboards</h3>
             <p className="text-sm text-[var(--text-secondary)]">
               Interactive PowerBI dashboards with mobile access for business owners and managers

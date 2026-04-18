@@ -1,21 +1,22 @@
 import { useState } from 'react';
+import { Code2, Zap, Paintbrush, Server, Rocket, Database, Plug, Sparkles, ShieldCheck, Shield, Send, MapPin, Cpu, Wrench, Users, TrendingUp, Smartphone, Link2 } from 'lucide-react';
 
 const Overview = () => {
   const [activeTab, setActiveTab] = useState('tech');
 
   const technologies = [
-    { name: 'React', description: 'Modern UI framework for building interactive interfaces', icon: '⚛️' },
-    { name: 'Vite', description: 'Fast build tool and development server', icon: '⚡' },
-    { name: 'Tailwind CSS', description: 'Utility-first CSS framework for rapid styling', icon: '🎨' },
-    { name: 'Node.js', description: 'JavaScript runtime for server-side development', icon: '🟢' },
-    { name: 'Express.js', description: 'Minimal web framework for Node.js', icon: '🚀' },
-    { name: 'MongoDB', description: 'NoSQL database for flexible data storage', icon: '🍃' },
-    { name: 'Socket.io', description: 'Real-time bidirectional communication', icon: '🔌' },
-    { name: 'Framer Motion', description: 'Animation library for React', icon: '🎭' },
-    { name: 'JWT', description: 'JSON Web Tokens for secure authentication', icon: '🔐' },
-    { name: 'bcrypt', description: 'Password hashing for security', icon: '🛡️' },
-    { name: 'Axios', description: 'HTTP client for API requests', icon: '📡' },
-    { name: 'React Router', description: 'Declarative routing for React', icon: '🛣️' }
+    { name: 'React', description: 'Modern UI framework for building interactive interfaces', icon: Code2 },
+    { name: 'Vite', description: 'Fast build tool and development server', icon: Zap },
+    { name: 'Tailwind CSS', description: 'Utility-first CSS framework for rapid styling', icon: Paintbrush },
+    { name: 'Node.js', description: 'JavaScript runtime for server-side development', icon: Server },
+    { name: 'Express.js', description: 'Minimal web framework for Node.js', icon: Rocket },
+    { name: 'MongoDB', description: 'NoSQL database for flexible data storage', icon: Database },
+    { name: 'Socket.io', description: 'Real-time bidirectional communication', icon: Plug },
+    { name: 'Framer Motion', description: 'Animation library for React', icon: Sparkles },
+    { name: 'JWT', description: 'JSON Web Tokens for secure authentication', icon: ShieldCheck },
+    { name: 'bcrypt', description: 'Password hashing for security', icon: Shield },
+    { name: 'Axios', description: 'HTTP client for API requests', icon: Send },
+    { name: 'React Router', description: 'Declarative routing for React', icon: MapPin }
   ];
 
   const testimonials = [
@@ -49,37 +50,37 @@ const Overview = () => {
     {
       title: 'AI-Powered Job Matching',
       description: 'Advanced machine learning algorithms to match candidates with the perfect job opportunities based on skills, experience, and preferences.',
-      icon: '🤖',
+      icon: Cpu,
       status: 'In Development'
     },
     {
       title: 'Web Builder Integration',
       description: 'Drag-and-drop website builder for companies to create professional landing pages and job portals without coding.',
-      icon: '🛠️',
+      icon: Wrench,
       status: 'Beta Testing'
     },
     {
       title: 'Real-time Collaboration Tools',
       description: 'Integrated video calls, screen sharing, and collaborative coding environments for remote teams.',
-      icon: '👥',
+      icon: Users,
       status: 'Planning'
     },
     {
       title: 'Advanced Analytics Dashboard',
       description: 'Comprehensive analytics for job seekers and employers with insights on market trends and hiring patterns.',
-      icon: '📊',
+      icon: TrendingUp,
       status: 'In Development'
     },
     {
       title: 'Mobile App Launch',
       description: 'Native mobile applications for iOS and Android with offline capabilities and push notifications.',
-      icon: '📱',
+      icon: Smartphone,
       status: 'Design Phase'
     },
     {
       title: 'Blockchain Integration',
       description: 'Secure credential verification and smart contract-based agreements for freelance work.',
-      icon: '⛓️',
+      icon: Link2,
       status: 'Research'
     }
   ];
@@ -133,16 +134,21 @@ const Overview = () => {
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {technologies.map((tech, index) => (
-              <div
-                key={index}
-                className="bg-[var(--bg-primary)] border border-[var(--border-color)] p-6 rounded-lg hover:border-[var(--accent-primary)] transition-colors"
-              >
-                <div className="text-3xl mb-3">{tech.icon}</div>
-                <h3 className="text-lg font-semibold text-[var(--text-primary)] mb-2">{tech.name}</h3>
-                <p className="text-sm text-[var(--text-muted)]">{tech.description}</p>
-              </div>
-            ))}
+            {technologies.map((tech, index) => {
+              const Icon = tech.icon;
+              return (
+                <div
+                  key={index}
+                  className="bg-[var(--bg-primary)] border border-[var(--border-color)] p-6 rounded-lg hover:border-[var(--accent-primary)] transition-colors"
+                >
+                  <div className="text-3xl mb-3">
+                    <Icon className="w-10 h-10 text-[var(--accent-primary)]" />
+                  </div>
+                  <h3 className="text-lg font-semibold text-[var(--text-primary)] mb-2">{tech.name}</h3>
+                  <p className="text-sm text-[var(--text-muted)]">{tech.description}</p>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -197,19 +203,24 @@ const Overview = () => {
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {upcomingFeatures.map((feature, index) => (
-              <div
-                key={index}
-                className="bg-[var(--bg-primary)] border border-[var(--border-color)] p-6 rounded-lg hover:border-[var(--accent-primary)] transition-colors"
-              >
-                <div className="text-4xl mb-4">{feature.icon}</div>
-                <h3 className="text-lg font-semibold text-[var(--text-primary)] mb-2">{feature.title}</h3>
-                <p className="text-sm text-[var(--text-muted)] mb-4">{feature.description}</p>
-                <div className="inline-flex items-center px-3 py-1 bg-[var(--bg-tertiary)] border border-[var(--border-color)] text-xs text-[var(--accent-primary)] rounded-full">
-                  {feature.status}
+            {upcomingFeatures.map((feature, index) => {
+              const Icon = feature.icon;
+              return (
+                <div
+                  key={index}
+                  className="bg-[var(--bg-primary)] border border-[var(--border-color)] p-6 rounded-lg hover:border-[var(--accent-primary)] transition-colors"
+                >
+                  <div className="text-4xl mb-4">
+                    <Icon className="w-12 h-12 text-[var(--accent-primary)]" />
+                  </div>
+                  <h3 className="text-lg font-semibold text-[var(--text-primary)] mb-2">{feature.title}</h3>
+                  <p className="text-sm text-[var(--text-muted)] mb-4">{feature.description}</p>
+                  <div className="inline-flex items-center px-3 py-1 bg-[var(--bg-tertiary)] border border-[var(--border-color)] text-xs text-[var(--accent-primary)] rounded-full">
+                    {feature.status}
+                  </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
