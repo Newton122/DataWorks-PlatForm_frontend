@@ -11,9 +11,12 @@ const ThemeToggle = () => {
 
 
   return (
-    <button
+    <motion.button
       onClick={toggleTheme}
-      className="p-1 rounded-lg hover:bg-bg-tertiary transition-all duration-200 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-accent-primary w-8 h-8"
+      whileHover={{ scale: 1.05 }}
+      whileTap={{ scale: 0.95 }}
+      transition={{ duration: 0.15 }}
+      className="p-1 rounded-lg hover:bg-bg-tertiary transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-accent-primary w-8 h-8"
       title={`Switch to ${isDark ? 'light' : 'dark'} mode`}
     >
       {isDark ? (
@@ -25,7 +28,7 @@ const ThemeToggle = () => {
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
         </svg>
       )}
-    </button>
+    </motion.button>
   )
 }
 

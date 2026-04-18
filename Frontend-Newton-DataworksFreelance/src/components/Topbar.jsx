@@ -43,8 +43,11 @@ const Topbar = () => {
           
           {/* Profile dropdown */}
           <div className="relative">
-            <button
+            <motion.button
               onClick={() => setIsProfileOpen(!isProfileOpen)}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              transition={{ duration: 0.15 }}
               className="flex items-center space-x-2 p-2 rounded-lg hover:bg-[var(--border-color)] transition-colors"
             >
               <div className="w-8 h-8 bg-[var(--accent-primary)] rounded-full flex items-center justify-center">
@@ -61,7 +64,7 @@ const Topbar = () => {
               >
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
               </svg>
-            </button>
+            </motion.button>
 
             {isProfileOpen && (
               <div className="absolute right-0 mt-2 w-48 bg-[var(--bg-secondary)] border border-[var(--border-color)] rounded-lg shadow-lg z-50">
@@ -93,12 +96,15 @@ const Topbar = () => {
                   </Link>
                 </div>
                 <div className="py-2 border-t border-[var(--border-color)]">
-                  <button
+                  <motion.button
                     onClick={handleLogout}
+                    whileHover={{ scale: 1.02, x: 2 }}
+                    whileTap={{ scale: 0.98 }}
+                    transition={{ duration: 0.15 }}
                     className="w-full text-left px-4 py-2 text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-tertiary)] transition-colors"
                   >
                     Logout
-                  </button>
+                  </motion.button>
                 </div>
               </div>
             )}

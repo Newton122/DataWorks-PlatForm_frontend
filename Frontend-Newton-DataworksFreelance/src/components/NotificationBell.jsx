@@ -132,8 +132,11 @@ const NotificationBell = () => {
 
   return (
     <div className="relative" ref={dropdownRef}>
-      <button
+      <motion.button
         onClick={() => setIsOpen(!isOpen)}
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
+        transition={{ duration: 0.15 }}
         className="relative p-2 rounded-lg bg-[var(--border-color)] text-[var(--text-muted)] hover:text-[var(--text-primary)] hover:bg-[#334155] transition-colors"
         aria-label="Notifications"
       >
@@ -145,7 +148,7 @@ const NotificationBell = () => {
             {unreadCount}
           </span>
         )}
-      </button>
+      </motion.button>
 
       {isOpen && (
         <div className="absolute right-0 mt-2 w-80 bg-[var(--bg-secondary)] border border-[var(--border-color)] rounded-lg shadow-lg z-50">
@@ -153,12 +156,15 @@ const NotificationBell = () => {
             <div className="flex items-center justify-between">
               <h3 className="text-[var(--text-primary)] font-semibold">Notifications</h3>
               {unreadCount > 0 && (
-                <button
+                <motion.button
                   onClick={markAllAsRead}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  transition={{ duration: 0.15 }}
                   className="text-sm text-[var(--accent-primary)] hover:text-[var(--accent-primary)]"
                 >
                   Mark all as read
-                </button>
+                </motion.button>
               )}
             </div>
           </div>
@@ -201,12 +207,15 @@ const NotificationBell = () => {
             )}
           </div>
           <div className="p-4 border-t border-[var(--border-color)]">
-            <button
+            <motion.button
               className="block text-center text-sm text-[var(--accent-primary)] hover:text-[var(--accent-primary)]"
               onClick={() => setIsOpen(false)}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              transition={{ duration: 0.15 }}
             >
               View all notifications
-            </button>
+            </motion.button>
           </div>
         </div>
       )}

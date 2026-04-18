@@ -296,17 +296,20 @@ const Dashboard = () => {
           <h3 className="text-2xl font-bold text-[var(--text-primary)] mb-6">Quick Actions</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2">
             {quickActions.map((action, index) => (
-              <button
+              <motion.button
                 key={index}
                 onClick={action.action}
-                className="relative bg-[rgba(15,23,42,0.25)] border border-[var(--border-color)] p-2 text-left overflow-hidden transition-all duration-200 group rounded-lg"
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.95 }}
+                transition={{ duration: 0.15 }}
+                className="relative bg-[rgba(15,23,42,0.25)] border border-[var(--border-color)] p-2 text-left overflow-hidden transition-all duration-200 group rounded-lg hover:shadow-lg"
               >
                 <span className="pointer-events-none absolute inset-x-2 bottom-2 h-2 bg-[rgba(0,0,0,0.65)] rounded-full blur-lg"></span>
                 <h4 className="text-base font-semibold text-[var(--text-primary)] mb-1 group-hover:text-[var(--accent-primary)]">
                   {action.title}
                 </h4>
                 <p className="text-xs text-[var(--text-secondary)]">{action.description}</p>
-              </button>
+              </motion.button>
             ))}
           </div>
         </div>
@@ -348,12 +351,15 @@ const Dashboard = () => {
                         <span>{job.salary}</span>
                         <span>{job.postedDate}</span>
                       </div>
-                      <button
+                      <motion.button
                         onClick={() => navigate('/jobs')}
-                        className="px-3 py-1 bg-[var(--accent-primary)] text-white font-medium hover:bg-[var(--accent-hover)] transition-colors text-sm rounded"
+                        whileHover={{ scale: 1.05, y: -1 }}
+                        whileTap={{ scale: 0.95 }}
+                        transition={{ duration: 0.15 }}
+                        className="px-3 py-1 bg-[var(--accent-primary)] text-white font-medium hover:bg-[var(--accent-hover)] transition-colors text-sm rounded hover:shadow-md"
                       >
                         View Details
-                      </button>
+                      </motion.button>
                     </div>
                   ))
                 )}
