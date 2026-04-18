@@ -160,30 +160,10 @@ button, a, input, textarea, select {
   --button-text: #ffffff;
 }
 
-.btn-primary,
-button,
-a[class*="bg-[var(--accent-primary)]"],
-[class*="bg-[var(--accent-primary)]"] {
-  /* force successful button palette, no purple on buttons */
-  background-image: var(--button-bg) !important;
-  background-size: 200% 200%;
-  background-position: center;
-  color: var(--button-text) !important;
-  padding: 0.2rem 0.5rem;
-  border-radius: 13px;
-  font-weight: 500;
-  font-size: 8px;
-  transition: all 0.2s ease;
-  border: 1px solid var(--accent-primary) !important;
-}
+/* Only specific button classes - NOT generic selectors */
+/* Remove generic button, .btn-primary, and wildcard selectors that override Framer Motion */
 
-.btn-primary:hover,
-button:hover,
-[class*="bg-[var(--accent-primary)]"]:hover {
-  background-image: var(--button-hover) !important;
-  background-position: right center;
-  transform: translateY(-1px);
-}
+/* Specific named buttons only */
 
 /* Custom text size utilities */
 .text-8px {
