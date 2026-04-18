@@ -24,31 +24,19 @@ const Home = () => {
   const fadeLeft = isMobile ? false : { opacity: 0, x: -100 };
   const scaleIn = isMobile ? false : { opacity: 0, scale: 0.8 };
 
-  // Motion component that renders as plain HTML on mobile, framer motion on desktop
+  // Motion component - DISABLE ANIMATIONS for smooth rendering
   const MotionSection = ({ children, initial, animate, exit, transition, ...rest }) => {
-    return isMobile ? (
-      <section {...rest}>{children}</section>
-    ) : (
-      <motion.section initial={initialFor(initial)} animate={animate} exit={exit} transition={transition} {...rest}>
-        {children}
-      </motion.section>
-    );
+    // Always render as plain section - no Framer Motion animations to avoid glitches
+    return <section {...rest}>{children}</section>;
   };
 
   const MotionDiv = ({ children, initial, animate, transition, ...rest }) => {
-    return isMobile ? (
-      <div {...rest}>{children}</div>
-    ) : (
-      <motion.div initial={initialFor(initial)} animate={animate} transition={transition} {...rest}>
-        {children}
-      </motion.div>
-    );
+    // Always render as plain div - no Framer Motion animations
+    return <div {...rest}>{children}</div>;
   };
 
   const MotionButton = ({ children, whileHover, whileTap, transition, ...rest }) => {
-    return isMobile ? (
-      <button {...rest}>{children}</button>
-    ) : (
+    return (
       <motion.button whileHover={whileHover} whileTap={whileTap} transition={transition} {...rest}>
         {children}
       </motion.button>
@@ -56,7 +44,8 @@ const Home = () => {
   };
 
   const MotionImg = ({ whileHover, whileTap, transition, ...rest }) => {
-    return isMobile ? <img {...rest} /> : <motion.img whileHover={whileHover} whileTap={whileTap} transition={transition} {...rest} />;
+    // No Framer Motion on images - just plain img
+    return <img {...rest} />;
   };
   // Technology items for carousel
   const techRow1 = [
