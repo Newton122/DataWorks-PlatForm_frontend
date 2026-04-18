@@ -116,28 +116,24 @@ const Dashboard = () => {
 
   const quickActions = [
     {
-      icon: "🔍",
       title: "Browse Jobs",
       description: "Find your next opportunity",
       action: () => navigate('/jobs'),
       color: "bg-gradient-to-br from-blue-500 to-purple-600"
     },
     {
-      icon: "📝",
       title: "Update Profile",
       description: "Keep your profile current",
       action: () => navigate('/profile'),
       color: "bg-gradient-to-br from-green-500 to-teal-600"
     },
     {
-      icon: "💬",
       title: "Messages",
       description: "Chat with recruiters",
       action: () => navigate('/messages'),
       color: "bg-gradient-to-br from-orange-500 to-red-600"
     },
     {
-      icon: "📊",
       title: "Analytics",
       description: "View your activity",
       action: () => navigate('/profile'),
@@ -236,27 +232,24 @@ const Dashboard = () => {
           </div>
 
           {/* Stats Grid */}
-          <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-6 mb-8">
+          <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-3 mb-8">
             {[
-              { label: 'Total Jobs', value: stats.totalJobs, icon: '💼', color: 'from-blue-500 to-blue-600' },
-              { label: 'Active Apps', value: stats.activeApplications, icon: '📋', color: 'from-green-500 to-green-600' },
-              { label: 'Saved Jobs', value: stats.savedJobs, icon: '⭐', color: 'from-yellow-500 to-orange-600' },
-              { label: 'Messages', value: stats.messages, icon: '💬', color: 'from-purple-500 to-purple-600' },
-              { label: 'Sales Done', value: stats.salesDone, icon: '💰', color: 'from-emerald-500 to-teal-600' },
-              { label: 'Operations', value: stats.aiInsights, icon: '⚙️', color: 'from-indigo-500 to-purple-600' }
+              { label: 'Total Jobs', value: stats.totalJobs, color: 'from-blue-500 to-blue-600' },
+              { label: 'Active Apps', value: stats.activeApplications, color: 'from-green-500 to-green-600' },
+              { label: 'Saved Jobs', value: stats.savedJobs, color: 'from-yellow-500 to-orange-600' },
+              { label: 'Messages', value: stats.messages, color: 'from-purple-500 to-purple-600' },
+              { label: 'Sales Done', value: stats.salesDone, color: 'from-emerald-500 to-teal-600' },
+              { label: 'Operations', value: stats.aiInsights, color: 'from-indigo-500 to-purple-600' }
             ].map((stat, index) => (
               <MotionDiv
                 key={index}
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.35, delay: index * 0.05 }}
-                className="bg-[var(--bg-secondary)] border border-[var(--border-color)] p-6 hover:shadow-lg transition-all duration-200 group"
+                className="bg-[var(--bg-secondary)] border border-[var(--border-color)] p-3 hover:shadow-lg transition-all duration-200 group"
               >
-                <div className="flex items-center justify-between mb-4">
-                  <div className={`w-12 h-12 bg-gradient-to-br ${stat.color} flex items-center justify-center text-2xl shadow-lg`}>
-                    {stat.icon}
-                  </div>
-                  <span className="text-3xl font-bold text-[var(--accent-primary)] group-hover:scale-110 transition-transform">
+                <div className="flex items-center justify-between mb-2">
+                  <span className="text-2xl font-bold text-[var(--accent-primary)] group-hover:scale-110 transition-transform">
                     {stat.value}
                   </span>
                 </div>
@@ -275,9 +268,6 @@ const Dashboard = () => {
         >
           <div className="bg-gradient-to-r from-indigo-50 to-purple-50 dark:from-indigo-950/20 dark:to-purple-950/20 border border-indigo-200 dark:border-indigo-800 p-6">
             <div className="flex items-center space-x-3 mb-4">
-              <div className="w-10 h-10 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-xl flex items-center justify-center">
-                <span className="text-white text-xl">📈</span>
-              </div>
               <div>
                 <h3 className="text-xl font-bold text-[var(--text-primary)]">Operational Insights</h3>
                 <p className="text-sm text-[var(--text-secondary)]">Real-time adoption and productivity metrics from live data.</p>
@@ -304,16 +294,14 @@ const Dashboard = () => {
         {/* Quick Actions */}
         <div className="mb-8">
           <h3 className="text-2xl font-bold text-[var(--text-primary)] mb-6">Quick Actions</h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
             {quickActions.map((action, index) => (
               <button
                 key={index}
                 onClick={action.action}
-                className="relative bg-[rgba(15,23,42,0.25)] border border-[var(--border-color)] p-6 text-left overflow-hidden transition-all duration-200 group"
+                className="relative bg-[rgba(15,23,42,0.25)] border border-[var(--border-color)] p-3 text-left overflow-hidden transition-all duration-200 group"
               >
                 <span className="pointer-events-none absolute inset-x-3 bottom-3 h-3 bg-[rgba(0,0,0,0.65)] rounded-full blur-lg"></span>
-                <div className={`relative z-10 w-14 h-14 ${action.color} bg-opacity-40 flex items-center justify-center text-2xl mb-4 shadow-[0_10px_30px_rgba(0,0,0,0.55)] group-hover:scale-110 transition-transform`}>
-                  {action.icon}</div>
                 <h4 className="text-lg font-semibold text-[var(--text-primary)] mb-2 group-hover:text-[var(--accent-primary)]">
                   {action.title}
                 </h4>
@@ -356,9 +344,9 @@ const Dashboard = () => {
                         </span>
                       </div>
                       <div className="flex items-center gap-6 text-sm text-[var(--text-muted)] mb-4">
-                        <span>📍 {job.location}</span>
-                        <span>💰 {job.salary}</span>
-                        <span>🕒 {job.postedDate}</span>
+                        <span>{job.location}</span>
+                        <span>{job.salary}</span>
+                        <span>{job.postedDate}</span>
                       </div>
                       <button
                         onClick={() => navigate('/jobs')}
@@ -383,7 +371,6 @@ const Dashboard = () => {
                 {recentActivity.length === 0 ? (
                   <div className="p-6 text-center text-[var(--text-secondary)]">
                     <div className="w-16 h-16 bg-[var(--bg-tertiary)] rounded-full flex items-center justify-center mx-auto mb-4">
-                      <span className="text-2xl">📊</span>
                     </div>
                     <p>No recent activity</p>
                   </div>
@@ -396,8 +383,6 @@ const Dashboard = () => {
                           activity.type === 'save' ? 'bg-gradient-to-br from-yellow-500 to-orange-600' :
                           'bg-gradient-to-br from-blue-500 to-purple-600'
                         }`}>
-                          {activity.type === 'application' ? '📋' :
-                           activity.type === 'save' ? '⭐' : '💬'}
                         </div>
                         <div className="flex-1">
                           <h4 className="text-sm font-semibold text-[var(--text-primary)] mb-1">{activity.title}</h4>
