@@ -120,7 +120,7 @@ const Contact = () => {
 
                 <button
                   type="submit"
-                  className="w-full polidhed-dark-green-btn py-3 rounded-lg font-medium"
+                  className="w-full btn polidhed-dark-green-btn font-medium"
                 >
                   Send Message
                 </button>

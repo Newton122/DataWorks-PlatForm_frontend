@@ -106,7 +106,7 @@ const CaseStudies = () => {
           </p>
           <Link
             to="/contact"
-            className="inline-block bg-[var(--accent-primary)] text-white px-6 py-3 rounded-lg hover:bg-[var(--accent-hover)] transition-colors"
+            className="btn btn-primary"
           >
             Get Started
           </Link>

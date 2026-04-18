@@ -374,12 +374,12 @@ transformed.write \\
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-4">
             {[
-              { title: "Data Engineering", description: "Build scalable ETL pipelines with Apache Spark, Airflow, and Kafka", icon: "⚙️" },
-              { title: "Data Analytics", description: "Transform raw data into actionable insights with SQL and BI tools", icon: "📊" },
-              { title: "Machine Learning", description: "Develop and deploy ML models for predictive analytics and automation", icon: "🤖" },
-              { title: "Data Visualization", description: "Create interactive dashboards with Looker, Tableau, and Power BI", icon: "📈" },
-              { title: "Data Warehousing", description: "Design and implement modern data warehouses on Snowflake and BigQuery", icon: "🏗️" },
-              { title: "ETL Development", description: "Extract, transform, and load data from multiple sources efficiently", icon: "🔄" }
+              { title: "Data Engineering", description: "Build scalable ETL pipelines with Apache Spark, Airflow, and Kafka" },
+              { title: "Data Analytics", description: "Transform raw data into actionable insights with SQL and BI tools" },
+              { title: "Machine Learning", description: "Develop and deploy ML models for predictive analytics and automation" },
+              { title: "Data Visualization", description: "Create interactive dashboards with Looker, Tableau, and Power BI" },
+              { title: "Data Warehousing", description: "Design and implement modern data warehouses on Snowflake and BigQuery" },
+              { title: "ETL Development", description: "Extract, transform, and load data from multiple sources efficiently" }
             ].map((service, index) => (
               <motion.div
                 key={index}
@@ -388,7 +388,6 @@ transformed.write \\
                 transition={{ duration: 0.2 }}
                 className="bg-gradient-to-br from-[var(--bg-primary)] to-[var(--bg-secondary)] border border-[var(--border-color)] p-4 rounded-xl hover:border-[var(--accent-primary)] hover:shadow-lg transition-all duration-300 cursor-pointer group"
               >
-                <div className="text-2xl mb-2 group-hover:scale-110 transition-transform duration-200">{service.icon}</div>
                 <h3 className="text-base sm:text-lg font-semibold text-[var(--text-primary)] mb-1.5 leading-tight">{service.title}</h3>
                 <p className="text-xs sm:text-sm text-[var(--text-muted)] leading-relaxed group-hover:text-[var(--text-secondary)] transition-colors">{service.description}</p>
               </motion.div>

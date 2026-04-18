@@ -323,7 +323,7 @@ const ApplyJob = () => {
             <button
               type="submit"
               disabled={submitting}
-              className="flex-1 px-6 py-3 bg-[var(--accent-primary)] text-white font-semibold hover:bg-[var(--accent-hover)] transition-colors rounded-lg disabled:opacity-50"
+              className="flex-1 btn btn-primary disabled:opacity-50"
             >
               {submitting ? 'Submitting...' : 'Submit Application'}
             </button>

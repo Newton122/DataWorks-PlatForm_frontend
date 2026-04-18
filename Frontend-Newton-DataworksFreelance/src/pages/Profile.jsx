@@ -125,14 +125,14 @@ const Profile = () => {
                 <>
                   <button
                     onClick={handleCancel}
-                    className="px-5 py-2.5 border border-[var(--border-color)] text-[var(--text-muted)] text-sm font-medium hover:border-[var(--accent-primary)] hover:text-[var(--accent-primary)] transition-colors"
+                    className="btn btn-secondary px-4 py-2.5 text-sm font-medium"
                   >
                     Cancel
                   </button>
                   <button
                     onClick={handleSave}
                     disabled={loading}
-                    className="px-5 py-2.5 bg-[var(--accent-primary)] text-white text-sm font-medium hover:bg-[var(--accent-hover)] transition-colors disabled:opacity-50"
+                    className="btn btn-primary disabled:opacity-50"
                   >
                     {loading ? 'Saving...' : 'Save Changes'}
                   </button>
@@ -140,7 +140,7 @@ const Profile = () => {
               ) : (
                 <button
                   onClick={() => setIsEditing(true)}
-                  className="px-5 py-2.5 bg-[var(--accent-primary)] text-white text-sm font-medium hover:bg-[var(--accent-hover)] transition-colors"
+                  className="btn btn-primary"
                 >
                   Edit Profile
                 </button>

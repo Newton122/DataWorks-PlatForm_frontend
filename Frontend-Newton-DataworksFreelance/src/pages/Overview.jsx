@@ -224,7 +224,7 @@ const Overview = () => {
             Join thousands of developers and companies already using DataWorks to build amazing things.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="px-6 py-2 polidhed-dark-green-btn font-semibold text-sm">
+            <button className="btn polidhed-dark-green-btn font-semibold text-sm">
               Get Started Today
             </button>
             <button className="px-6 py-2 bg-white/10 backdrop-blur-md border border-white/20 text-white font-semibold hover:bg-white/20 transition-colors text-sm">

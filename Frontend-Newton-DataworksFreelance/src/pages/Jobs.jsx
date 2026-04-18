@@ -265,7 +265,7 @@ const Jobs = () => {
                 <div className="flex items-end">
                   <button
                     onClick={clearFilters}
-                    className="w-full px-4 py-2 polidhed-dark-green-btn text-sm font-medium"
+                    className="w-full btn polidhed-dark-green-btn text-sm font-medium"
                   >
                     Clear Filters
                   </button>
@@ -322,7 +322,7 @@ const Jobs = () => {
                 <p className="text-sm text-[var(--text-secondary)] mb-2">Use text and location search to find your ideal positions. Click any job to view details, save, and apply instantly.</p>
                 <button
                   onClick={() => setShowFilters(true)}
-                  className="px-4 py-2 polidhed-dark-green-btn text-sm font-semibold"
+                  className="btn polidhed-dark-green-btn text-sm font-semibold"
                 >
                   Refine Search
                 </button>
@@ -341,7 +341,7 @@ const Jobs = () => {
                 <p className="text-[var(--text-secondary)]">No jobs found matching your criteria.</p>
                 <button
                   onClick={clearFilters}
-                  className="mt-4 px-4 py-2 polidhed-dark-green-btn text-sm font-medium"
+                  className="w-full btn polidhed-dark-green-btn text-sm font-medium"
                 >
                   Clear Filters
                 </button>
@@ -414,7 +414,7 @@ const Jobs = () => {
                           e.stopPropagation();
                           setSelectedJob(job);
                         }}
-                        className="px-3 py-2 polidhed-dark-green-btn text-xs font-medium"
+                        className="btn polidhed-dark-green-btn text-xs font-medium"
                       >
                         View Details
                       </button>

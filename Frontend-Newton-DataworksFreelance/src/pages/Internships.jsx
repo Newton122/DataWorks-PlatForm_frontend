@@ -79,7 +79,7 @@ const Internships = () => {
                 </ul>
               </div>
 
-              <button className="w-full relative overflow-hidden text-white py-2 rounded-lg font-medium transition-all duration-300 polidhed-dark-green-btn" >
+              <button className="w-full btn polidhed-dark-green-btn relative overflow-hidden font-medium transition-all duration-300" >
                 <span className="block relative z-10">Apply Now</span>
                 <span className="absolute inset-x-2 bottom-2 h-2 bg-[rgba(4,84,30,0.4)] rounded-full blur-sm"></span>
               </button>
@@ -128,7 +128,7 @@ const Internships = () => {
           </p>
           <Link
             to="/contact"
-            className="inline-block relative overflow-hidden text-white px-6 py-3 rounded-lg font-medium transition-all duration-300"
+            className="btn btn-primary relative overflow-hidden font-medium transition-all duration-300"
             style={{
               background: 'linear-gradient(135deg, rgba(16,127,58,0.95), rgba(16,113,55,0.85) 45%, rgba(22,102,52,0.75))',
               boxShadow: '0 16px 30px rgba(0,0,0,0.45)'

@@ -229,7 +229,7 @@ const Services = () => {
           <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center">
             <button
               onClick={handleGetStarted}
-              className="px-4 md:px-6 py-2 md:py-2.5 polidhed-dark-green-btn font-semibold text-sm md:text-base backdrop-blur-sm bg-opacity-90"
+              className="btn polidhed-dark-green-btn font-semibold text-sm md:text-base backdrop-blur-sm bg-opacity-90"
             >
               Get Started Free
             </button>

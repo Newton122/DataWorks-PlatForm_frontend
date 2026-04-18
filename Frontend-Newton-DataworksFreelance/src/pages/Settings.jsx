@@ -204,7 +204,7 @@ const Settings = () => {
                     <button
                       type="submit"
                       disabled={loading}
-                      className="px-6 py-2 bg-[var(--accent-primary)] text-white font-semibold rounded-lg hover:bg-[var(--accent-hover)] transition-colors disabled:opacity-50"
+                      className="btn btn-primary disabled:opacity-50"
                     >
                       {loading ? 'Saving...' : 'Save Changes'}
                     </button>
@@ -262,7 +262,7 @@ const Settings = () => {
                     <button
                       type="submit"
                       disabled={loading}
-                      className="px-6 py-2 bg-[var(--accent-primary)] text-white font-semibold rounded-lg hover:bg-[var(--accent-hover)] transition-colors disabled:opacity-50"
+                      className="btn btn-primary disabled:opacity-50"
                     >
                       {loading ? 'Updating...' : 'Change Password'}
                     </button>
@@ -300,7 +300,7 @@ const Settings = () => {
                   </div>
                   <button
                     onClick={() => setMessage('✅ Notification preferences saved')}
-                    className="mt-6 px-6 py-2 bg-[var(--accent-primary)] text-white font-semibold rounded-lg hover:bg-[var(--accent-hover)] transition-colors"
+                    className="btn btn-primary mt-6"
                   >
                     Save Preferences
                   </button>
@@ -396,7 +396,7 @@ const Settings = () => {
 
                     <button
                       onClick={() => setMessage('✅ Theme preference saved')}
-                      className="px-6 py-2 bg-[var(--accent-primary)] text-white font-semibold rounded-lg hover:bg-[var(--accent-hover)] transition-colors"
+                      className="btn btn-primary"
                     >
                       Save Theme
                     </button>
