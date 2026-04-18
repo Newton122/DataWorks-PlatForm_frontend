@@ -11,7 +11,7 @@ const Privacy = () => {
           <section>
             <h2 className="text-2xl font-bold text-[var(--text-primary)] mb-4">1. Introduction</h2>
             <p className="text-[var(--text-muted)]">
-              DataWorks ("we," "our," or "us") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our platform and services.
+              DataWorks ("we," "our," or "us") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose and safeguard your information when you use our platform and services.
             </p>
           </section>
 

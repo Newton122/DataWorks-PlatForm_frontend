@@ -98,11 +98,10 @@ const Overview = () => {
             Platform Overview
           </div>
           <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-highlight mb-3 md:mb-4">
-            Built by Brighton
+            Built by Brighto
           </h1>
           <p className="text-sm sm:text-base md:text-lg text-[var(--text-muted)] max-w-3xl mx-auto mb-6 md:mb-8 px-2">
-            A full-stack development project built with modern web technologies,
-            AI integration, and user experience design to create the future of data-driven platforms.
+            A full-stack development project built with modern web technologies,socket.io and user experience design to create the future of data-driven platforms.
           </p>
 
           <div className="max-w-2xl mx-auto px-2">
@@ -113,7 +112,7 @@ const Overview = () => {
               <h3 className="text-base md:text-lg font-semibold text-[var(--text-primary)] mb-2 text-center">Brighton</h3>
               <p className="text-xs md:text-sm text-[var(--text-secondary)] mb-3 text-center">Full Stack Developer</p>
               <p className="text-xs md:text-sm text-[var(--text-muted)] text-center">
-                Expert in React, Node.js, and modern web architectures. Passionate about creating
+                Expert in React, Node.js and modern web architectures. Passionate about creating
                 scalable solutions and exceptional user experiences.
               </p>
             </div>
@@ -129,7 +128,7 @@ const Overview = () => {
               Technology Stack
             </h2>
             <p className="text-[var(--text-muted)] max-w-2xl mx-auto">
-              Built with modern, scalable technologies to ensure performance, security, and maintainability.
+              Built with modern, scalable technologies to ensure performance, security and maintainability.
             </p>
           </div>
 
@@ -161,7 +160,7 @@ const Overview = () => {
               What Our Users Say
             </h2>
             <p className="text-[var(--text-muted)] max-w-2xl mx-auto">
-              Hear from developers, companies, and freelancers who have transformed their workflow with DataWorks.
+              Hear from developers, companies and freelancers who have transformed their workflow with DataWorks.
             </p>
           </div>
 

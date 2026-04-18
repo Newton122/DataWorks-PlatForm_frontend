@@ -47,8 +47,8 @@ const DashboardLayout = () => {
     <div className="min-h-screen bg-gray-50 dark:bg-slate-900 flex lg:flex-row">
       {/* Sidebar - Hidden on mobile, overlay when open */}
       <div className={`lg:block ${isMobile ? (isSidebarOpen ? 'fixed inset-0 z-50' : 'hidden') : ''}`}>
-        <div className={`${isMobile ? 'absolute inset-0 bg-black bg-opacity-50' : ''}`} onClick={() => setIsSidebarOpen(false)}></div>
-        <div className={`relative ${isMobile ? 'w-64 h-full' : ''}`}>
+        <div className={`${isMobile ? 'absolute inset-0 bg-black bg-opacity-50 backdrop-blur-sm' : ''}`} onClick={() => setIsSidebarOpen(false)}></div>
+        <div className={`relative ${isMobile ? 'w-64 h-full ml-auto bg-[var(--bg-secondary)]' : ''}`}>
           <Sidebar onClose={() => setIsSidebarOpen(false)} />
         </div>
       </div>

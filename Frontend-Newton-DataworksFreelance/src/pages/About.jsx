@@ -70,7 +70,7 @@ const About = () => {
                   </div>
                   <div>
                     <h4 className="font-semibold text-[var(--text-primary)] mb-1">Data Infrastructure</h4>
-                    <p className="text-sm text-[var(--text-secondary)]">Invisible, robust, and production-grade</p>
+                    <p className="text-sm text-[var(--text-secondary)]">Invisible, robust and production-grade</p>
                   </div>
                 </div>
                 <div className="flex gap-4">
