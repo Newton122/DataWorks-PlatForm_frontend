@@ -904,10 +904,6 @@ video {
   width: 0.75rem;
 }
 
-.w-32{
-  width: 8rem;
-}
-
 .w-4{
   width: 1rem;
 }
@@ -2048,9 +2044,9 @@ video {
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
-.ring-2{
+.ring-1{
   --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
-  --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+  --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color);
   box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
 }
 
@@ -3132,28 +3128,28 @@ body.dark {
 
 @media (min-width: 640px){
 
-  .sm\:mb-3{
-    margin-bottom: 0.75rem;
+  .sm\:mb-2{
+    margin-bottom: 0.5rem;
   }
 
   .sm\:block{
     display: block;
   }
 
-  .sm\:h-12{
-    height: 3rem;
+  .sm\:h-20{
+    height: 5rem;
   }
 
-  .sm\:h-32{
-    height: 8rem;
+  .sm\:h-8{
+    height: 2rem;
   }
 
-  .sm\:w-12{
-    width: 3rem;
+  .sm\:w-28{
+    width: 7rem;
   }
 
-  .sm\:w-40{
-    width: 10rem;
+  .sm\:w-8{
+    width: 2rem;
   }
 
   .sm\:flex-row{
@@ -3164,12 +3160,8 @@ body.dark {
     gap: 0.75rem;
   }
 
-  .sm\:gap-6{
-    gap: 1.5rem;
-  }
-
-  .sm\:p-6{
-    padding: 1.5rem;
+  .sm\:p-3{
+    padding: 0.75rem;
   }
 
   .sm\:px-4{
@@ -3250,12 +3242,12 @@ body.dark {
     display: none;
   }
 
-  .md\:h-12{
-    height: 3rem;
+  .md\:h-10{
+    height: 2.5rem;
   }
 
-  .md\:h-16{
-    height: 4rem;
+  .md\:h-12{
+    height: 3rem;
   }
 
   .md\:h-5{
@@ -3270,16 +3262,16 @@ body.dark {
     width: 50%;
   }
 
+  .md\:w-10{
+    width: 2.5rem;
+  }
+
   .md\:w-12{
     width: 3rem;
   }
 
-  .md\:w-16{
-    width: 4rem;
-  }
-
-  .md\:w-48{
-    width: 12rem;
+  .md\:w-32{
+    width: 8rem;
   }
 
   .md\:w-5{
