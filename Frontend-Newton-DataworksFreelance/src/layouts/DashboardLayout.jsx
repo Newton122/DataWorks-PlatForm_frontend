@@ -12,6 +12,7 @@ const DashboardLayout = () => {
   useEffect(() => {
     const checkMobile = () => {
       const mobile = window.innerWidth < 768
+      console.log('Screen width:', window.innerWidth, 'Is mobile:', mobile)
       setIsMobile(mobile)
       if (!mobile) {
         setIsSidebarOpen(false) // Close sidebar on desktop
@@ -22,7 +23,10 @@ const DashboardLayout = () => {
     return () => window.removeEventListener('resize', checkMobile)
   }, [])
 
-  const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen)
+  const toggleSidebar = () => {
+    console.log('Toggling sidebar, current state:', isSidebarOpen)
+    setIsSidebarOpen(!isSidebarOpen)
+  }
 
   const initialFor = (variants) => (isMobile ? false : variants)
 

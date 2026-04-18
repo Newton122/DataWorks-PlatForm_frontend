@@ -50,7 +50,10 @@ const Sidebar = ({ onClose }) => {
       {/* Mobile close button */}
       <div className="lg:hidden p-4 border-b border-[var(--border-color)]">
         <button
-          onClick={onClose}
+          onClick={() => {
+            console.log('Close button clicked')
+            onClose()
+          }}
           className="p-2 rounded-lg hover:bg-[var(--bg-tertiary)] transition-colors"
         >
           <svg className="w-5 h-5 text-[var(--text-secondary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">

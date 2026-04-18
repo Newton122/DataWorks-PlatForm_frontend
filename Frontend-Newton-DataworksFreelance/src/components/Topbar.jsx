@@ -20,7 +20,10 @@ const Topbar = ({ onMenuClick }) => {
       <div className="flex items-center justify-between h-16 px-4 sm:px-6">
         {/* Mobile menu button */}
         <button
-          onClick={onMenuClick}
+          onClick={() => {
+            console.log('Menu button clicked')
+            onMenuClick()
+          }}
           className="lg:hidden p-2 rounded-lg hover:bg-[var(--border-color)] transition-colors mr-3"
           aria-label="Open menu"
         >
