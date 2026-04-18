@@ -2298,26 +2298,14 @@ button, a, input, textarea, select {
   }
 }
 
-/* Horizontal scroll animations for image carousel */
-
-@keyframes fadeSlide {
-  0% {
-    opacity: 0.8;
-  }
-  50% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0.8;
-  }
-}
+/* Horizontal scroll animations for image carousel - Disabled for smooth display */
 
 .animate-scroll-left {
-  animation: fadeSlide 3s ease-in-out infinite;
+  animation: none;
 }
 
 .animate-scroll-right {
-  animation: fadeSlide 3s ease-in-out infinite reverse;
+  animation: none;
 }
 
 /* Smooth swap animation for carousel items */
