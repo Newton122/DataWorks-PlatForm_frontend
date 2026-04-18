@@ -2225,7 +2225,7 @@ body {
 
 /* Motion and animations */
 
-* {
+button, a, input, textarea, select {
   transition: var(--transition);
 }
 
@@ -2319,13 +2319,11 @@ body {
 }
 
 .animate-scroll-left {
-  animation: scroll-left 50s linear infinite;
-  will-change: transform;
+  animation: scroll-left 30s linear infinite;
 }
 
 .animate-scroll-right {
-  animation: scroll-right 50s linear infinite reverse;
-  will-change: transform;
+  animation: scroll-right 30s linear infinite reverse;
 }
 
 /* Smooth swap animation for carousel items */
