@@ -243,19 +243,19 @@ const Home = () => {
   ];
 
   return (
-    <div className="bg-[var(--bg-primary)] overflow-x-hidden">
+    <div className="bg-[var(--bg-primary)] overflow-x-hidden w-full min-w-0">
 
       {/* Hero Section */}
       <MotionSection
         initial={fadeUp}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
-        className="relative py-8 md:py-14 lg:py-18 px-3 sm:px-4 overflow-hidden"
+        className="relative py-8 md:py-14 lg:py-18 px-3 sm:px-4 overflow-hidden w-full min-w-0"
       >
 
-        <div className="relative max-w-6xl mx-auto">
-          <div className="grid lg:grid-cols-2 gap-4 md:gap-6 items-center">
-            <div className="space-y-3 md:space-y-4">
+        <div className="relative max-w-6xl mx-auto w-full overflow-hidden min-w-0">
+          <div className="grid lg:grid-cols-2 gap-4 md:gap-6 items-center min-w-0">
+            <div className="space-y-3 md:space-y-4 min-w-0">
                 <div className="inline-flex items-center px-2.5 py-1 bg-[var(--bg-tertiary)] border border-[var(--border-color)] text-[var(--accent-primary)] text-xs font-medium rounded-full">
 
                 <span className="w-2 h-2 bg-[var(--accent-primary)] mr-2 animate-pulse"></span>
@@ -305,9 +305,9 @@ const Home = () => {
                 </div>
               </div>
             </div>
-            <div className="relative">
-              <div className="bg-[var(--bg-secondary)] border border-[var(--border-color)] p-4">
-                <div className="flex items-center gap-2 mb-3">
+            <div className="relative min-w-0">
+              <div className="bg-[var(--bg-secondary)] border border-[var(--border-color)] p-4 min-w-0">
+                <div className="flex items-center gap-2 mb-3 min-w-0">
                   <div className="w-3 h-3 bg-red-500"></div>
                   <div className="w-3 h-3 bg-yellow-500"></div>
                   <div className="w-3 h-3 bg-green-500"></div>

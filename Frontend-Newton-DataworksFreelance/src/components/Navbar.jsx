@@ -139,8 +139,7 @@ const Navbar = () => {
         {isMenuOpen && (
           <>
             <div
-              className="fixed inset-0 bg-black/40 backdrop-blur-sm"
-              style={{ zIndex: 9998 }}
+              className="fixed inset-0 z-[9998] bg-black/40 backdrop-blur-sm cursor-pointer"
               onClick={() => setIsMenuOpen(false)}
             />
             <motion.div
@@ -149,8 +148,7 @@ const Navbar = () => {
               animate={{ x: 0, opacity: 1 }}
               exit={{ x: 260, opacity: 0 }}
               transition={{ duration: 0.25, ease: 'easeOut' }}
-              style={{ zIndex: 9999 }}
-              className="fixed inset-y-0 right-0 w-72 max-w-full bg-bg-secondary border-l border-border-color shadow-2xl overflow-y-auto"
+              className="fixed inset-y-0 right-0 z-[9999] w-4/5 max-w-xs sm:max-w-sm h-full bg-bg-secondary border-l border-border-color shadow-2xl overflow-y-auto"
             >
               <div className="flex items-center justify-between px-4 py-4 border-b border-border-color">
                 <span className="text-sm font-semibold text-text-primary">Menu</span>

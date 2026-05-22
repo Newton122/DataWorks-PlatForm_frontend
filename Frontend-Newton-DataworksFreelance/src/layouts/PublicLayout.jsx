@@ -36,7 +36,7 @@ const PublicLayout = () => {
 
 
   return (
-    <div className="min-h-screen bg-bg-primary">
+    <div className="min-h-screen bg-bg-primary overflow-x-hidden w-full">
       <Navbar />
       <AnimatePresence mode="wait">
         <MotionMain
