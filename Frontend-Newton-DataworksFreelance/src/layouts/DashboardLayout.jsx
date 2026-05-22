@@ -62,12 +62,13 @@ const DashboardLayout = () => {
       </div>
 
       {/* Mobile Sidebar Overlay */}
-      <div className={`fixed inset-0 z-50 pointer-events-none lg:hidden ${isSidebarOpen ? 'opacity-100' : 'opacity-0'}`}>
+      <div className={`fixed inset-0 pointer-events-none lg:hidden ${isSidebarOpen ? 'opacity-100' : 'opacity-0'}`} style={{ zIndex: 9997 }}>
         <div
           className={`absolute inset-0 bg-black transition-opacity duration-300 ${isSidebarOpen ? 'bg-opacity-50 pointer-events-auto' : 'bg-opacity-0'}`}
+          style={{ zIndex: 9998 }}
           onClick={() => setIsSidebarOpen(false)}
         ></div>
-        <div className={`absolute top-0 right-0 h-full w-72 bg-[var(--bg-secondary)] shadow-2xl border-l border-[var(--border-color)] transition-transform duration-300 ${isSidebarOpen ? 'translate-x-0 pointer-events-auto' : 'translate-x-full'}`}>
+        <div className={`absolute top-0 right-0 h-full w-72 bg-[var(--bg-secondary)] shadow-2xl border-l border-[var(--border-color)] transition-transform duration-300 ${isSidebarOpen ? 'translate-x-0 pointer-events-auto' : 'translate-x-full'}`} style={{ zIndex: 9999 }}>
           <Sidebar onClose={() => setIsSidebarOpen(false)} />
         </div>
       </div>
