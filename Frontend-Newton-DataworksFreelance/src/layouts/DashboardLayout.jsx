@@ -62,13 +62,13 @@ const DashboardLayout = () => {
       </div>
 
       {/* Mobile Sidebar Overlay */}
-      <div className={`fixed inset-0 pointer-events-none lg:hidden ${isSidebarOpen ? 'opacity-100' : 'opacity-0'}`} style={{ zIndex: 9997 }}>
+      <div className={`fixed inset-0 lg:hidden transition-opacity duration-300 ${isSidebarOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`} style={{ zIndex: 99998 }}>
         <div
-          className={`absolute inset-0 bg-black transition-opacity duration-300 ${isSidebarOpen ? 'bg-opacity-50 pointer-events-auto' : 'bg-opacity-0'}`}
-          style={{ zIndex: 9998 }}
+          className={`absolute inset-0 bg-black transition-opacity duration-300 ${isSidebarOpen ? 'bg-opacity-50 pointer-events-auto' : 'bg-opacity-0 pointer-events-none'}`}
+          style={{ zIndex: 99999 }}
           onClick={() => setIsSidebarOpen(false)}
         ></div>
-        <div className={`absolute top-0 right-0 h-full w-72 bg-[var(--bg-secondary)] shadow-2xl border-l border-[var(--border-color)] transition-transform duration-300 ${isSidebarOpen ? 'translate-x-0 pointer-events-auto' : 'translate-x-full'}`} style={{ zIndex: 9999 }}>
+        <div className={`absolute top-0 right-0 h-full w-72 bg-[var(--bg-secondary)] shadow-2xl border-l border-[var(--border-color)] transition-transform duration-300 ${isSidebarOpen ? 'translate-x-0 pointer-events-auto' : 'translate-x-full pointer-events-none'}`} style={{ zIndex: 100000 }}>
           <Sidebar onClose={() => setIsSidebarOpen(false)} />
         </div>
       </div>
