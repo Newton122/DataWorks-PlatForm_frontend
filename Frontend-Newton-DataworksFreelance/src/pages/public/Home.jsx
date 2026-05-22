@@ -286,7 +286,7 @@ const Home = () => {
                   whileHover={{ y: -2, scale: 1.04 }}
                   whileTap={{ scale: 0.96 }}
                   transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-                  className="px-5 md:px-6 py-2 md:py-2.5 backdrop-blur-md bg-white/10 border border-white/20 text-white font-semibold hover:bg-white/30 transition-all text-xs md:text-sm rounded-full shadow-md hover:shadow-lg hover:border-white/40"
+                  className="relative px-5 md:px-6 py-2 md:py-2.5 backdrop-blur-md bg-white/10 border border-white/20 text-white font-semibold hover:bg-white/30 transition-all text-xs md:text-sm rounded-full shadow-md hover:shadow-lg hover:border-white/40"
                 >
                   {heroSlides[currentSlide].secondaryCta}
                   <span className="absolute inset-x-3 bottom-2 h-1.5 bg-[rgba(255, 255, 255, 0.2)] rounded-full blur-sm" />

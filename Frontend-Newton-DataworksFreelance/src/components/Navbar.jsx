@@ -34,7 +34,7 @@ const Navbar = () => {
       initial={{ y: -20, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.45, ease: 'easeOut' }}
-      className="bg-bg-secondary border-b border-border-color fixed top-0 left-0 right-0 z-50"
+      className="bg-bg-secondary/95 backdrop-blur-xl border-b border-[var(--border-color)] fixed top-0 left-0 right-0 z-50 shadow-xl"
     >
       <motion.div
         initial={{ opacity: 0 }}
