@@ -11,23 +11,15 @@ const Navbar = () => {
   const navigate = useNavigate()
   const menuRef = useRef(null)
 
-  // Close mobile menu when clicking outside
+  // Lock body scroll while mobile menu is open
   useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (menuRef.current && !menuRef.current.contains(event.target)) {
-        setIsMenuOpen(false)
-      }
-    }
-
     if (isMenuOpen) {
-      document.addEventListener('mousedown', handleClickOutside)
-      document.body.style.overflow = 'hidden' // Prevent background scrolling
+      document.body.style.overflow = 'hidden'
     } else {
       document.body.style.overflow = 'unset'
     }
 
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside)
       document.body.style.overflow = 'unset'
     }
   }, [isMenuOpen])
@@ -145,94 +137,109 @@ const Navbar = () => {
         </div>
 
         {isMenuOpen && (
-          <motion.div
-            ref={menuRef}
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.2 }}
-            className="md:hidden bg-bg-secondary border-t border-border-color absolute top-full left-0 right-0 z-40 shadow-lg"
-          >
-            <div className="px-4 pt-2 pb-3 space-y-1">
-              <Link to="/" onClick={() => setIsMenuOpen(false)} className="block px-3 py-2 text-sm text-text-secondary hover:text-text-primary hover:bg-bg-tertiary rounded-lg transition-colors">
-                Home
-              </Link>
-              <Link to="/jobs" onClick={() => setIsMenuOpen(false)} className="block px-3 py-2 text-sm text-text-secondary hover:text-text-primary hover:bg-bg-tertiary rounded-lg transition-colors">
-                Jobs
-              </Link>
-
-              {/* Services Section */}
-              <div className="py-2">
-                <div className="px-3 py-1 text-xs font-semibold text-text-muted uppercase tracking-wider">
-                  Services
-                </div>
-                <Link to="/services" onClick={() => setIsMenuOpen(false)} className="block px-6 py-2 text-sm text-text-secondary hover:text-text-primary hover:bg-bg-tertiary rounded-lg transition-colors flex items-center gap-2">
-                  <ClipboardList className="w-4 h-4" /> All Services
-                </Link>
-                <Link to="/industry/agriculture" onClick={() => setIsMenuOpen(false)} className="block px-6 py-2 text-sm text-text-secondary hover:text-text-primary hover:bg-bg-tertiary rounded-lg transition-colors flex items-center gap-2">
-                  <Leaf className="w-4 h-4" /> Agriculture Data
-                </Link>
-                <Link to="/industry/small-business" onClick={() => setIsMenuOpen(false)} className="block px-6 py-2 text-sm text-text-secondary hover:text-text-primary hover:bg-bg-tertiary rounded-lg transition-colors flex items-center gap-2">
-                  <ShoppingBag className="w-4 h-4" /> Small Business Analytics
-                </Link>
-                <Link to="/industry/security-ai" onClick={() => setIsMenuOpen(false)} className="block px-6 py-2 text-sm text-text-secondary hover:text-text-primary hover:bg-bg-tertiary rounded-lg transition-colors flex items-center gap-2">
-                  <Shield className="w-4 h-4" /> Security AI/ML
-                </Link>
-                <Link to="/industry/data-engineering" onClick={() => setIsMenuOpen(false)} className="block px-6 py-2 text-sm text-text-secondary hover:text-text-primary hover:bg-bg-tertiary rounded-lg transition-colors flex items-center gap-2">
-                  <Settings2 className="w-4 h-4" /> Data Engineering
-                </Link>
+          <>
+            <div className="fixed inset-0 bg-black/40 backdrop-blur-sm z-40" onClick={() => setIsMenuOpen(false)} />
+            <motion.div
+              ref={menuRef}
+              initial={{ x: 260, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              exit={{ x: 260, opacity: 0 }}
+              transition={{ duration: 0.25, ease: 'easeOut' }}
+              className="fixed inset-y-0 right-0 z-50 w-72 max-w-full bg-bg-secondary border-l border-border-color shadow-2xl overflow-y-auto"
+            >
+              <div className="flex items-center justify-between px-4 py-4 border-b border-border-color">
+                <span className="text-sm font-semibold text-text-primary">Menu</span>
+                <button
+                  onClick={() => setIsMenuOpen(false)}
+                  className="p-2 rounded-lg hover:bg-bg-tertiary transition-colors"
+                  aria-label="Close menu"
+                >
+                  <svg className="w-5 h-5 text-text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
               </div>
+              <div className="px-4 py-3 space-y-1">
+                <Link to="/" onClick={() => setIsMenuOpen(false)} className="block px-3 py-2 text-sm text-text-secondary hover:text-text-primary hover:bg-bg-tertiary rounded-lg transition-colors">
+                  Home
+                </Link>
+                <Link to="/jobs" onClick={() => setIsMenuOpen(false)} className="block px-3 py-2 text-sm text-text-secondary hover:text-text-primary hover:bg-bg-tertiary rounded-lg transition-colors">
+                  Jobs
+                </Link>
 
-              <Link to="/about" onClick={() => setIsMenuOpen(false)} className="block px-3 py-2 text-sm text-text-secondary hover:text-text-primary hover:bg-bg-tertiary rounded-lg transition-colors">
-                About
-              </Link>
-              <Link to="/team" onClick={() => setIsMenuOpen(false)} className="block px-3 py-2 text-sm text-text-secondary hover:text-text-primary hover:bg-bg-tertiary rounded-lg transition-colors">
-                Team
-              </Link>
-              <Link to="/overview" onClick={() => setIsMenuOpen(false)} className="block px-3 py-2 text-sm text-text-secondary hover:text-text-primary hover:bg-bg-tertiary rounded-lg transition-colors">
-                Overview
-              </Link>
-              <Link to="/contact" onClick={() => setIsMenuOpen(false)} className="block px-3 py-2 text-sm text-text-secondary hover:text-text-primary hover:bg-bg-tertiary rounded-lg transition-colors">
-                Contact
-              </Link>
-              <Link to="/blog" onClick={() => setIsMenuOpen(false)} className="block px-3 py-2 text-sm text-text-secondary hover:text-text-primary hover:bg-bg-tertiary rounded-lg transition-colors">
-                Blog
-              </Link>
-
-              {/* User Section */}
-              {user ? (
-                <div className="border-t border-border-color pt-2 mt-2">
-                  <Link to="/dashboard" onClick={() => setIsMenuOpen(false)} className="block px-3 py-2 text-sm text-text-secondary hover:text-text-primary hover:bg-bg-tertiary rounded-lg transition-colors">
-                    Dashboard
+                {/* Services Section */}
+                <div className="py-2">
+                  <div className="px-3 py-1 text-xs font-semibold text-text-muted uppercase tracking-wider">
+                    Services
+                  </div>
+                  <Link to="/services" onClick={() => setIsMenuOpen(false)} className="block px-6 py-2 text-sm text-text-secondary hover:text-text-primary hover:bg-bg-tertiary rounded-lg transition-colors flex items-center gap-2">
+                    <ClipboardList className="w-4 h-4" /> All Services
                   </Link>
-                  <Link to="/messages" onClick={() => setIsMenuOpen(false)} className="block px-3 py-2 text-sm text-text-secondary hover:text-text-primary hover:bg-bg-tertiary rounded-lg transition-colors">
-                    Messages
+                  <Link to="/industry/agriculture" onClick={() => setIsMenuOpen(false)} className="block px-6 py-2 text-sm text-text-secondary hover:text-text-primary hover:bg-bg-tertiary rounded-lg transition-colors flex items-center gap-2">
+                    <Leaf className="w-4 h-4" /> Agriculture Data
                   </Link>
-                  <Link to="/profile" onClick={() => setIsMenuOpen(false)} className="block px-3 py-2 text-sm text-text-secondary hover:text-text-primary hover:bg-bg-tertiary rounded-lg transition-colors">
-                    Profile
+                  <Link to="/industry/small-business" onClick={() => setIsMenuOpen(false)} className="block px-6 py-2 text-sm text-text-secondary hover:text-text-primary hover:bg-bg-tertiary rounded-lg transition-colors flex items-center gap-2">
+                    <ShoppingBag className="w-4 h-4" /> Small Business Analytics
                   </Link>
-                  <button
-                    onClick={() => {
-                      handleLogout();
-                      setIsMenuOpen(false);
-                    }}
-                    className="w-full text-left px-3 py-2 text-sm text-text-secondary hover:text-text-primary hover:bg-bg-tertiary rounded-lg transition-colors"
-                  >
-                    Logout
-                  </button>
-                </div>
-              ) : (
-                <div className="border-t border-border-color pt-2 mt-2 space-y-1">
-                  <Link to="/login" onClick={() => setIsMenuOpen(false)} className="block px-3 py-2 text-sm text-text-secondary hover:text-text-primary hover:bg-bg-tertiary rounded-lg transition-colors">
-                    Login
+                  <Link to="/industry/security-ai" onClick={() => setIsMenuOpen(false)} className="block px-6 py-2 text-sm text-text-secondary hover:text-text-primary hover:bg-bg-tertiary rounded-lg transition-colors flex items-center gap-2">
+                    <Shield className="w-4 h-4" /> Security AI/ML
                   </Link>
-                  <Link to="/signup" onClick={() => setIsMenuOpen(false)} className="block px-3 py-2 text-sm bg-accent-primary text-white hover:bg-accent-hover rounded-lg transition-colors text-center">
-                    Sign Up
+                  <Link to="/industry/data-engineering" onClick={() => setIsMenuOpen(false)} className="block px-6 py-2 text-sm text-text-secondary hover:text-text-primary hover:bg-bg-tertiary rounded-lg transition-colors flex items-center gap-2">
+                    <Settings2 className="w-4 h-4" /> Data Engineering
                   </Link>
                 </div>
-              )}
-            </div>
-          </motion.div>
+
+                <Link to="/about" onClick={() => setIsMenuOpen(false)} className="block px-3 py-2 text-sm text-text-secondary hover:text-text-primary hover:bg-bg-tertiary rounded-lg transition-colors">
+                  About
+                </Link>
+                <Link to="/team" onClick={() => setIsMenuOpen(false)} className="block px-3 py-2 text-sm text-text-secondary hover:text-text-primary hover:bg-bg-tertiary rounded-lg transition-colors">
+                  Team
+                </Link>
+                <Link to="/overview" onClick={() => setIsMenuOpen(false)} className="block px-3 py-2 text-sm text-text-secondary hover:text-text-primary hover:bg-bg-tertiary rounded-lg transition-colors">
+                  Overview
+                </Link>
+                <Link to="/contact" onClick={() => setIsMenuOpen(false)} className="block px-3 py-2 text-sm text-text-secondary hover:text-text-primary hover:bg-bg-tertiary rounded-lg transition-colors">
+                  Contact
+                </Link>
+                <Link to="/blog" onClick={() => setIsMenuOpen(false)} className="block px-3 py-2 text-sm text-text-secondary hover:text-text-primary hover:bg-bg-tertiary rounded-lg transition-colors">
+                  Blog
+                </Link>
+
+                {/* User Section */}
+                {user ? (
+                  <div className="border-t border-border-color pt-2 mt-2">
+                    <Link to="/dashboard" onClick={() => setIsMenuOpen(false)} className="block px-3 py-2 text-sm text-text-secondary hover:text-text-primary hover:bg-bg-tertiary rounded-lg transition-colors">
+                      Dashboard
+                    </Link>
+                    <Link to="/messages" onClick={() => setIsMenuOpen(false)} className="block px-3 py-2 text-sm text-text-secondary hover:text-text-primary hover:bg-bg-tertiary rounded-lg transition-colors">
+                      Messages
+                    </Link>
+                    <Link to="/profile" onClick={() => setIsMenuOpen(false)} className="block px-3 py-2 text-sm text-text-secondary hover:text-text-primary hover:bg-bg-tertiary rounded-lg transition-colors">
+                      Profile
+                    </Link>
+                    <button
+                      onClick={() => {
+                        handleLogout();
+                        setIsMenuOpen(false);
+                      }}
+                      className="w-full text-left px-3 py-2 text-sm text-text-secondary hover:text-text-primary hover:bg-bg-tertiary rounded-lg transition-colors"
+                    >
+                      Logout
+                    </button>
+                  </div>
+                ) : (
+                  <div className="border-t border-border-color pt-2 mt-2 space-y-1">
+                    <Link to="/login" onClick={() => setIsMenuOpen(false)} className="block px-3 py-2 text-sm text-text-secondary hover:text-text-primary hover:bg-bg-tertiary rounded-lg transition-colors">
+                      Login
+                    </Link>
+                    <Link to="/signup" onClick={() => setIsMenuOpen(false)} className="block px-3 py-2 text-sm bg-accent-primary text-white hover:bg-accent-hover rounded-lg transition-colors text-center">
+                      Sign Up
+                    </Link>
+                  </div>
+                )}
+              </div>
+            </motion.div>
+          </>
         )}
       </motion.div>
     </motion.nav>
