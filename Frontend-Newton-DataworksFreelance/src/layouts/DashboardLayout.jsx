@@ -12,10 +12,9 @@ const DashboardLayout = () => {
   useEffect(() => {
     const checkMobile = () => {
       const mobile = window.innerWidth < 768
-      console.log('Screen width:', window.innerWidth, 'Is mobile:', mobile)
       setIsMobile(mobile)
       if (!mobile) {
-        setIsSidebarOpen(false) // Close sidebar on desktop
+        setIsSidebarOpen(false)
       }
     }
     checkMobile()
@@ -23,10 +22,18 @@ const DashboardLayout = () => {
     return () => window.removeEventListener('resize', checkMobile)
   }, [])
 
-  const toggleSidebar = () => {
-    console.log('Toggling sidebar, current state:', isSidebarOpen)
-    setIsSidebarOpen(!isSidebarOpen)
-  }
+  useEffect(() => {
+    if (isSidebarOpen && isMobile) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = ''
+    }
+    return () => {
+      document.body.style.overflow = ''
+    }
+  }, [isSidebarOpen, isMobile])
+
+  const toggleSidebar = () => setIsSidebarOpen((prev) => !prev)
 
   const initialFor = (variants) => (isMobile ? false : variants)
 
@@ -55,19 +62,15 @@ const DashboardLayout = () => {
       </div>
 
       {/* Mobile Sidebar Overlay */}
-      {isMobile && isSidebarOpen && (
-        <div className="fixed inset-0 z-50">
-          {/* Backdrop */}
-          <div 
-            className="absolute inset-0 bg-black bg-opacity-50 backdrop-blur-sm" 
-            onClick={() => setIsSidebarOpen(false)}
-          ></div>
-          {/* Sidebar */}
-          <div className="relative ml-auto w-64 h-full">
-            <Sidebar onClose={() => setIsSidebarOpen(false)} />
-          </div>
+      <div className={`fixed inset-0 z-50 pointer-events-none lg:hidden ${isSidebarOpen ? 'opacity-100' : 'opacity-0'}`}>
+        <div
+          className={`absolute inset-0 bg-black transition-opacity duration-300 ${isSidebarOpen ? 'bg-opacity-50 pointer-events-auto' : 'bg-opacity-0'}`}
+          onClick={() => setIsSidebarOpen(false)}
+        ></div>
+        <div className={`absolute top-0 right-0 h-full w-72 bg-[var(--bg-secondary)] shadow-2xl border-l border-[var(--border-color)] transition-transform duration-300 ${isSidebarOpen ? 'translate-x-0 pointer-events-auto' : 'translate-x-full'}`}>
+          <Sidebar onClose={() => setIsSidebarOpen(false)} />
         </div>
-      )}
+      </div>
 
       <div className="flex-1 flex flex-col lg:min-w-0">
         <Topbar onMenuClick={toggleSidebar} />
