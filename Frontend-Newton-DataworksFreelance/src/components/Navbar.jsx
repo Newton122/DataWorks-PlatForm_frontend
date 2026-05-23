@@ -146,8 +146,24 @@ const Navbar = () => {
               <Link to="/" onClick={() => setIsMenuOpen(false)} className="block px-3 py-2 text-sm text-text-secondary hover:text-text-primary hover:bg-bg-tertiary rounded-lg">Home</Link>
               <Link to="/jobs" onClick={() => setIsMenuOpen(false)} className="block px-3 py-2 text-sm text-text-secondary hover:text-text-primary hover:bg-bg-tertiary rounded-lg">Jobs</Link>
               <div className="py-2">
-                <div className="px-3 py-1 text-xs font-semibold text-text-muted uppercase tracking-wider">Services</div>
-                <Link to="/services" onClick={() => setIsMenuOpen(false)} className="block px-6 py-2 text-sm text-text-secondary hover:text-text-primary hover:bg-bg-tertiary rounded-lg">All Services</Link>
+                <button
+                  onClick={() => setIsServicesOpenMobile((s) => !s)}
+                  className="w-full flex items-center justify-between px-3 py-2 text-sm text-text-secondary hover:text-text-primary hover:bg-bg-tertiary rounded-lg transition-colors"
+                  aria-expanded={isServicesOpenMobile}
+                >
+                  <span className="flex items-center gap-2"><ClipboardList className="w-4 h-4" /> Services</span>
+                  <svg className={`w-4 h-4 transform transition-transform ${isServicesOpenMobile ? 'rotate-180' : 'rotate-0'}`} viewBox="0 0 20 20" fill="none" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 8l4 4 4-4" />
+                  </svg>
+                </button>
+
+                <div className={`${isServicesOpenMobile ? 'block' : 'hidden'} px-2 mt-1 space-y-1`}> 
+                  <Link to="/services" onClick={() => { setIsMenuOpen(false); setIsServicesOpenMobile(false); }} className="block px-4 py-2 text-sm text-text-secondary hover:text-text-primary hover:bg-bg-tertiary rounded-lg transition-colors">All Services</Link>
+                  <Link to="/industry/agriculture" onClick={() => { setIsMenuOpen(false); setIsServicesOpenMobile(false); }} className="block px-4 py-2 text-sm text-text-secondary hover:text-text-primary hover:bg-bg-tertiary rounded-lg transition-colors">Agriculture Data</Link>
+                  <Link to="/industry/small-business" onClick={() => { setIsMenuOpen(false); setIsServicesOpenMobile(false); }} className="block px-4 py-2 text-sm text-text-secondary hover:text-text-primary hover:bg-bg-tertiary rounded-lg transition-colors">Small Business Analytics</Link>
+                  <Link to="/industry/security-ai" onClick={() => { setIsMenuOpen(false); setIsServicesOpenMobile(false); }} className="block px-4 py-2 text-sm text-text-secondary hover:text-text-primary hover:bg-bg-tertiary rounded-lg transition-colors">Security AI/ML</Link>
+                  <Link to="/industry/data-engineering" onClick={() => { setIsMenuOpen(false); setIsServicesOpenMobile(false); }} className="block px-4 py-2 text-sm text-text-secondary hover:text-text-primary hover:bg-bg-tertiary rounded-lg transition-colors">Data Engineering</Link>
+                </div>
               </div>
 
               {user ? (
