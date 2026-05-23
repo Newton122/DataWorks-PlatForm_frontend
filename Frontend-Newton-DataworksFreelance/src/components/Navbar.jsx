@@ -8,13 +8,18 @@ import ThemeToggle from './ThemeToggle'
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isServicesOpen, setIsServicesOpen] = useState(false)
+  const [isServicesOpenMobile, setIsServicesOpenMobile] = useState(false)
   const { user, logout } = useAuth()
   const navigate = useNavigate()
   const menuRef = useRef(null)
 
   useEffect(() => {
-    if (isMenuOpen) document.body.style.overflow = 'hidden'
-    else document.body.style.overflow = 'unset'
+    if (isMenuOpen) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = 'unset'
+      setIsServicesOpenMobile(false)
+    }
     return () => (document.body.style.overflow = 'unset')
   }, [isMenuOpen])
 
