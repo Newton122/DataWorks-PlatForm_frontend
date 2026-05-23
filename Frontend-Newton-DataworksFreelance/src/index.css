@@ -379,7 +379,18 @@ button, a, input, textarea, select {
 .bg-card {
   background-color: var(--bg-secondary) !important;
   border: 1px solid #30363d !important;
-  border-radius: 0.75rem;
+  border-radius: 0.35rem !important;
+}
+
+/* Subtle rounded corners for cards across the app */
+.rounded-lg {
+  border-radius: 0.35rem !important;
+}
+
+.rounded-xl,
+.hero-gradient,
+.surface-card {
+  border-radius: 0.5rem !important;
 }
 
 body.dark {
