@@ -7,6 +7,7 @@ import ThemeToggle from './ThemeToggle'
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isServicesOpen, setIsServicesOpen] = useState(false)
   const { user, logout } = useAuth()
   const navigate = useNavigate()
   const menuRef = useRef(null)
@@ -16,6 +17,21 @@ const Navbar = () => {
     else document.body.style.overflow = 'unset'
     return () => (document.body.style.overflow = 'unset')
   }, [isMenuOpen])
+
+  // Close services dropdown when clicking outside
+  useEffect(() => {
+    const onDocClick = (e) => {
+      if (!e.target.closest) return
+      const servicesEl = document.getElementById('nav-services-dropdown')
+      const servicesBtn = document.getElementById('nav-services-btn')
+      if (!servicesEl || !servicesBtn) return
+      if (!servicesEl.contains(e.target) && !servicesBtn.contains(e.target)) {
+        setIsServicesOpen(false)
+      }
+    }
+    document.addEventListener('click', onDocClick)
+    return () => document.removeEventListener('click', onDocClick)
+  }, [])
 
   const handleLogout = () => {
     logout()
@@ -44,10 +60,24 @@ const Navbar = () => {
             <div className="hidden md:flex items-center space-x-2">
               <Link to="/" className="nav-btn-small">Home</Link>
               <Link to="/jobs" className="nav-btn-small">Jobs</Link>
-              <div className="relative group">
-                <button className="nav-btn-small">Services ▼</button>
-                <div className="absolute left-0 mt-2 w-72 bg-bg-secondary border border-border-color rounded-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible shadow-xl z-50 py-1">
+              <div className="relative md:group">
+                <button
+                  id="nav-services-btn"
+                  onClick={() => setIsServicesOpen((s) => !s)}
+                  className="nav-btn-small"
+                  aria-expanded={isServicesOpen}
+                >
+                  Services ▼
+                </button>
+                <div
+                  id="nav-services-dropdown"
+                  className={`absolute left-0 mt-2 w-72 bg-bg-secondary border border-border-color rounded-lg shadow-xl z-50 py-1 transition-opacity duration-150 ${isServicesOpen ? 'opacity-100 visible' : 'opacity-0 invisible'} md:group-hover:opacity-100 md:group-hover:visible`}
+                >
                   <Link to="/services" className="block px-4 py-2 text-8px text-text-secondary hover:bg-bg-tertiary hover:text-text-primary">All Services</Link>
+                  <Link to="/industry/agriculture" className="block px-4 py-2 text-8px text-text-secondary hover:bg-bg-tertiary hover:text-text-primary">Agriculture Data</Link>
+                  <Link to="/industry/small-business" className="block px-4 py-2 text-8px text-text-secondary hover:bg-bg-tertiary hover:text-text-primary">Small Business Analytics</Link>
+                  <Link to="/industry/security-ai" className="block px-4 py-2 text-8px text-text-secondary hover:bg-bg-tertiary hover:text-text-primary">Security AI/ML</Link>
+                  <Link to="/industry/data-engineering" className="block px-4 py-2 text-8px text-text-secondary hover:bg-bg-tertiary hover:text-text-primary">Data Engineering</Link>
                 </div>
               </div>
               <Link to="/about" className="nav-btn-small">About</Link>
