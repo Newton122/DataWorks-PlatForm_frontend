@@ -46,6 +46,10 @@
   --transition: all 0.2s ease-in-out;
 }
 
+html {
+  font-size: 14px;
+}
+
 html,
 body {
   min-height: 100%;
@@ -56,10 +60,59 @@ body {
 
 body {
   font-family: 'Inter', sans-serif;
+  font-size: 0.95rem;
+  line-height: 1.45;
   background-color: var(--bg-primary) !important;
   color: var(--text-primary) !important;
   margin: 0;
   padding: 0;
+}
+
+/* Compact UI spacing and text */
+body,
+button,
+input,
+textarea,
+select,
+a,
+li,
+p {
+  font-size: 0.95rem !important;
+}
+
+h1 {
+  font-size: 2.25rem;
+}
+
+h2 {
+  font-size: 1.75rem;
+}
+
+h3 {
+  font-size: 1.25rem;
+}
+
+h4,
+h5,
+h6 {
+  font-size: 1rem;
+}
+
+.nav-btn-small {
+  font-size: 0.75rem !important;
+  padding: 0.3rem 0.65rem !important;
+}
+
+.btn,
+.btn-primary,
+.btn-secondary,
+.polidhed-dark-green-btn {
+  font-size: 0.9rem !important;
+  padding: 0.65rem 1.2rem !important;
+}
+
+.rounded-lg {
+  border-radius: 0.35rem !important;
 }
 
 /* Button styles - animations handled by Framer Motion */
