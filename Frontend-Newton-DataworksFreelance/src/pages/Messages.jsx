@@ -5,6 +5,15 @@ import { io } from 'socket.io-client';
 // Use production URL as fallback
 const API_URL = import.meta.env.VITE_API_BASE_URL || 'https://dataworks-platform.onrender.com';
 
+const normalizeId = (id) => {
+  if (!id && id !== 0) return '';
+  if (typeof id === 'object' && id !== null) {
+    if (id._id) return String(id._id);
+    if (id.toString) return id.toString();
+  }
+  return String(id);
+};
+
 const Messages = () => {
   const { user } = useAuth();
   const [conversations, setConversations] = useState([]);
@@ -25,7 +34,7 @@ const Messages = () => {
   const [hasMoreMessages, setHasMoreMessages] = useState(true);
   const [loadingMore, setLoadingMore] = useState(false);
   const [refreshing, setRefreshing] = useState(false);
-  const currentUserId = user?.id || user?._id;
+  const currentUserId = normalizeId(user?.id || user?._id);
   const messagesEndRef = useRef(null);
   const chatContainerRef = useRef(null);
   const typingTimeoutRef = useRef(null);
@@ -37,10 +46,7 @@ const Messages = () => {
     if (selectedConversation) {
       await fetchMessages(selectedConversation.userId);
       if (updatedConversations) {
-        const refreshedConv = updatedConversations.find(conv => conv.userId.toString() === selectedConversation.userId.toString());
-        if (refreshedConv) {
-          setSelectedConversation(refreshedConv);
-        }
+        const refreshedConv = updatedConversations.find(conv => normalizeId(conv.userId) === normalizeId(selectedConversation.userId));
       }
     }
 
@@ -58,47 +64,62 @@ const Messages = () => {
     newSocket.on('connect', () => {
       console.log('Connected to socket server');
     });
+    newSocket.on('connect_error', (err) => {
+      console.error('Socket connect_error:', err && err.message ? err.message : err);
+    });
+
+    newSocket.on('disconnect', (reason) => {
+      console.log('Socket disconnected:', reason);
+    });
 
     newSocket.on('onlineUsers', (users) => {
       setOnlineUsers(users);
     });
 
     newSocket.on('newMessage', (message) => {
-      console.log('Received newMessage:', message);
+      const normalizedMessage = {
+        ...message,
+        _id: normalizeId(message._id),
+        senderId: normalizeId(message.senderId),
+        receiverId: normalizeId(message.receiverId),
+        clientId: message.clientId || null,
+      };
+
+      console.log('Received newMessage:', normalizedMessage);
       setMessages(prev => {
         // Remove temporary message with the same clientId, if any
         let filtered = prev;
-        if (message.clientId) {
-          filtered = filtered.filter(m => m.clientId !== message.clientId);
+        if (normalizedMessage.clientId) {
+          filtered = filtered.filter(m => m.clientId !== normalizedMessage.clientId);
         }
 
         // Skip duplicates
-        if (filtered.some(m => m._id === message._id)) {
+        if (filtered.some(m => m._id === normalizedMessage._id)) {
           return filtered;
         }
 
         // Only include if in current conversation
         if (selectedConversation &&
-            (message.senderId === selectedConversation.userId ||
-             message.receiverId === selectedConversation.userId)) {
-          return [...filtered, message];
+            (normalizedMessage.senderId === selectedConversation.userId ||
+             normalizedMessage.receiverId === selectedConversation.userId)) {
+          return [...filtered, normalizedMessage];
         }
 
         return filtered;
       });
 
       // Show browser notification if not focused and message is not from self
-      if (message.senderId !== currentUserId && !document.hasFocus()) {
+      if (normalizedMessage.senderId !== currentUserId && !document.hasFocus()) {
         if (Notification.permission === 'granted') {
           new Notification('New message', {
-            body: message.content,
+            body: normalizedMessage.content,
             icon: '/favicon.ico'
           });
         } else if (Notification.permission !== 'denied') {
           Notification.requestPermission().then(permission => {
             if (permission === 'granted') {
               new Notification('New message', {
-                body: message.content,
+                body: normalizedMessage.content,
                 icon: '/favicon.ico'
               });
             }
@@ -106,54 +127,53 @@ const Messages = () => {
         }
       }
 
-      
       // Update conversation list to reflect new message
       setConversations(prev => {
         let conversationExists = false;
         const updated = prev.map(conv => {
-          if (conv.userId === message.senderId || conv.userId === message.receiverId) {
+          if (conv.userId === normalizedMessage.senderId || conv.userId === normalizedMessage.receiverId) {
             conversationExists = true;
-            const otherUserId = message.senderId === currentUserId ? message.receiverId : message.senderId;
+            const otherUserId = normalizedMessage.senderId === currentUserId ? normalizedMessage.receiverId : normalizedMessage.senderId;
             return {
               ...conv,
               userId: otherUserId,
               userName: conv.userName || 'Unknown User',
               userAvatar: conv.userAvatar || 'U',
-              lastMessage: message.content,
-              lastMessageTime: message.timestamp,
-              timestamp: message.timestamp,
-              unread: message.receiverId === currentUserId ? (conv.unread || 0) + 1 : conv.unread,
-              online: onlineUsers.some(u => u._id.toString() === otherUserId.toString())
+              lastMessage: normalizedMessage.content,
+              lastMessageTime: normalizedMessage.timestamp,
+              timestamp: normalizedMessage.timestamp,
+              unread: normalizedMessage.receiverId === currentUserId ? (conv.unread || 0) + 1 : conv.unread,
+              online: onlineUsers.some(u => normalizeId(u._id) === otherUserId)
             };
           }
           return conv;
         });
-        
+
         // If conversation doesn't exist, add it
         if (!conversationExists) {
-          const otherUserId = message.senderId === currentUserId ? message.receiverId : message.senderId;
-          const otherUser = onlineUsers.find(u => u._id.toString() === otherUserId.toString());
+          const otherUserId = normalizedMessage.senderId === currentUserId ? normalizedMessage.receiverId : normalizedMessage.senderId;
+          const otherUser = onlineUsers.find(u => normalizeId(u._id) === otherUserId);
           const newConv = {
             userId: otherUserId,
             userName: otherUser?.name || 'Unknown User',
             userAvatar: (otherUser?.name || 'U').charAt(0).toUpperCase(),
-            lastMessage: message.content,
-            lastMessageTime: message.timestamp,
-            timestamp: message.timestamp,
-            unread: message.receiverId === currentUserId ? 1 : 0,
+            lastMessage: normalizedMessage.content,
+            lastMessageTime: normalizedMessage.timestamp,
+            timestamp: normalizedMessage.timestamp,
+            unread: normalizedMessage.receiverId === currentUserId ? 1 : 0,
             online: !!otherUser
           };
           updated.unshift(newConv);
         }
-        
+
         // Sort by last message time
         return updated.sort((a, b) => new Date(b.lastMessageTime) - new Date(a.lastMessageTime));
       });
 
       // Auto-scroll for current conversation when user is at bottom (or if message is from me)
       if (selectedConversation &&
-          (message.senderId === selectedConversation.userId || message.receiverId === selectedConversation.userId) &&
-          (isAtBottom || message.senderId === currentUserId)) {
+          (normalizedMessage.senderId === selectedConversation.userId || normalizedMessage.receiverId === selectedConversation.userId) &&
+          (isAtBottom || normalizedMessage.senderId === currentUserId)) {
         scrollToBottom();
       }
     });
@@ -228,7 +248,7 @@ const Messages = () => {
   useEffect(() => {
     setConversations(prev => prev.map(conv => ({
       ...conv,
-      online: onlineUsers.some(u => u._id.toString() === conv.userId.toString())
+      online: onlineUsers.some(u => normalizeId(u._id) === normalizeId(conv.userId))
     })));
   }, [onlineUsers]);
 
@@ -279,7 +299,11 @@ const Messages = () => {
       });
       if (response.ok) {
         const data = await response.json();
-        const conversationsData = data.conversations || data;
+        const conversationsData = (data.conversations || data).map(conv => ({
+          ...conv,
+          userId: normalizeId(conv.userId),
+          userRole: conv.userRole || conv.role || 'user',
+        }));
         setConversations(conversationsData);
         return conversationsData;
       } else {
@@ -312,13 +336,20 @@ const Messages = () => {
 
       if (response.ok) {
         const data = await response.json();
+        const normalizedMessages = (data.messages || []).map(msg => ({
+          ...msg,
+          _id: normalizeId(msg._id),
+          senderId: normalizeId(msg.senderId),
+          receiverId: normalizeId(msg.receiverId),
+          timestamp: msg.timestamp || msg.createdAt,
+        }));
 
         if (append) {
           // Preserve scroll position when prepending older messages
           const oldScrollHeight = chatContainerRef.current.scrollHeight;
           const oldScrollTop = chatContainerRef.current.scrollTop;
 
-          setMessages(prev => [...data.messages, ...prev]);
+          setMessages(prev => [...normalizedMessages, ...prev]);
 
           // After render, adjust scroll to maintain position
           setTimeout(() => {
@@ -327,7 +358,7 @@ const Messages = () => {
             chatContainerRef.current.scrollTop = oldScrollTop + scrollDifference;
           }, 0);
         } else {
-          setMessages(data.messages || []);
+          setMessages(normalizedMessages);
         }
 
         setMessagesPage(page);
@@ -377,7 +408,7 @@ const Messages = () => {
     const tempMessage = {
       _id: tempId,
       senderId: currentUserId || 'me',
-      receiverId: selectedConversation.userId,
+      receiverId: normalizeId(selectedConversation.userId),
       content: messageToSend,
       timestamp: new Date().toISOString(),
       read: false,
@@ -544,8 +575,10 @@ const Messages = () => {
   };
 
   const startNewConversation = async (selectedUser) => {
+    const selectedUserId = normalizeId(selectedUser._id);
+
     // Check if conversation already exists
-    const existingConv = conversations.find(conv => conv.userId === selectedUser._id);
+    const existingConv = conversations.find(conv => normalizeId(conv.userId) === selectedUserId);
     if (existingConv) {
       setSelectedConversation(existingConv);
       setShowNewMessageModal(false);
@@ -555,13 +588,13 @@ const Messages = () => {
 
     // Create a new conversation object
     const newConv = {
-      userId: selectedUser._id,
+      userId: selectedUserId,
       userName: selectedUser.name,
       userAvatar: selectedUser.name?.charAt(0)?.toUpperCase() || 'U',
       lastMessage: '',
       timestamp: new Date().toISOString(),
       unread: 0,
-      online: onlineUsers.some(u => u._id.toString() === selectedUser._id.toString())
+      online: onlineUsers.some(u => normalizeId(u._id) === selectedUserId)
     };
 
     setConversations(prev => [newConv, ...prev]);
@@ -661,7 +694,10 @@ const Messages = () => {
                         </div>
                         <div className="flex-1 min-w-0">
                           <div className="flex items-center justify-between mb-1">
-                            <h3 className="text-sm font-semibold text-[var(--text-primary)] truncate">{conv.userName}</h3>
+                            <div className="min-w-0">
+                              <h3 className="text-sm font-semibold text-[var(--text-primary)] truncate">{conv.userName}</h3>
+                              <span className="text-[var(--text-muted)] text-[11px] capitalize">{conv.userRole || 'user'}</span>
+                            </div>
                             <span className="text-xs text-[var(--text-muted)]">{formatDate(conv.timestamp)}</span>
                           </div>
                           <p className="text-xs text-[var(--text-muted)] truncate">{conv.lastMessage}</p>
@@ -695,7 +731,14 @@ const Messages = () => {
                       </div>
                       <div>
                         <h3 className="text-base font-semibold text-[var(--text-primary)]">{selectedConversation.userName}</h3>
-                        <p className="text-sm text-[var(--text-muted)]">{selectedConversation.online ? 'Online now' : 'Offline'}</p>
+                        <div className="flex items-center gap-2">
+                          <span className="text-sm text-[var(--text-muted)]">{selectedConversation.online ? 'Online now' : 'Offline'}</span>
+                          {selectedConversation.userRole && (
+                            <span className="text-[11px] uppercase tracking-[0.08em] text-[var(--accent-primary)]">
+                              {selectedConversation.userRole}
+                            </span>
+                          )}
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -886,6 +929,8 @@ const Messages = () => {
                 <div className="p-4 md:p-8 text-center text-[var(--text-muted)] text-sm">
                   {user?.role === 'freelancer' ? 
                     'No available contacts. Apply to jobs to connect with clients, or contact admin for support.' : 
+                    user?.role === 'client' ?
+                    'No freelancers found. Search by name or email to start a new chat.' :
                     'No users found'
                   }
                 </div>

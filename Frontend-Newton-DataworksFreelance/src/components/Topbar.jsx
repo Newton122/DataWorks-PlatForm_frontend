@@ -1,14 +1,45 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { Link, useNavigate } from 'react-router-dom'
+import { io } from 'socket.io-client'
 import { useAuth } from '../context/AuthContext'
 import ThemeToggle from './ThemeToggle'
 import NotificationBell from './NotificationBell'
 
+const API_URL = import.meta.env.VITE_API_BASE_URL || 'https://dataworks-platform.onrender.com'
+
 const Topbar = ({ onMenuClick }) => {
   const [isProfileOpen, setIsProfileOpen] = useState(false)
+  const [socketConnected, setSocketConnected] = useState(false)
   const { user, logout } = useAuth()
   const navigate = useNavigate()
+
+  useEffect(() => {
+    const socket = io(API_URL, {
+      auth: {
+        token: localStorage.getItem('token')
+      }
+    })
+
+    socket.on('connect', () => {
+      setSocketConnected(true)
+      console.log('Topbar: socket connected')
+    })
+
+    socket.on('disconnect', () => {
+      setSocketConnected(false)
+      console.log('Topbar: socket disconnected')
+    })
+
+    socket.on('connect_error', (err) => {
+      console.error('Topbar: socket error', err && err.message ? err.message : err)
+      setSocketConnected(false)
+    })
+
+    return () => {
+      socket.disconnect()
+    }
+  }, [])
 
   const handleLogout = () => {
     logout()
@@ -50,6 +81,16 @@ const Topbar = ({ onMenuClick }) => {
 
         {/* Right side */}
         <div className="flex items-center space-x-4">
+          {/* Socket status indicator */}
+          <motion.div
+            title={socketConnected ? 'Socket connected' : 'Socket disconnected'}
+            animate={{ scale: socketConnected ? 1 : 0.8 }}
+            transition={{ duration: 0.3 }}
+            className="flex items-center"
+          >
+            <div className={`w-2.5 h-2.5 rounded-full ${socketConnected ? 'bg-green-500' : 'bg-red-500'}`}></div>
+          </motion.div>
+          
           <ThemeToggle />
           <NotificationBell />
           

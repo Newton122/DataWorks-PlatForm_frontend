@@ -1,7 +1,10 @@
 import { useState, useEffect, useRef } from 'react'
+import { io } from 'socket.io-client'
 import { motion } from 'framer-motion'
 import { Bell } from 'lucide-react'
 import { useAuth } from '../context/AuthContext'
+
+const API_URL = import.meta.env.VITE_API_BASE_URL || 'https://dataworks-platform.onrender.com'
 
 const NotificationBell = () => {
   const { user } = useAuth()
@@ -30,15 +33,41 @@ const NotificationBell = () => {
     document.addEventListener('mousedown', handleClickOutside)
     window.addEventListener('notifications-updated', handleNotificationsUpdated)
 
+    const socket = io(API_URL, {
+      auth: {
+        token: localStorage.getItem('token')
+      }
+    })
+
+    socket.on('connect', () => {
+      console.log('Notification socket connected')
+    })
+
+    socket.on('connect_error', (err) => {
+      console.error('Notification socket connect_error:', err && err.message ? err.message : err)
+    })
+
+    socket.on('notification', (notification) => {
+      console.log('Received live notification:', notification)
+      setNotifications(prev => [notification, ...(prev || [])])
+      // Let other components know notifications changed (e.g., messages)
+      window.dispatchEvent(new Event('notifications-updated'))
+    })
+
+    socket.on('disconnect', (reason) => {
+      console.log('Notification socket disconnected:', reason)
+    })
+
     return () => {
       document.removeEventListener('mousedown', handleClickOutside)
       window.removeEventListener('notifications-updated', handleNotificationsUpdated)
+      socket.disconnect()
     }
   }, [])
 
   const fetchNotifications = async () => {
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/notifications`, {
+      const response = await fetch(`${API_URL}/api/notifications`, {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`
         }
@@ -56,7 +85,7 @@ const NotificationBell = () => {
 
   const markAsRead = async (id) => {
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/notifications/${id}/read`, {
+      const response = await fetch(`${API_URL}/api/notifications/${id}/read`, {
         method: 'PATCH',
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`
@@ -76,7 +105,7 @@ const NotificationBell = () => {
 
   const markAllAsRead = async () => {
     try {
-      await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/notifications/read-all`, {
+      await fetch(`${API_URL}/api/notifications/read-all`, {
         method: 'PATCH',
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`
