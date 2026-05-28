@@ -1,33 +1,50 @@
 
 import { useState, useEffect } from "react";
+import { useAuth } from "../context/AuthContext";
 import io from "socket.io-client";
 import axios from "axios";
 
-const NotificationBell = ({ userId }) => {
+const API_URL = import.meta.env.VITE_API_BASE_URL || 'https://dataworks-platform.onrender.com';
+
+const NotificationBell = () => {
+  const { user } = useAuth();
   const [notifications, setNotifications] = useState([]);
   const [unreadCount, setUnreadCount] = useState(0);
   const [showDropdown, setShowDropdown] = useState(false);
   const [socket, setSocket] = useState(null);
 
   useEffect(() => {
-    // Socket connection
-    const newSocket = io(import.meta.env.VITE_API_BASE_URL);
+    if (!user) return;
+
+    // Socket connection with auth token
+    const newSocket = io(API_URL, {
+      auth: {
+        token: localStorage.getItem('token')
+      }
+    });
     setSocket(newSocket);
 
-    newSocket.emit("joinRoom", userId);
+    newSocket.on('connect', () => {
+      console.log('Notification socket connected');
+    });
 
-    newSocket.on("notification", (data) => {
+    newSocket.on('connect_error', (err) => {
+      console.error('Notification socket connection error:', err.message);
+    });
+
+    newSocket.on('notification', (data) => {
       setNotifications(prev => [data, ...prev]);
       setUnreadCount(prev => prev + 1);
-      // Play sound
       new Audio('/sounds/notification.mp3').play().catch(e => console.log('Audio failed:', e));
     });
 
     // Fetch existing notifications
     fetchNotifications();
 
-    return () => newSocket.close();
-  }, [userId]);
+    return () => {
+      newSocket.disconnect();
+    };
+  }, [user]);
 
   const fetchNotifications = async () => {
     try {

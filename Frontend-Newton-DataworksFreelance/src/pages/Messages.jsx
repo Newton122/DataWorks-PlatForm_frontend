@@ -24,9 +24,28 @@ const Messages = () => {
   const [messagesPage, setMessagesPage] = useState(1);
   const [hasMoreMessages, setHasMoreMessages] = useState(true);
   const [loadingMore, setLoadingMore] = useState(false);
+  const [refreshing, setRefreshing] = useState(false);
+  const currentUserId = user?.id || user?._id;
   const messagesEndRef = useRef(null);
   const chatContainerRef = useRef(null);
   const typingTimeoutRef = useRef(null);
+
+  const handleRefresh = async () => {
+    setRefreshing(true);
+    const updatedConversations = await fetchConversations(false);
+
+    if (selectedConversation) {
+      await fetchMessages(selectedConversation.userId);
+      if (updatedConversations) {
+        const refreshedConv = updatedConversations.find(conv => conv.userId.toString() === selectedConversation.userId.toString());
+        if (refreshedConv) {
+          setSelectedConversation(refreshedConv);
+        }
+      }
+    }
+
+    setRefreshing(false);
+  };
 
   useEffect(() => {
     // Initialize socket connection with fallback to production URL
@@ -69,7 +88,7 @@ const Messages = () => {
       });
 
       // Show browser notification if not focused and message is not from self
-      if (message.senderId !== user?.id && !document.hasFocus()) {
+      if (message.senderId !== currentUserId && !document.hasFocus()) {
         if (Notification.permission === 'granted') {
           new Notification('New message', {
             body: message.content,
@@ -94,7 +113,7 @@ const Messages = () => {
         const updated = prev.map(conv => {
           if (conv.userId === message.senderId || conv.userId === message.receiverId) {
             conversationExists = true;
-            const otherUserId = message.senderId === user?.id ? message.receiverId : message.senderId;
+            const otherUserId = message.senderId === currentUserId ? message.receiverId : message.senderId;
             return {
               ...conv,
               userId: otherUserId,
@@ -103,7 +122,7 @@ const Messages = () => {
               lastMessage: message.content,
               lastMessageTime: message.timestamp,
               timestamp: message.timestamp,
-              unread: message.receiverId === user?.id ? (conv.unread || 0) + 1 : conv.unread,
+              unread: message.receiverId === currentUserId ? (conv.unread || 0) + 1 : conv.unread,
               online: onlineUsers.some(u => u._id.toString() === otherUserId.toString())
             };
           }
@@ -112,7 +131,7 @@ const Messages = () => {
         
         // If conversation doesn't exist, add it
         if (!conversationExists) {
-          const otherUserId = message.senderId === user?.id ? message.receiverId : message.senderId;
+          const otherUserId = message.senderId === currentUserId ? message.receiverId : message.senderId;
           const otherUser = onlineUsers.find(u => u._id.toString() === otherUserId.toString());
           const newConv = {
             userId: otherUserId,
@@ -121,7 +140,7 @@ const Messages = () => {
             lastMessage: message.content,
             lastMessageTime: message.timestamp,
             timestamp: message.timestamp,
-            unread: message.receiverId === user?.id ? 1 : 0,
+            unread: message.receiverId === currentUserId ? 1 : 0,
             online: !!otherUser
           };
           updated.unshift(newConv);
@@ -134,7 +153,7 @@ const Messages = () => {
       // Auto-scroll for current conversation when user is at bottom (or if message is from me)
       if (selectedConversation &&
           (message.senderId === selectedConversation.userId || message.receiverId === selectedConversation.userId) &&
-          (isAtBottom || message.senderId === user?.id)) {
+          (isAtBottom || message.senderId === currentUserId)) {
         scrollToBottom();
       }
     });
@@ -154,7 +173,7 @@ const Messages = () => {
     newSocket.on('messagesRead', ({ readBy }) => {
       // Update messages to show they've been read
       setMessages(prev => prev.map(msg => {
-        if (msg.senderId === user?.id || msg.senderId === 'me') {
+        if (msg.senderId === currentUserId || msg.senderId === 'me') {
           return { ...msg, read: true };
         }
         return msg;
@@ -169,16 +188,6 @@ const Messages = () => {
     newSocket.on('messageError', ({ error }) => {
       console.error('Message error:', error);
       alert('Failed to send message. Please try again.');
-    });
-
-    newSocket.on('messagesRead', ({ readBy }) => {
-      // Update messages to show they've been read
-      setMessages(prev => prev.map(msg => {
-        if (msg.senderId === user?.id || msg.senderId === 'me') {
-          return { ...msg, read: true };
-        }
-        return msg;
-      }));
     });
 
     setSocket(newSocket);
@@ -260,9 +269,9 @@ const Messages = () => {
     };
   }, []);
 
-  const fetchConversations = async () => {
+  const fetchConversations = async (useLoading = true) => {
     try {
-      setLoading(true);
+      if (useLoading) setLoading(true);
       const response = await fetch(`${API_URL}/api/messages/conversations`, {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`
@@ -270,17 +279,20 @@ const Messages = () => {
       });
       if (response.ok) {
         const data = await response.json();
-        // API returns { conversations: [...] }
-        setConversations(data.conversations || data);
+        const conversationsData = data.conversations || data;
+        setConversations(conversationsData);
+        return conversationsData;
       } else {
         console.error('Failed to fetch conversations:', response.statusText);
         setConversations([]);
+        return [];
       }
     } catch (error) {
       console.error('Error fetching conversations:', error);
       setConversations([]);
+      return [];
     } finally {
-      setLoading(false);
+      if (useLoading) setLoading(false);
     }
   };
 
@@ -364,7 +376,7 @@ const Messages = () => {
 
     const tempMessage = {
       _id: tempId,
-      senderId: user?.id || 'me',
+      senderId: currentUserId || 'me',
       receiverId: selectedConversation.userId,
       content: messageToSend,
       timestamp: new Date().toISOString(),
@@ -495,10 +507,12 @@ const Messages = () => {
     conv.userName.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  const filteredUsers = availableUsers.filter(u =>
-    u.name.toLowerCase().includes(userSearchTerm.toLowerCase()) ||
-    u.email.toLowerCase().includes(userSearchTerm.toLowerCase())
-  );
+  const filteredUsers = availableUsers
+    .filter(u => (user?.role !== 'client' || u.role === 'freelancer') && (
+      u.name.toLowerCase().includes(userSearchTerm.toLowerCase()) ||
+      u.email.toLowerCase().includes(userSearchTerm.toLowerCase())
+    ))
+    .sort((a, b) => a.name.localeCompare(b.name));
 
   const fetchAvailableUsers = async () => {
     setLoadingUsers(true);
@@ -582,13 +596,17 @@ const Messages = () => {
               {/* Header */}
               <div className="p-3 md:p-4 border-b border-[var(--border-color)] flex-shrink-0">
                 <div className="flex items-center justify-between gap-2 mb-3">
-                  <h2 className="text-base md:text-lg font-semibold text-[var(--text-primary)]">Messages</h2>
+                  <div>
+                    <h2 className="text-base md:text-lg font-semibold text-[var(--text-primary)]">Messages</h2>
+                    <p className="text-xs text-[var(--text-muted)]">{conversations.length} conversations</p>
+                  </div>
                   <div className="flex gap-1 md:gap-2">
                     <button
-                      onClick={() => selectedConversation && fetchMessages(selectedConversation.userId)}
-                      className="px-2 md:px-3 py-1 md:py-1.5 bg-[var(--bg-tertiary)] text-[var(--text-primary)] text-xs md:text-sm font-medium rounded-lg hover:bg-[var(--bg-hover)] transition-colors"
+                      onClick={handleRefresh}
+                      disabled={refreshing}
+                      className={`px-2 md:px-3 py-1 md:py-1.5 text-[var(--text-primary)] text-xs md:text-sm font-medium rounded-lg transition-colors ${refreshing ? 'bg-[var(--bg-tertiary)] opacity-70 cursor-not-allowed' : 'bg-[var(--bg-tertiary)] hover:bg-[var(--bg-hover)]'}`}
                     >
-                      Refresh
+                      {refreshing ? 'Refreshing...' : 'Refresh'}
                     </button>
                     <button
                       onClick={openNewMessageModal}
@@ -665,21 +683,19 @@ const Messages = () => {
               {selectedConversation ? (
                 <>
                   {/* Chat Header */}
-                  <div className="p-4 border-b border-[var(--border-color)]">
+                  <div className="p-4 border-b border-[var(--border-color)] sticky top-0 z-10 bg-[var(--bg-secondary)]">
                     <div className="flex items-center gap-3">
                       <div className="relative">
-                        <div className="w-10 h-10 bg-[var(--bg-secondary)] border border-[var(--border-color)] flex items-center justify-center text-sm font-semibold text-[var(--accent-primary)]">
+                        <div className="w-12 h-12 bg-[var(--bg-secondary)] border border-[var(--border-color)] rounded-2xl flex items-center justify-center text-sm font-semibold text-[var(--accent-primary)]">
                           {selectedConversation.userAvatar}
                         </div>
                         {selectedConversation.online && (
-                          <div className="absolute bottom-0 right-0 w-3 h-3 bg-green-500 border-2 border-[var(--bg-primary)]"></div>
+                          <div className="absolute bottom-0 right-0 w-3 h-3 bg-green-500 border-2 border-[var(--bg-primary)] rounded-full"></div>
                         )}
                       </div>
                       <div>
-                        <h3 className="text-sm font-semibold text-[var(--text-primary)]">{selectedConversation.userName}</h3>
-                        <p className="text-xs text-[var(--text-muted)]">
-                          {selectedConversation.online ? 'Online' : 'Offline'}
-                        </p>
+                        <h3 className="text-base font-semibold text-[var(--text-primary)]">{selectedConversation.userName}</h3>
+                        <p className="text-sm text-[var(--text-muted)]">{selectedConversation.online ? 'Online now' : 'Offline'}</p>
                       </div>
                     </div>
                   </div>
@@ -729,19 +745,19 @@ const Messages = () => {
                         <div
                           key={message._id}
                           className={`flex ${
-                            message.senderId === user?.id || message.senderId === 'me'
+                            message.senderId === currentUserId || message.senderId === 'me'
                               ? 'justify-end'
                               : 'justify-start'
                           }`}
                         >
                           <div
-                            className={`max-w-[70%] px-4 py-2 relative group ${
-                              message.senderId === user?.id || message.senderId === 'me'
-                                ? 'bg-[var(--accent-primary)] text-white'
-                                : 'bg-[var(--bg-secondary)] border border-[var(--border-color)] text-[var(--text-primary)]'
+                            className={`max-w-[80%] px-4 py-3 relative group break-words rounded-3xl shadow-sm ${
+                              message.senderId === currentUserId || message.senderId === 'me'
+                                ? 'bg-[var(--accent-primary)] text-white rounded-br-none'
+                                : 'bg-[var(--bg-secondary)] border border-[var(--border-color)] text-[var(--text-primary)] rounded-bl-none'
                             }`}
                           >
-                            {(message.senderId === user?.id || message.senderId === 'me') && (
+                            {(message.senderId === currentUserId || message.senderId === 'me') && (
                               <button
                                 onClick={() => deleteMessage(message._id)}
                                 className="absolute -top-1 -right-1 w-6 h-6 bg-red-500 text-white rounded-full flex items-center justify-center hover:bg-red-600 transition-colors opacity-0 group-hover:opacity-100"
@@ -754,12 +770,12 @@ const Messages = () => {
                             )}
                             <p className="text-sm">{message.content}</p>
                             <div className={`flex items-center justify-end gap-1 mt-1 ${
-                              message.senderId === user?.id || message.senderId === 'me'
+                              message.senderId === currentUserId || message.senderId === 'me'
                                 ? 'text-indigo-200'
                                 : 'text-[#64748B]'
                             }`}>
                               <span className="text-xs">{formatTime(message.timestamp)}</span>
-                              {(message.senderId === user?.id || message.senderId === 'me') && message.read && (
+                              {(message.senderId === currentUserId || message.senderId === 'me') && message.read && (
                                 <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
                                   <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                                 </svg>
@@ -780,7 +796,7 @@ const Messages = () => {
                   )}
 
                   {/* Message Input */}
-                  <div className="px-4 pb-4 pt-0 border-t border-[var(--border-color)]">
+                  <div className="px-4 pb-4 pt-0 border-t border-[var(--border-color)] sticky bottom-0 z-10 bg-[var(--bg-secondary)]">
                     <div className="flex gap-3">
                       <input
                         type="text"
@@ -847,7 +863,7 @@ const Messages = () => {
               <div className="mt-3 relative">
                 <input
                   type="text"
-                  placeholder="Search users..."
+                  placeholder={user?.role === 'client' ? 'Search freelancers...' : 'Search users...'}
                   value={userSearchTerm}
                   onChange={(e) => setUserSearchTerm(e.target.value)}
                   className="w-full px-3 py-2 bg-[var(--bg-primary)] border border-[var(--border-color)] text-[var(--text-primary)] placeholder-[var(--text-muted)] text-sm focus:outline-none focus:border-[var(--accent-primary)]"
@@ -856,6 +872,9 @@ const Messages = () => {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                 </svg>
               </div>
+              {user?.role === 'client' && (
+                <p className="px-4 pt-2 text-xs text-[var(--text-muted)]">Search freelancers to start a new chat.</p>
+              )}
             </div>
             <div className="max-h-96 overflow-y-auto flex-1">
               {loadingUsers ? (

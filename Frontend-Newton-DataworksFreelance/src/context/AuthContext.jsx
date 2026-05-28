@@ -15,6 +15,14 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null)
   const [loading, setLoading] = useState(true)
 
+  const normalizeUser = (userData) => {
+    if (!userData) return null
+    if (!userData.id && userData._id) {
+      return { ...userData, id: userData._id }
+    }
+    return userData
+  }
+
   useEffect(() => {
     const token = localStorage.getItem('token')
     if (token) {
@@ -22,7 +30,7 @@ export const AuthProvider = ({ children }) => {
       // Verify token
       axios.get('/api/auth/me')
         .then(response => {
-          setUser(response.data)
+          setUser(normalizeUser(response.data))
         })
         .catch(() => {
           localStorage.removeItem('token')
@@ -41,7 +49,7 @@ export const AuthProvider = ({ children }) => {
       })
       console.log('Auth: Login response:', response.data)
       const token = response.data.token
-      const userData = response.data.user
+      const userData = normalizeUser(response.data.user)
 
       // Set token first
       localStorage.setItem('token', token)
@@ -65,10 +73,11 @@ export const AuthProvider = ({ children }) => {
   const signup = async (credentials) => {
     const response = await axios.post('/api/auth/signup', credentials)
     const token = response.data.token
+    const userData = normalizeUser(response.data.user)
     localStorage.setItem('token', token)
     axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
-    setUser(response.data.user)
-    return response.data.user
+    setUser(userData)
+    return userData
   }
 
   const logout = () => {
